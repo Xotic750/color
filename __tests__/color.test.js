@@ -30,85 +30,85 @@ describe('color', () => {
   it('color() argument', function() {
     expect.assertions(15);
     expect(new Color('#0A1E19').rgb().object()).toEqual({
-      r: 10,
-      g: 30,
       b: 25,
+      g: 30,
+      r: 10,
     });
     expect(new Color('rgb(10, 30, 25)').rgb().object()).toEqual({
-      r: 10,
-      g: 30,
       b: 25,
+      g: 30,
+      r: 10,
     });
     expect(new Color('rgba(10, 30, 25, 0.4)').rgb().object()).toEqual({
-      r: 10,
-      g: 30,
-      b: 25,
       alpha: 0.4,
+      b: 25,
+      g: 30,
+      r: 10,
     });
     expect(new Color('rgb(4%, 12%, 10%)').rgb().object()).toEqual({
-      r: 10,
-      g: 31,
       b: 26,
+      g: 31,
+      r: 10,
     });
     expect(new Color('rgba(4%, 12%, 10%, 0.4)').rgb().object()).toEqual({
-      r: 10,
-      g: 31,
-      b: 26,
       alpha: 0.4,
+      b: 26,
+      g: 31,
+      r: 10,
     });
     expect(new Color('blue').rgb().object()).toEqual({
-      r: 0,
-      g: 0,
       b: 255,
+      g: 0,
+      r: 0,
     });
     expect(new Color('hsl(120, 50%, 60%)').hsl().object()).toEqual({
       h: 120,
-      s: 50,
       l: 60,
+      s: 50,
     });
     expect(new Color('hsla(120, 50%, 60%, 0.4)').hsl().object()).toEqual({
-      h: 120,
-      s: 50,
-      l: 60,
       alpha: 0.4,
+      h: 120,
+      l: 60,
+      s: 50,
     });
     expect(new Color('hwb(120, 50%, 60%)').hwb().object()).toEqual({
+      b: 60,
       h: 120,
       w: 50,
-      b: 60,
     });
     expect(new Color('hwb(120, 50%, 60%, 0.4)').hwb().object()).toEqual({
+      alpha: 0.4,
+      b: 60,
       h: 120,
       w: 50,
-      b: 60,
-      alpha: 0.4,
     });
 
     expect(
       new Color({
-        r: 10,
-        g: 30,
         b: 25,
+        g: 30,
+        r: 10,
       })
         .rgb()
         .object(),
     ).toEqual({
-      r: 10,
-      g: 30,
       b: 25,
+      g: 30,
+      r: 10,
     });
     expect(
       new Color({
         h: 10,
-        s: 30,
         l: 25,
+        s: 30,
       })
         .hsl()
         .object(),
     ).toEqual({
       h: 10,
-      s: 30,
       l: 25,
+      s: 30,
     });
     expect(
       new Color({
@@ -125,31 +125,31 @@ describe('color', () => {
     });
     expect(
       new Color({
+        b: 25,
         h: 10,
         w: 30,
-        b: 25,
       })
         .hwb()
         .object(),
     ).toEqual({
+      b: 25,
       h: 10,
       w: 30,
-      b: 25,
     });
     expect(
       new Color({
         c: 10,
+        k: 10,
         m: 30,
         y: 25,
-        k: 10,
       })
         .cmyk()
         .object(),
     ).toEqual({
       c: 10,
+      k: 10,
       m: 30,
       y: 25,
-      k: 10,
     });
   });
 
@@ -160,66 +160,66 @@ describe('color', () => {
         .rgb()
         .object(),
     ).toEqual({
-      r: 10,
-      g: 30,
       b: 25,
+      g: 30,
+      r: 10,
     });
     expect(
       Color.rgb(10, 30, 25, 0.4)
         .rgb()
         .object(),
     ).toEqual({
-      r: 10,
-      g: 30,
-      b: 25,
       alpha: 0.4,
+      b: 25,
+      g: 30,
+      r: 10,
     });
     expect(
       Color.rgb([10, 30, 25])
         .rgb()
         .object(),
     ).toEqual({
-      r: 10,
-      g: 30,
       b: 25,
+      g: 30,
+      r: 10,
     });
     expect(
       Color.rgb([10, 30, 25, 0.4])
         .rgb()
         .object(),
     ).toEqual({
-      r: 10,
-      g: 30,
-      b: 25,
       alpha: 0.4,
+      b: 25,
+      g: 30,
+      r: 10,
     });
     expect(
       Color.rgb({
-        r: 10,
-        g: 30,
         b: 25,
+        g: 30,
+        r: 10,
       })
         .rgb()
         .object(),
     ).toEqual({
-      r: 10,
-      g: 30,
       b: 25,
+      g: 30,
+      r: 10,
     });
     expect(
       Color.rgb({
-        r: 10,
-        g: 30,
-        b: 25,
         alpha: 0.4,
+        b: 25,
+        g: 30,
+        r: 10,
       })
         .rgb()
         .object(),
     ).toEqual({
-      r: 10,
-      g: 30,
-      b: 25,
       alpha: 0.4,
+      b: 25,
+      g: 30,
+      r: 10,
     });
 
     expect(
@@ -228,8 +228,8 @@ describe('color', () => {
         .object(),
     ).toEqual({
       h: 260,
-      s: 10,
       l: 10,
+      s: 10,
     });
     expect(
       Color.hsv([260, 10, 10])
@@ -245,9 +245,9 @@ describe('color', () => {
         .hwb()
         .object(),
     ).toEqual({
+      b: 10,
       h: 260,
       w: 10,
-      b: 10,
     });
     expect(
       Color.cmyk([10, 10, 10, 10])
@@ -255,9 +255,9 @@ describe('color', () => {
         .object(),
     ).toEqual({
       c: 10,
+      k: 10,
       m: 10,
       y: 10,
-      k: 10,
     });
   });
 
@@ -279,9 +279,9 @@ describe('color', () => {
         .round()
         .object(),
     ).toEqual({
-      r: 10,
-      g: 30,
       b: 25,
+      g: 30,
+      r: 10,
     });
     expect(
       Color.rgb(10, 30, 25)
@@ -290,8 +290,8 @@ describe('color', () => {
         .object(),
     ).toEqual({
       h: 165,
-      s: 50,
       l: 8,
+      s: 50,
     });
     expect(
       Color.rgb(10, 30, 25)
@@ -309,9 +309,9 @@ describe('color', () => {
         .round()
         .object(),
     ).toEqual({
+      b: 88,
       h: 165,
       w: 4,
-      b: 88,
     });
     expect(
       Color.rgb(10, 30, 25)
@@ -320,9 +320,9 @@ describe('color', () => {
         .object(),
     ).toEqual({
       c: 67,
+      k: 88,
       m: 0,
       y: 17,
-      k: 88,
     });
   });
 
@@ -330,57 +330,57 @@ describe('color', () => {
     expect.assertions(9);
     expect(
       new Color({
-        r: 10,
-        g: 20,
         b: 30,
+        g: 20,
+        r: 10,
       })
         .rgb()
         .array(),
     ).toEqual([10, 20, 30]);
     expect(
       new Color({
-        r: 10,
-        g: 20,
         b: 30,
+        g: 20,
+        r: 10,
       }).unitArray(),
     ).toEqual([10 / 255, 20 / 255, 30 / 255]);
     expect(
       new Color({
-        r: 10,
-        g: 20,
-        b: 30,
         alpha: 0.5,
+        b: 30,
+        g: 20,
+        r: 10,
       }).unitArray(),
     ).toEqual([10 / 255, 20 / 255, 30 / 255, 0.5]);
     expect(
       new Color({
-        r: 10,
-        g: 20,
         b: 30,
+        g: 20,
+        r: 10,
       }).unitObject(),
     ).toEqual({
-      r: 10 / 255,
-      g: 20 / 255,
       b: 30 / 255,
+      g: 20 / 255,
+      r: 10 / 255,
     });
     expect(
       new Color({
-        r: 10,
-        g: 20,
-        b: 30,
         alpha: 0.5,
+        b: 30,
+        g: 20,
+        r: 10,
       }).unitObject(),
     ).toEqual({
-      r: 10 / 255,
-      g: 20 / 255,
-      b: 30 / 255,
       alpha: 0.5,
+      b: 30 / 255,
+      g: 20 / 255,
+      r: 10 / 255,
     });
     expect(
       new Color({
         h: 10,
-        s: 20,
         l: 30,
+        s: 20,
       })
         .hsl()
         .array(),
@@ -396,9 +396,9 @@ describe('color', () => {
     ).toEqual([10, 20, 30]);
     expect(
       new Color({
+        b: 30,
         h: 10,
         w: 20,
-        b: 30,
       })
         .hwb()
         .array(),
@@ -406,9 +406,9 @@ describe('color', () => {
     expect(
       new Color({
         c: 10,
+        k: 40,
         m: 20,
         y: 30,
-        k: 40,
       })
         .cmyk()
         .array(),
@@ -418,9 +418,9 @@ describe('color', () => {
   it('multiple times', function() {
     expect.assertions(2);
     const color = new Color({
-      r: 10,
-      g: 20,
       b: 30,
+      g: 20,
+      r: 10,
     });
     expect(color.rgb().array()).toEqual([10, 20, 30]);
     expect(color.rgb().array()).toEqual([10, 20, 30]);
@@ -430,66 +430,66 @@ describe('color', () => {
     expect.assertions(16);
     expect(
       new Color({
-        r: 10,
-        g: 20,
-        b: 30,
         alpha: 0.4,
+        b: 30,
+        g: 20,
+        r: 10,
       }).alpha(),
     ).toBe(0.4);
     expect(
       new Color({
-        r: 10,
-        g: 20,
-        b: 30,
         alpha: 0.4,
+        b: 30,
+        g: 20,
+        r: 10,
       })
         .alpha(0.7)
         .alpha(),
     ).toBe(0.7);
     expect(
       new Color({
-        r: 10,
-        g: 20,
         b: 30,
+        g: 20,
+        r: 10,
       }).red(),
     ).toBe(10);
     expect(
       new Color({
-        r: 10,
-        g: 20,
         b: 30,
+        g: 20,
+        r: 10,
       })
         .red(100)
         .red(),
     ).toBe(100);
     expect(
       new Color({
-        r: 10,
-        g: 20,
         b: 30,
+        g: 20,
+        r: 10,
       }).green(),
     ).toBe(20);
     expect(
       new Color({
-        r: 10,
-        g: 20,
         b: 30,
+        g: 20,
+        r: 10,
       })
         .green(200)
         .green(),
     ).toBe(200);
     expect(
       new Color({
-        r: 10,
-        g: 20,
         b: 30,
+        g: 20,
+        r: 10,
       }).blue(),
     ).toBe(30);
     expect(
       new Color({
-        r: 10,
-        g: 20,
         b: 30,
+        g: 20,
+        r: 10,
       })
         .blue(60)
         .blue(),
@@ -497,15 +497,31 @@ describe('color', () => {
     expect(
       new Color({
         h: 10,
-        s: 20,
         l: 30,
+        s: 20,
       }).hue(),
     ).toBe(10);
     expect(
       new Color({
         h: 10,
-        s: 20,
         l: 30,
+        s: 20,
+      })
+        .hue(100)
+        .hue(),
+    ).toBe(100);
+    expect(
+      new Color({
+        b: 30,
+        h: 10,
+        w: 20,
+      }).hue(),
+    ).toBe(10);
+    expect(
+      new Color({
+        b: 30,
+        h: 10,
+        w: 20,
       })
         .hue(100)
         .hue(),
@@ -513,47 +529,31 @@ describe('color', () => {
     expect(
       new Color({
         h: 10,
-        w: 20,
-        b: 30,
+        l: 30,
+        s: 20,
       }).hue(),
     ).toBe(10);
     expect(
       new Color({
         h: 10,
-        w: 20,
-        b: 30,
-      })
-        .hue(100)
-        .hue(),
-    ).toBe(100);
-    expect(
-      new Color({
-        h: 10,
-        s: 20,
         l: 30,
-      }).hue(),
-    ).toBe(10);
-    expect(
-      new Color({
-        h: 10,
         s: 20,
-        l: 30,
       })
         .hue(460)
         .hue(),
     ).toBe(100);
     expect(
       new Color({
+        b: 30,
         h: 10,
         w: 20,
-        b: 30,
       }).hue(),
     ).toBe(10);
     expect(
       new Color({
+        b: 30,
         h: 10,
         w: 20,
-        b: 30,
       })
         .hue(-260)
         .hue(),
@@ -643,15 +643,15 @@ describe('color', () => {
     expect(
       new Color({
         h: 400,
-        s: 50,
         l: 10,
+        s: 50,
       }).hue(),
     ).toBe(40);
     expect(
       new Color({
         h: 100,
-        s: 50,
         l: 80,
+        s: 50,
       })
         .lighten(0.5)
         .lightness(),
@@ -659,33 +659,33 @@ describe('color', () => {
     expect(
       new Color({
         h: -400,
-        s: 50,
         l: 10,
+        s: 50,
       }).hue(),
     ).toBe(320);
 
     // 0 == 360
     expect(
       new Color({
+        b: 10,
         h: 400,
         w: 50,
-        b: 10,
       }).hue(),
     ).toBe(40);
     expect(
       new Color({
+        b: 80,
         h: 100,
         w: 50,
-        b: 80,
       })
         .blacken(0.5)
         .wblack(),
     ).toBe(100);
     expect(
       new Color({
+        b: 10,
         h: -400,
         w: 50,
-        b: 10,
       }).hue(),
     ).toBe(320);
 
@@ -701,23 +701,23 @@ describe('color', () => {
     expect.assertions(2);
     expect(
       new Color({
-        r: 0,
-        g: 0,
         b: 0,
+        g: 0,
+        r: 0,
       })
         .lightness(50)
         .hsl()
         .object(),
     ).toEqual({
       h: 0,
-      s: 0,
       l: 50,
+      s: 0,
     });
     expect(
       new Color({
-        r: 0,
-        g: 0,
         b: 0,
+        g: 0,
+        r: 0,
       })
         .red(50)
         .green(50)
@@ -784,39 +784,39 @@ describe('color', () => {
     expect.assertions(12);
     expect(
       new Color({
-        r: 67,
-        g: 122,
         b: 134,
+        g: 122,
+        r: 67,
       })
         .grayscale()
         .rgb()
         .round()
         .object(),
     ).toEqual({
-      r: 107,
-      g: 107,
       b: 107,
+      g: 107,
+      r: 107,
     });
     expect(
       new Color({
-        r: 67,
-        g: 122,
         b: 134,
+        g: 122,
+        r: 67,
       })
         .negate()
         .rgb()
         .round()
         .object(),
     ).toEqual({
-      r: 188,
-      g: 133,
       b: 121,
+      g: 133,
+      r: 188,
     });
     expect(
       new Color({
         h: 100,
-        s: 50,
         l: 60,
+        s: 50,
       })
         .lighten(0.5)
         .lightness(),
@@ -824,26 +824,26 @@ describe('color', () => {
     expect(
       new Color({
         h: 100,
-        s: 50,
         l: 60,
+        s: 50,
       })
         .darken(0.5)
         .lightness(),
     ).toBe(30);
     expect(
       new Color({
+        b: 60,
         h: 100,
         w: 50,
-        b: 60,
       })
         .whiten(0.5)
         .white(),
     ).toBe(75);
     expect(
       new Color({
+        b: 60,
         h: 100,
         w: 50,
-        b: 60,
       })
         .blacken(0.5)
         .wblack(),
@@ -851,8 +851,8 @@ describe('color', () => {
     expect(
       new Color({
         h: 100,
-        s: 40,
         l: 50,
+        s: 40,
       })
         .saturate(0.5)
         .saturationl(),
@@ -860,28 +860,28 @@ describe('color', () => {
     expect(
       new Color({
         h: 100,
-        s: 80,
         l: 60,
+        s: 80,
       })
         .desaturate(0.5)
         .saturationl(),
     ).toBe(40);
     expect(
       new Color({
-        r: 10,
-        g: 10,
-        b: 10,
         alpha: 0.8,
+        b: 10,
+        g: 10,
+        r: 10,
       })
         .fade(0.5)
         .alpha(),
     ).toBe(0.4);
     expect(
       new Color({
-        r: 10,
-        g: 10,
-        b: 10,
         alpha: 0.5,
+        b: 10,
+        g: 10,
+        r: 10,
       })
         .opaquer(0.5)
         .alpha(),
@@ -889,8 +889,8 @@ describe('color', () => {
     expect(
       new Color({
         h: 60,
-        s: 0,
         l: 0,
+        s: 0,
       })
         .rotate(180)
         .hue(),
@@ -898,8 +898,8 @@ describe('color', () => {
     expect(
       new Color({
         h: 60,
-        s: 0,
         l: 0,
+        s: 0,
       })
         .rotate(-180)
         .hue(),

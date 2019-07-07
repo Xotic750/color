@@ -408,8 +408,8 @@ export default class Color {
     const color = [...this.hsl().color];
     const obj = {
       h: color[0],
-      s: color[1],
       l: color[2] + color[2] * ratio,
+      s: color[1],
     };
 
     if (this.valpha !== 1) {
@@ -423,8 +423,8 @@ export default class Color {
     const color = [...this.hsl().color];
     const obj = {
       h: color[0],
-      s: color[1],
       l: color[2] - color[2] * ratio,
+      s: color[1],
     };
 
     if (this.valpha !== 1) {
@@ -438,8 +438,8 @@ export default class Color {
     const color = [...this.hsl().color];
     const obj = {
       h: color[0],
-      s: color[1] + color[1] * ratio,
       l: color[2],
+      s: color[1] + color[1] * ratio,
     };
 
     if (this.valpha !== 1) {
@@ -453,8 +453,8 @@ export default class Color {
     const color = [...this.hsl().color];
     const obj = {
       h: color[0],
-      s: color[1] - color[1] * ratio,
       l: color[2],
+      s: color[1] - color[1] * ratio,
     };
 
     if (this.valpha !== 1) {
@@ -467,9 +467,9 @@ export default class Color {
   whiten(ratio) {
     const color = [...this.hwb().color];
     const obj = {
+      b: color[2],
       h: color[0],
       w: color[1] + color[1] * ratio,
-      b: color[2],
     };
 
     if (this.valpha !== 1) {
@@ -482,9 +482,9 @@ export default class Color {
   blacken(ratio) {
     const color = [...this.hwb().color];
     const obj = {
+      b: color[2] + color[2] * ratio,
       h: color[0],
       w: color[1],
-      b: color[2] + color[2] * ratio,
     };
 
     if (this.valpha !== 1) {
@@ -519,8 +519,8 @@ export default class Color {
 
     const obj = {
       h: color[0],
-      s: color[1],
       l: color[2],
+      s: color[1],
     };
 
     if (this.valpha !== 1) {
@@ -617,20 +617,47 @@ const getset = function getset(...args) {
 };
 
 Object.defineProperties(Color.prototype, {
-  /* rgb */
-  red: {
+  a: {
     configurable: true,
-    value: getset(RGB, 0, maxfn255),
+    value: getset(LAB, 1),
+    writable: true,
+  },
+  b: {
+    configurable: true,
+    value: getset(LAB, 2),
+    writable: true,
+  },
+  black: {
+    configurable: true,
+    value: getset(CMYK, 3, maxfn100),
+    writable: true,
+  },
+
+  blue: {
+    configurable: true,
+    value: getset(RGB, 2, maxfn255),
+    writable: true,
+  },
+
+  chroma: {
+    configurable: true,
+    value: getset(HCG, 1, maxfn100),
+    writable: true,
+  },
+  cyan: {
+    configurable: true,
+    value: getset(CMYK, 0, maxfn100),
+    writable: true,
+  },
+
+  gray: {
+    configurable: true,
+    value: getset(HCG, 2, maxfn100),
     writable: true,
   },
   green: {
     configurable: true,
     value: getset(RGB, 1, maxfn255),
-    writable: true,
-  },
-  blue: {
-    configurable: true,
-    value: getset(RGB, 2, maxfn255),
     writable: true,
   },
 
@@ -639,18 +666,34 @@ Object.defineProperties(Color.prototype, {
     value: getset([HSL, HSV, HWB, HCG], 0, (val) => ((val % 360) + 360) % 360),
     writable: true,
   },
-
-  saturationl: {
+  l: {
     configurable: true,
-    value: getset(HSL, 1, maxfn100),
+    value: getset(LAB, 0, maxfn100),
     writable: true,
   },
+
   lightness: {
     configurable: true,
     value: getset(HSL, 2, maxfn100),
     writable: true,
   },
+  magenta: {
+    configurable: true,
+    value: getset(CMYK, 1, maxfn100),
+    writable: true,
+  },
 
+  /* rgb */
+  red: {
+    configurable: true,
+    value: getset(RGB, 0, maxfn255),
+    writable: true,
+  },
+  saturationl: {
+    configurable: true,
+    value: getset(HSL, 1, maxfn100),
+    writable: true,
+  },
   saturationv: {
     configurable: true,
     value: getset(HSV, 1, maxfn100),
@@ -662,36 +705,25 @@ Object.defineProperties(Color.prototype, {
     writable: true,
   },
 
-  chroma: {
-    configurable: true,
-    value: getset(HCG, 1, maxfn100),
-    writable: true,
-  },
-  gray: {
-    configurable: true,
-    value: getset(HCG, 2, maxfn100),
-    writable: true,
-  },
-
-  white: {
-    configurable: true,
-    value: getset(HWB, 1, maxfn100),
-    writable: true,
-  },
   wblack: {
     configurable: true,
     value: getset(HWB, 2, maxfn100),
     writable: true,
   },
-
-  cyan: {
+  white: {
     configurable: true,
-    value: getset(CMYK, 0, maxfn100),
+    value: getset(HWB, 1, maxfn100),
     writable: true,
   },
-  magenta: {
+  x: {
     configurable: true,
-    value: getset(CMYK, 1, maxfn100),
+    value: getset(XYZ, 0, maxfn100),
+    writable: true,
+  },
+
+  y: {
+    configurable: true,
+    value: getset(XYZ, 1, maxfn100),
     writable: true,
   },
   yellow: {
@@ -699,41 +731,9 @@ Object.defineProperties(Color.prototype, {
     value: getset(CMYK, 2, maxfn100),
     writable: true,
   },
-  black: {
-    configurable: true,
-    value: getset(CMYK, 3, maxfn100),
-    writable: true,
-  },
-
-  x: {
-    configurable: true,
-    value: getset(XYZ, 0, maxfn100),
-    writable: true,
-  },
-  y: {
-    configurable: true,
-    value: getset(XYZ, 1, maxfn100),
-    writable: true,
-  },
   z: {
     configurable: true,
     value: getset(XYZ, 2, maxfn100),
-    writable: true,
-  },
-
-  l: {
-    configurable: true,
-    value: getset(LAB, 0, maxfn100),
-    writable: true,
-  },
-  a: {
-    configurable: true,
-    value: getset(LAB, 1),
-    writable: true,
-  },
-  b: {
-    configurable: true,
-    value: getset(LAB, 2),
     writable: true,
   },
 });
