@@ -25,7 +25,7 @@ alt="npm version" height="18">
 > JavaScript library for immutable color conversion and manipulation with support for CSS color strings.
 
 ```js
-var color = Color('#7743CE')
+const color = Color('#7743CE')
   .alpha(0.5)
   .lighten(0.5);
 console.log(color.hsl().string()); // 'hsla(262, 59%, 81%, 0.5)'
@@ -133,6 +133,8 @@ color.isDark(); // false
 Get whether the color is "light" or "dark", useful for deciding text color.
 
 ### Manipulation
+
+Returns a new instance of Color.
 
 ```js
 color.negate(); // rgb(0, 100, 255) -> rgb(255, 155, 0)
