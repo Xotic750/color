@@ -1,7 +1,7 @@
 /*!
 {
   "copyrite": "Copyright (c) Graham Fairweather",
-  "date": "2019-07-07T22:53:20.973Z",
+  "date": "2019-07-07T23:09:06.554Z",
   "describe": "",
   "description": "Color conversion and manipulation library",
   "file": "color-x.js",
