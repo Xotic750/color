@@ -1,10 +1,10 @@
 /*!
 {
   "copyrite": "Copyright (c) Graham Fairweather",
-  "date": "2019-07-07T23:38:47.852Z",
+  "date": "2019-07-07T23:42:56.092Z",
   "describe": "",
   "description": "Color conversion and manipulation library",
-  "file": "@xotic750/color.js",
+  "file": "color.js",
   "hash": "7157fa9b6f919cb7f038",
   "license": "MIT",
   "version": "1.0.0"
