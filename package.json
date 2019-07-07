@@ -1,18 +1,18 @@
 {
-  "name": "color-x",
+  "name": "@xotic750/color",
   "version": "1.0.0",
   "description": "Color conversion and manipulation library",
-  "homepage": "https://github.com/Xotic750/color-x",
+  "homepage": "https://github.com/Xotic750/color",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Xotic750/color-x.git"
+    "url": "https://github.com/Xotic750/color.git"
   },
   "bugs": {
-    "url": "https://github.com/Xotic750/color-x/issues"
+    "url": "https://github.com/Xotic750/color/issues"
   },
-  "browser": "dist/color-x.js",
-  "main": "dist/color-x.js",
-  "module": "src/color-x.js",
+  "browser": "dist/color.js",
+  "main": "dist/color.js",
+  "module": "src/color.js",
   "scripts": {
     "clean:dist": "rimraf dist",
     "clean:docs": "rimraf docs",

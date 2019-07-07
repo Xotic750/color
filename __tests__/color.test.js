@@ -1,6 +1,6 @@
-import Color from '../src/color-x';
+import Color from '../src/color';
 
-describe('color-x', () => {
+describe('color', () => {
   it('color() instance', function() {
     expect.assertions(3);
     expect(new Color('red').red()).toBe(255);

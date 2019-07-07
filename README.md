@@ -1,24 +1,24 @@
-# color-x
+# color
 
-<a href="https://travis-ci.org/Xotic750/color-x"
+<a href="https://travis-ci.org/Xotic750/color"
 title="Travis status">
 <img
-src="https://travis-ci.org/Xotic750/color-x.svg?branch=master"
+src="https://travis-ci.org/Xotic750/color.svg?branch=master"
 alt="Travis status" height="18">
 </a>
-<a href="https://david-dm.org/Xotic750/color-x"
+<a href="https://david-dm.org/Xotic750/color"
 title="Dependency status">
-<img src="https://david-dm.org/Xotic750/color-x/status.svg"
+<img src="https://david-dm.org/Xotic750/color/status.svg"
 alt="Dependency status" height="18"/>
 </a>
 <a
-href="https://david-dm.org/Xotic750/color-x?type=dev"
+href="https://david-dm.org/Xotic750/color?type=dev"
 title="devDependency status">
-<img src="https://david-dm.org/Xotic750/color-x/dev-status.svg"
+<img src="https://david-dm.org/Xotic750/color/dev-status.svg"
 alt="devDependency status" height="18"/>
 </a>
-<a href="https://badge.fury.io/js/color-x" title="npm version">
-<img src="https://badge.fury.io/js/color-x.svg"
+<a href="https://badge.fury.io/js/color" title="npm version">
+<img src="https://badge.fury.io/js/color.svg"
 alt="npm version" height="18">
 </a>
 
