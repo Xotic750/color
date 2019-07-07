@@ -1,4 +1,4 @@
-# color
+# @xotic750/color
 
 <a href="https://travis-ci.org/Xotic750/color"
 title="Travis status">
