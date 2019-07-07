@@ -17,8 +17,8 @@ title="devDependency status">
 <img src="https://david-dm.org/Xotic750/color/dev-status.svg"
 alt="devDependency status" height="18"/>
 </a>
-<a href="https://badge.fury.io/js/color" title="npm version">
-<img src="https://badge.fury.io/js/color.svg"
+<a href="https://badge.fury.io/js/%40xotic750%2Fcolor" title="npm version">
+<img src="https://badge.fury.io/js/%40xotic750%2Fcolor.svg"
 alt="npm version" height="18">
 </a>
 
