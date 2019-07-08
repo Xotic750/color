@@ -5,3 +5,33 @@ exports[`color exceptions 1`] = `"Unable to parse color from string: unknow"`;
 exports[`color exceptions 2`] = `"Unable to parse color from object: {}"`;
 
 exports[`color exceptions 3`] = `"Unable to parse color from string: "`;
+
+exports[`color hashedModelKeys 1`] = `
+Object {
+  "abl": "lab",
+  "ansi16": "ansi16",
+  "ansi256": "ansi256",
+  "b16g16r16": "apple",
+  "bgr": "rgb",
+  "bhw": "hwb",
+  "cgh": "hcg",
+  "chl": "lch",
+  "ckmy": "cmyk",
+  "gray": "gray",
+  "hex": "hex",
+  "hls": "hsl",
+  "hsv": "hsv",
+  "keyword": "keyword",
+  "xyz": "xyz",
+}
+`;
+
+exports[`color mix: throw 1`] = `"Argument to \\"mix\\" was not a Color instance, but rather an instance of undefined"`;
+
+exports[`color mix: throw 2`] = `"Argument to \\"mix\\" was not a Color instance, but rather an instance of object"`;
+
+exports[`color toString 1`] = `"rgb(255, 255, 255)"`;
+
+exports[`color toString 2`] = `"rgb(128, 128, 128)"`;
+
+exports[`color unknown model 1`] = `"Unknown model: mmm"`;

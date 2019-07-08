@@ -1,6 +1,11 @@
-import Color from '../src/color';
+import Color, {hashedModelKeys} from '../src/color';
 
 describe('color', () => {
+  it('hashedModelKeys', function() {
+    expect.assertions(1);
+    expect(hashedModelKeys).toMatchSnapshot();
+  });
+
   it('color() instance', function() {
     expect.assertions(3);
     expect(new Color('red').red()).toBe(255);
@@ -427,7 +432,7 @@ describe('color', () => {
   });
 
   it('channel getters/setters', function() {
-    expect.assertions(16);
+    expect.assertions(17);
     expect(
       new Color({
         alpha: 0.4,
@@ -558,6 +563,7 @@ describe('color', () => {
         .hue(-260)
         .hue(),
     ).toBe(100);
+    expect(new Color('#AABBCC').hex('#BADA55').hex()).toBe('#BADA55');
   });
 
   it('setting the same value', function() {
@@ -732,7 +738,7 @@ describe('color', () => {
   });
 
   it('cSS String getters', function() {
-    expect.assertions(12);
+    expect.assertions(13);
     expect(new Color('rgb(10, 30, 25)').hex()).toBe('#0A1E19');
     expect(new Color('rgb(10, 30, 25)').rgb().string()).toBe('rgb(10, 30, 25)');
     expect(new Color('rgb(10, 30, 25, 0.4)').rgb().string()).toBe('rgba(10, 30, 25, 0.4)');
@@ -752,6 +758,7 @@ describe('color', () => {
     expect(new Color('rgb(10, 30, 25)').hwb().string(0)).toBe('hwb(165, 4%, 88%)');
     expect(new Color('rgb(10, 30, 25, 0.3)').hwb().string(0)).toBe('hwb(165, 4%, 88%, 0.3)');
     expect(new Color('rgb(0, 0, 255)').keyword()).toBe('blue');
+    expect(new Color('rgb(0, 0, 255)').keyword('red')).toEqual(new Color('red'));
     expect(Color.rgb(155.5, 243.1555, 88.1999).string()).toBe('rgb(156, 243, 88)');
   });
 
@@ -781,7 +788,7 @@ describe('color', () => {
   });
 
   it('manipulators wo/ mix', function() {
-    expect.assertions(12);
+    expect.assertions(27);
     expect(
       new Color({
         b: 134,
@@ -814,6 +821,23 @@ describe('color', () => {
     });
     expect(
       new Color({
+        alpha: 0.5,
+        b: 134,
+        g: 122,
+        r: 67,
+      })
+        .negate()
+        .rgb()
+        .round()
+        .object(),
+    ).toEqual({
+      alpha: 0.5,
+      b: 121,
+      g: 133,
+      r: 188,
+    });
+    expect(
+      new Color({
         h: 100,
         l: 60,
         s: 50,
@@ -827,9 +851,47 @@ describe('color', () => {
         l: 60,
         s: 50,
       })
+        .lighten(0.5)
+        .alpha(),
+    ).toBe(1);
+    expect(
+      new Color({
+        alpha: 0.5,
+        h: 100,
+        l: 60,
+        s: 50,
+      })
+        .lighten(0.5)
+        .alpha(),
+    ).toBe(0.5);
+    expect(
+      new Color({
+        h: 100,
+        l: 60,
+        s: 50,
+      })
         .darken(0.5)
         .lightness(),
     ).toBe(30);
+    expect(
+      new Color({
+        h: 100,
+        l: 60,
+        s: 50,
+      })
+        .darken(0.5)
+        .alpha(),
+    ).toBe(1);
+    expect(
+      new Color({
+        alpha: 0.5,
+        h: 100,
+        l: 60,
+        s: 50,
+      })
+        .darken(0.5)
+        .alpha(),
+    ).toBe(0.5);
     expect(
       new Color({
         b: 60,
@@ -845,9 +907,47 @@ describe('color', () => {
         h: 100,
         w: 50,
       })
+        .whiten(0.5)
+        .alpha(),
+    ).toBe(1);
+    expect(
+      new Color({
+        alpha: 0.5,
+        b: 60,
+        h: 100,
+        w: 50,
+      })
+        .whiten(0.5)
+        .alpha(),
+    ).toBe(0.5);
+    expect(
+      new Color({
+        b: 60,
+        h: 100,
+        w: 50,
+      })
         .blacken(0.5)
         .wblack(),
     ).toBe(90);
+    expect(
+      new Color({
+        b: 60,
+        h: 100,
+        w: 50,
+      })
+        .blacken(0.5)
+        .alpha(),
+    ).toBe(1);
+    expect(
+      new Color({
+        alpha: 0.5,
+        b: 60,
+        h: 100,
+        w: 50,
+      })
+        .blacken(0.5)
+        .alpha(),
+    ).toBe(0.5);
     expect(
       new Color({
         h: 100,
@@ -860,12 +960,50 @@ describe('color', () => {
     expect(
       new Color({
         h: 100,
+        l: 50,
+        s: 40,
+      })
+        .saturate(0.5)
+        .alpha(),
+    ).toBe(1);
+    expect(
+      new Color({
+        alpha: 0.5,
+        h: 100,
+        l: 50,
+        s: 40,
+      })
+        .saturate(0.5)
+        .alpha(),
+    ).toBe(0.5);
+    expect(
+      new Color({
+        h: 100,
         l: 60,
         s: 80,
       })
         .desaturate(0.5)
         .saturationl(),
     ).toBe(40);
+    expect(
+      new Color({
+        h: 100,
+        l: 60,
+        s: 80,
+      })
+        .desaturate(0.5)
+        .alpha(),
+    ).toBe(1);
+    expect(
+      new Color({
+        alpha: 0.5,
+        h: 100,
+        l: 60,
+        s: 80,
+      })
+        .desaturate(0.5)
+        .alpha(),
+    ).toBe(0.5);
     expect(
       new Color({
         alpha: 0.8,
@@ -904,6 +1042,35 @@ describe('color', () => {
         .rotate(-180)
         .hue(),
     ).toBe(240);
+    expect(
+      new Color({
+        h: 60,
+        l: 0,
+        s: 0,
+      })
+        .rotate(-180)
+        .alpha(),
+    ).toBe(1);
+    expect(
+      new Color({
+        alpha: 0.5,
+        h: 60,
+        l: 0,
+        s: 0,
+      })
+        .rotate(-180)
+        .alpha(),
+    ).toBe(0.5);
+  });
+
+  it('mix: throw', function() {
+    expect.assertions(2);
+    expect(() => {
+      return new Color('#f00').mix().hex();
+    }).toThrowErrorMatchingSnapshot();
+    expect(() => {
+      return new Color('#f00').mix({rgb: null}).hex();
+    }).toThrowErrorMatchingSnapshot();
   });
 
   it('mix: basic', function() {
@@ -973,5 +1140,29 @@ describe('color', () => {
       /* eslint-disable-next-line no-new */
       new Color('');
     }).toThrowErrorMatchingSnapshot();
+  });
+
+  it('toString', function() {
+    expect.assertions(2);
+    expect(new Color('white').toString()).toMatchSnapshot();
+    expect(new Color('grey').toString()).toMatchSnapshot();
+  });
+
+  it('unknown model', function() {
+    expect.assertions(1);
+    expect(() => new Color('white', 'mmm')).toThrowErrorMatchingSnapshot();
+  });
+
+  it('blacklist model', function() {
+    expect.assertions(3);
+    expect(new Color('white', 'keyword')).toEqual(new Color('white'));
+    expect(new Color('white', 'gray')).toEqual(new Color('white'));
+    expect(new Color('white', 'hex')).toEqual(new Color('white'));
+  });
+
+  it('zero array', function() {
+    expect.assertions(2);
+    expect(new Color({0: 255, 1: 0, 2: 0, length: 3})).toEqual(new Color('red'));
+    expect(new Color({0: '255', 1: '255', 2: '255', length: 3})).toEqual(new Color('black'));
   });
 });

@@ -7,6 +7,7 @@ import castArray from 'lodash/castArray';
 import has from 'lodash/has';
 import isNil from 'lodash/isNil';
 import toInteger from 'lodash/toInteger';
+import includes from 'lodash/includes';
 import isCountingNumber from 'Global/Assets/isCountingNumber';
 
 const EMPTY_STRING = '';
@@ -36,7 +37,7 @@ const skippedModels = Object.freeze([
 ]);
 
 /** @type {Readonly<string>} */
-const hashedModelKeys = Object.freeze(
+export const hashedModelKeys = Object.freeze(
   Object.keys(convert).reduce((hashed, model) => {
     const prop = slice(convert[model].labels)
       .sort()
@@ -49,18 +50,6 @@ const hashedModelKeys = Object.freeze(
 );
 
 /**
- * Create a bound function that rounds to x places.
- *
- * @param {number} places - The number of places to round to.
- * @returns {function({value: number}): number} - The bound rounding function.
- */
-const roundToPlaces = function roundToPlaces(places) {
-  return function boundRoundToPlaces(value) {
-    return round(value, places);
-  };
-};
-
-/**
  * Create a bound function that clamps the value to between 0 and max inclusive.
  *
  * @param {number} max - The maximum value.
@@ -68,6 +57,7 @@ const roundToPlaces = function roundToPlaces(places) {
  */
 const maxfn = function maxfn(max) {
   return function boundMaxfn(value) {
+    // noinspection JSCheckFunctionSignatures
     return clamp(value, 0, max);
   };
 };
@@ -122,6 +112,46 @@ const getColorArray = function getColorArray(colorObject) {
   return valpha === 1 ? color : [...color, valpha];
 };
 
+/**
+ * Get the model.
+ *
+ * @param {*} value - The value provided as the model.
+ * @returns {null|string} - The model.
+ * @throws {Error} - If model is invalid.
+ */
+const getModel = function getModel(value) {
+  if (isModel(value)) {
+    if (includes(skippedModels, value)) {
+      return null;
+    }
+
+    if (!has(convert, value)) {
+      throw new Error(`Unknown model: ${value}`);
+    }
+  }
+
+  return value;
+};
+
+/**
+ * @type {Readonly<{enumerable: boolean, configurable: boolean, writable: boolean}>}
+ * */
+const instanceLockDescription = Object.freeze({
+  configurable: false,
+  enumerable: true,
+  writable: false,
+});
+
+/**
+ *
+ * @type {Readonly<{color: Readonly<{enumerable: boolean, configurable: boolean, writable: boolean}>, model: Readonly<{enumerable: boolean, configurable: boolean, writable: boolean}>, valpha: Readonly<{enumerable: boolean, configurable: boolean, writable: boolean}>}>}
+ */
+const colorDescription = Object.freeze({
+  color: instanceLockDescription,
+  model: instanceLockDescription,
+  valpha: instanceLockDescription,
+});
+
 const limiters = Object.create(null);
 
 /**
@@ -134,18 +164,12 @@ const limiters = Object.create(null);
  * @property {number} valpha - The alpha value of the color.
  */
 export default class Color {
-  constructor(...args) {
-    let [obj, model] = args;
-
-    if (isModel(model)) {
-      if (skippedModels.includes(model)) {
-        model = null;
-      }
-
-      if (!has(convert, model)) {
-        throw new Error(`Unknown model: ${model}`);
-      }
-    }
+  /**
+   * @param {*} obj - The color definition.
+   * @param {string} [modelOption] - The model.
+   */
+  constructor(obj, modelOption) {
+    const model = getModel(modelOption);
 
     if (isNil(obj)) {
       this.model = RGB;
@@ -174,11 +198,11 @@ export default class Color {
       this.valpha = typeof obj[channels] === 'number' ? obj[channels] : 1;
     } else if (typeof obj === 'number') {
       /* this is always RGB - can be converted later on. */
-      /* eslint-disable-next-line no-bitwise */
-      obj &= 0xffffff;
       this.model = RGB;
       /* eslint-disable-next-line no-bitwise */
-      this.color = [(obj >> 16) & 0xff, (obj >> 8) & 0xff, obj & 0xff];
+      const number = obj & 0xffffff;
+      /* eslint-disable-next-line no-bitwise */
+      this.color = [(number >> 16) & 0xff, (number >> 8) & 0xff, number & 0xff];
       this.valpha = 1;
     } else {
       this.valpha = 1;
@@ -206,12 +230,13 @@ export default class Color {
     /* perform limitations (clamping, etc.) */
     if (limiters[this.model]) {
       const {channels} = convert[this.model];
+      const limiter = limiters[this.model];
 
-      for (let i = 0; i < channels; i += 1) {
-        const limit = limiters[this.model][i];
+      for (let index = 0; index < channels; index += 1) {
+        const limit = limiter[index];
 
         if (limit) {
-          this.color[i] = limit(this.color[i]);
+          this.color[index] = limit(this.color[index]);
         }
       }
     }
@@ -219,23 +244,7 @@ export default class Color {
     this.valpha = clamp(this.valpha, 0, 1);
 
     Object.freeze(this.color);
-    Object.defineProperties(this, {
-      color: {
-        configurable: false,
-        enumerable: true,
-        writable: false,
-      },
-      model: {
-        configurable: false,
-        enumerable: true,
-        writable: false,
-      },
-      valpha: {
-        configurable: false,
-        enumerable: true,
-        writable: false,
-      },
-    });
+    Object.defineProperties(this, colorDescription);
   }
 
   toString() {
@@ -265,12 +274,12 @@ export default class Color {
   }
 
   object() {
-    const result = {};
-    const {channels, labels} = convert[this.model];
+    const {labels} = convert[this.model];
+    const result = labels.split(EMPTY_STRING).reduce((obj, key, index) => {
+      obj[key] = this.color[index];
 
-    for (let i = 0; i < channels; i += 1) {
-      result[labels[i]] = this.color[i];
-    }
+      return obj;
+    }, {});
 
     if (this.valpha !== 1) {
       result.alpha = this.valpha;
@@ -306,7 +315,16 @@ export default class Color {
   round(places) {
     const placesMax = Math.max(toInteger(places) || 0, 0);
 
-    return new Color([...this.color.map(roundToPlaces(placesMax)), this.valpha], this.model);
+    // noinspection JSCheckFunctionSignatures
+    return new Color(
+      [
+        ...this.color.map((value) => {
+          return round(value, placesMax);
+        }),
+        this.valpha,
+      ],
+      this.model,
+    );
   }
 
   alpha(val) {
@@ -512,10 +530,9 @@ export default class Color {
 
   rotate(degrees) {
     const color = [...this.hsl().color];
-    let hue = color[0];
-    hue = (hue + degrees) % 360;
-    hue = hue < 0 ? 360 + hue : hue;
-    color[0] = hue;
+    const [hue] = color;
+    const hueAngle = (hue + degrees) % 360;
+    color[0] = hueAngle < 0 ? 360 + hueAngle : hueAngle;
 
     const obj = {
       h: color[0],
@@ -561,13 +578,10 @@ export default class Color {
 
 const maxfn100 = maxfn(100);
 const maxfn255 = maxfn(255);
-const getset = function getset(...args) {
-  let [model] = args;
-  const [, channel, modifier] = args;
+const getset = function getset(model, channel, modifier) {
+  const modelArray = castArray(model);
 
-  model = castArray(model);
-
-  model.forEach((m) => {
+  modelArray.forEach((m) => {
     if (!Array.isArray(limiters[m])) {
       limiters[m] = [];
     }
@@ -575,22 +589,16 @@ const getset = function getset(...args) {
     limiters[m][channel] = modifier;
   });
 
-  [model] = model;
+  const [modelValue] = modelArray;
 
-  return function boundGetset(...argsBound) {
-    let [val] = argsBound;
-    let result;
-
-    if (argsBound.length) {
-      if (modifier) {
-        val = modifier(val);
-      }
-
+  return function boundGetset(value) {
+    if (arguments.length) {
+      const val = modifier ? modifier(value) : value;
       /* eslint-disable-next-line babel/no-invalid-this */
-      result = this[model]();
-      const color = [...result.color];
+      const colorInstance = this[modelValue]();
+      const color = [...colorInstance.color];
       color[channel] = val;
-      const object = model.split(EMPTY_STRING).reduce((obj, key, index) => {
+      const object = modelValue.split(EMPTY_STRING).reduce((obj, key, index) => {
         obj[key] = color[index];
 
         return obj;
@@ -602,145 +610,97 @@ const getset = function getset(...args) {
         object.alpha = this.valpha;
       }
 
-      return new Color(object, model);
+      return new Color(object, modelValue);
     }
 
     /* eslint-disable-next-line babel/no-invalid-this */
-    result = this[model]().color[channel];
+    const colorChannel = this[modelValue]().color[channel];
 
-    if (modifier) {
-      result = modifier(result);
-    }
-
-    return result;
+    return modifier ? modifier(colorChannel) : colorChannel;
   };
 };
 
 Object.defineProperties(Color.prototype, {
   a: {
-    configurable: true,
     value: getset(LAB, 1),
-    writable: true,
   },
   b: {
-    configurable: true,
     value: getset(LAB, 2),
-    writable: true,
   },
   black: {
-    configurable: true,
     value: getset(CMYK, 3, maxfn100),
-    writable: true,
   },
 
   blue: {
-    configurable: true,
     value: getset(RGB, 2, maxfn255),
-    writable: true,
   },
 
   chroma: {
-    configurable: true,
     value: getset(HCG, 1, maxfn100),
-    writable: true,
   },
   cyan: {
-    configurable: true,
     value: getset(CMYK, 0, maxfn100),
-    writable: true,
   },
 
   gray: {
-    configurable: true,
     value: getset(HCG, 2, maxfn100),
-    writable: true,
   },
   green: {
-    configurable: true,
     value: getset(RGB, 1, maxfn255),
-    writable: true,
   },
 
   hue: {
-    configurable: true,
     value: getset([HSL, HSV, HWB, HCG], 0, (val) => ((val % 360) + 360) % 360),
-    writable: true,
   },
   l: {
-    configurable: true,
     value: getset(LAB, 0, maxfn100),
-    writable: true,
   },
 
   lightness: {
-    configurable: true,
     value: getset(HSL, 2, maxfn100),
-    writable: true,
   },
   magenta: {
-    configurable: true,
     value: getset(CMYK, 1, maxfn100),
-    writable: true,
   },
 
   /* rgb */
   red: {
-    configurable: true,
     value: getset(RGB, 0, maxfn255),
-    writable: true,
   },
   saturationl: {
-    configurable: true,
     value: getset(HSL, 1, maxfn100),
-    writable: true,
   },
   saturationv: {
-    configurable: true,
     value: getset(HSV, 1, maxfn100),
-    writable: true,
   },
   value: {
-    configurable: true,
     value: getset(HSV, 2, maxfn100),
-    writable: true,
   },
 
   wblack: {
-    configurable: true,
     value: getset(HWB, 2, maxfn100),
-    writable: true,
   },
   white: {
-    configurable: true,
     value: getset(HWB, 1, maxfn100),
-    writable: true,
   },
   x: {
-    configurable: true,
     value: getset(XYZ, 0, maxfn100),
-    writable: true,
   },
 
   y: {
-    configurable: true,
     value: getset(XYZ, 1, maxfn100),
-    writable: true,
   },
   yellow: {
-    configurable: true,
     value: getset(CMYK, 2, maxfn100),
-    writable: true,
   },
   z: {
-    configurable: true,
     value: getset(XYZ, 2, maxfn100),
-    writable: true,
   },
 });
 
 /* model conversion methods and static constructors */
 Object.keys(convert).forEach((model) => {
-  if (skippedModels.includes(model)) {
+  if (includes(skippedModels, model)) {
     return;
   }
 
@@ -748,7 +708,6 @@ Object.keys(convert).forEach((model) => {
 
   /* conversion methods */
   Object.defineProperty(Color.prototype, model, {
-    configurable: true,
     value: function conversionMethod(...args) {
       if (this.model === model) {
         return new Color(this);
@@ -762,12 +721,10 @@ Object.keys(convert).forEach((model) => {
 
       return new Color([...castArray(convert[this.model][model].raw(this.color)), newAlpha], model);
     },
-    writable: true,
   });
 
   /* 'static' construction methods */
   Object.defineProperty(Color, model, {
-    configurable: true,
     enumerable: true,
     value: function constructionMethod(...args) {
       const [color] = args;
@@ -775,6 +732,5 @@ Object.keys(convert).forEach((model) => {
 
       return new Color(col, model);
     },
-    writable: true,
   });
 });
