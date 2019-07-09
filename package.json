@@ -1,6 +1,6 @@
 {
   "name": "@xotic750/color",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Color conversion and manipulation library",
   "homepage": "https://github.com/Xotic750/color",
   "repository": {
@@ -52,11 +52,11 @@
   "dependencies": {
     "color-convert": "^2.0.0",
     "color-string": "^1.5.3",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.13"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.0",
+    "@babel/core": "^7.5.4",
     "@babel/node": "^7.5.0",
     "@babel/plugin-proposal-class-properties": "^7.5.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
@@ -65,14 +65,9 @@
     "@babel/plugin-syntax-jsx": "^7.2.0",
     "@babel/plugin-transform-property-mutators": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.5.0",
-    "@babel/preset-env": "^7.5.2",
-    "@babel/runtime": "^7.5.2",
-    "@prorenata/eslint-config-vue": "^1.13.4",
-    "@storybook/addon-knobs": "^5.1.9",
-    "@storybook/addon-notes": "^5.1.9",
-    "@storybook/addons": "^5.1.9",
-    "@storybook/storybook-deployer": "^2.8.1",
-    "@storybook/vue": "^5.1.9",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/runtime": "^7.5.4",
+    "@prorenata/eslint-config-vue": "^1.13.5",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.6.1",
     "autoprefixer": "^9.6.1",
