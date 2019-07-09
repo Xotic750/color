@@ -1165,4 +1165,10 @@ describe('color', () => {
     expect(new Color({0: 255, 1: 0, 2: 0, length: 3})).toEqual(new Color('red'));
     expect(new Color({0: '255', 1: '255', 2: '255', length: 3})).toEqual(new Color('black'));
   });
+
+  it('color object throwing checks', function() {
+    expect.assertions(2);
+    expect(() => new Color('white').contrast({})).toThrowErrorMatchingSnapshot();
+    expect(() => new Color('white').level({})).toThrowErrorMatchingSnapshot();
+  });
 });

@@ -50,6 +50,22 @@ export const hashedModelKeys = Object.freeze(
 );
 
 /**
+ * The minimum values for WCAG rating.
+ *
+ * @type {Readonly}
+ * @property {number} aa - AA minimum value.
+ * @property {number} aaa - AAA minimum value.
+ * @property {number} aaaLarge - AAA Large minimum value.
+ * @property {number} aaLarge - AA Large minimum value.
+ */
+const minimums = Object.freeze({
+  aa: 4.5,
+  aaa: 7,
+  aaaLarge: 4.5,
+  aaLarge: 3,
+});
+
+/**
  * Create a bound function that clamps the value to between 0 and max inclusive.
  *
  * @param {number} max - The maximum value.
@@ -93,10 +109,11 @@ const isModel = function isModel(value) {
  * Convert value to appropriate number for rounding places.
  *
  * @param {*} value - The value to convert.
+ * @param {number} [defaultTo=1] - The value to use if value is not a number.
  * @returns {number} - The number of places.
  */
-const getPlaces = function getPlaces(value) {
-  return typeof value === 'number' ? toInteger(value) : 1;
+const getPlaces = function getPlaces(value, defaultTo = 1) {
+  return typeof value === 'number' ? toInteger(value) || 0 : defaultTo;
 };
 
 /**
@@ -247,6 +264,9 @@ export default class Color {
     Object.defineProperties(this, colorDescription);
   }
 
+  /**
+   * @returns {string} - The string representation.
+   */
   toString() {
     return this.string();
   }
@@ -255,6 +275,10 @@ export default class Color {
   //   return this[this.model]();
   // }
 
+  /**
+   * @param {number} [places] - The number of places to round to.
+   * @returns {string} - The string representation.
+   */
   string(places) {
     const colorObject = (has(colorString.to, this.model) ? this : this.rgb()).round(getPlaces(places));
     const args = getColorArray(colorObject);
@@ -262,6 +286,10 @@ export default class Color {
     return colorString.to[colorObject.model](args);
   }
 
+  /**
+   * @param {number} [places] - The number of places to round to.
+   * @returns {string} - The string representation.
+   */
   percentString(places) {
     const colorObject = this.rgb().round(getPlaces(places));
     const args = getColorArray(colorObject);
@@ -269,10 +297,16 @@ export default class Color {
     return colorString.to.rgb.percent(args);
   }
 
+  /**
+   * @returns {Array<number>} - An array representation of the model.
+   */
   array() {
     return getColorArray(this);
   }
 
+  /**
+   * @returns {object} - The plain object representation of the model.
+   */
   object() {
     const {labels} = convert[this.model];
     const result = labels.split(EMPTY_STRING).reduce((obj, key, index) => {
@@ -288,6 +322,9 @@ export default class Color {
     return result;
   }
 
+  /**
+   * @returns {Array<number>} - An rgb array representation.
+   */
   unitArray() {
     const rgb = this.rgb().color.map((value) => value / 255);
 
@@ -298,6 +335,9 @@ export default class Color {
     return rgb;
   }
 
+  /**
+   * @returns {object} - The rgb plain object representation.
+   */
   unitObject() {
     const rgb = rgbKeys.reduce((object, key) => {
       object[key] /= 255;
@@ -312,8 +352,12 @@ export default class Color {
     return rgb;
   }
 
+  /**
+   * @param {number} [places] - The number of places to round to.
+   * @returns {Color} - A new Color object that has been rounded as specified.
+   */
   round(places) {
-    const placesMax = Math.max(toInteger(places) || 0, 0);
+    const placesMax = Math.max(getPlaces(places, 0), 0);
 
     // noinspection JSCheckFunctionSignatures
     return new Color(
@@ -327,6 +371,10 @@ export default class Color {
     );
   }
 
+  /**
+   * @param {number} [val] - The value to modify by.
+   * @returns {number|Color} - A new Color object if val is specified, or the current alpha.
+   */
   alpha(val) {
     if (arguments.length) {
       return new Color([...this.color, clamp(val, 0, 1)], this.model);
@@ -335,6 +383,10 @@ export default class Color {
     return this.valpha;
   }
 
+  /**
+   * @param {*} [val] - A new color definition.
+   * @returns {string|Color} - A new Color object if val is specified, or the current keyword.
+   */
   keyword(val) {
     if (arguments.length) {
       return new Color(val);
@@ -343,6 +395,10 @@ export default class Color {
     return convert[this.model].keyword(this.color);
   }
 
+  /**
+   * @param {*} [val] - A new color definition.
+   * @returns {string|Color} - A new Color object if val is specified, or the current hex.
+   */
   hex(val) {
     if (arguments.length) {
       return new Color(val);
@@ -351,6 +407,9 @@ export default class Color {
     return colorString.to.hex(this.rgb().round().color);
   }
 
+  /**
+   * @returns {number} - The current RGB value.
+   */
   rgbNumber() {
     const rgb = this.rgb().color;
 
@@ -358,6 +417,9 @@ export default class Color {
     return ((rgb[0] & 0xff) << 16) | ((rgb[1] & 0xff) << 8) | (rgb[2] & 0xff);
   }
 
+  /**
+   * @returns {number} - The current luminosity value.
+   */
   luminosity() {
     /** @see {http://www.w3.org/TR/WCAG20/#relativeluminancedef} */
     const rgb = this.rgb().color;
@@ -370,7 +432,15 @@ export default class Color {
     return 0.2126 * lum[0] + 0.7152 * lum[1] + 0.0722 * lum[2];
   }
 
+  /**
+   * @param {Color} color2 - The color object to contrast this color with.
+   * @returns {number} - The contrast value.
+   */
   contrast(color2) {
+    if (!(color2 instanceof Color)) {
+      throw new Error(`Argument to "contrast" was not a Color instance, but rather an instance of ${typeof color2}`);
+    }
+
     /** @see {http://www.w3.org/TR/WCAG20/#contrast-ratiodef} */
     const lum1 = this.luminosity();
     const lum2 = color2.luminosity();
@@ -382,16 +452,27 @@ export default class Color {
     return (lum2 + 0.05) / (lum1 + 0.05);
   }
 
+  /**
+   * @param {Color} color2 - The color object to contrast this color with.
+   * @returns {string} - The WCAG contrast level.
+   */
   level(color2) {
+    if (!(color2 instanceof Color)) {
+      throw new Error(`Argument to "level" was not a Color instance, but rather an instance of ${typeof color2}`);
+    }
+
     const contrastRatio = this.contrast(color2);
 
-    if (contrastRatio >= 7.1) {
+    if (contrastRatio >= minimums.aaa) {
       return AAA;
     }
 
-    return contrastRatio >= 4.5 ? AA : EMPTY_STRING;
+    return contrastRatio >= minimums.aa ? AA : EMPTY_STRING;
   }
 
+  /**
+   * @returns {boolean} - True if color is considered dark.
+   */
   isDark() {
     const rgb = this.rgb().color;
     /**
@@ -404,10 +485,16 @@ export default class Color {
     return yiq < 128;
   }
 
+  /**
+   * @returns {boolean} - True if color is considered light.
+   */
   isLight() {
     return !this.isDark();
   }
 
+  /**
+   * @returns {Color} - The new negated color.
+   */
   negate() {
     const rgb = rgbKeys.reduce((object, key) => {
       object[key] = 255 - object[key];
@@ -422,6 +509,10 @@ export default class Color {
     return new Color(rgb, this.model);
   }
 
+  /**
+   * @param {number} ratio - The ratio to lighten by.
+   * @returns {Color} - The new lightened color.
+   */
   lighten(ratio) {
     const color = [...this.hsl().color];
     const obj = {
@@ -437,6 +528,10 @@ export default class Color {
     return new Color(obj, this.model);
   }
 
+  /**
+   * @param {number} ratio - The ratio to darken by.
+   * @returns {Color} - The new darkened color.
+   */
   darken(ratio) {
     const color = [...this.hsl().color];
     const obj = {
@@ -452,6 +547,10 @@ export default class Color {
     return new Color(obj, this.model);
   }
 
+  /**
+   * @param {number} ratio - The ratio to saturate by.
+   * @returns {Color} - The new saturated color.
+   */
   saturate(ratio) {
     const color = [...this.hsl().color];
     const obj = {
@@ -467,6 +566,10 @@ export default class Color {
     return new Color(obj, this.model);
   }
 
+  /**
+   * @param {number} ratio - The ratio to desaturate by.
+   * @returns {Color} - The new desaturated color.
+   */
   desaturate(ratio) {
     const color = [...this.hsl().color];
     const obj = {
@@ -482,6 +585,10 @@ export default class Color {
     return new Color(obj, this.model);
   }
 
+  /**
+   * @param {number} ratio - The ratio to whiten by.
+   * @returns {Color} - The new whitened color.
+   */
   whiten(ratio) {
     const color = [...this.hwb().color];
     const obj = {
@@ -497,6 +604,10 @@ export default class Color {
     return new Color(obj, this.model);
   }
 
+  /**
+   * @param {number} ratio - The ratio to blacken by.
+   * @returns {Color} - The new blackened color.
+   */
   blacken(ratio) {
     const color = [...this.hwb().color];
     const obj = {
@@ -512,6 +623,9 @@ export default class Color {
     return new Color(obj, this.model);
   }
 
+  /**
+   * @returns {Color} - The new greyscale color.
+   */
   grayscale() {
     /** @see {http://en.wikipedia.org/wiki/Grayscale#Converting_color_to_grayscale} */
     const rgb = this.rgb().color;
@@ -520,14 +634,26 @@ export default class Color {
     return Color.rgb(val, val, val);
   }
 
+  /**
+   * @param {number} ratio - The ratio to fade by.
+   * @returns {Color} - The new faded color.
+   */
   fade(ratio) {
     return this.alpha(this.valpha - this.valpha * ratio);
   }
 
+  /**
+   * @param {number} ratio - The ratio to modify opacity by.
+   * @returns {Color} - The new opacity modified color.
+   */
   opaquer(ratio) {
     return this.alpha(this.valpha + this.valpha * ratio);
   }
 
+  /**
+   * @param {number} degrees - The number of degrees to rotate by.
+   * @returns {Color} - The new rotated color.
+   */
   rotate(degrees) {
     const color = [...this.hsl().color];
     const [hue] = color;
@@ -547,19 +673,25 @@ export default class Color {
     return new Color(obj, this.model);
   }
 
+  /**
+   * @param {Color} mixinColor - The color to mix in.
+   * @param {number} [weight=0.5] - The mixing weight.
+   * @returns {Color} - The new mixed color.
+   * @throws {Error} if mixinColor is not a Color object.
+   */
   mix(mixinColor, weight) {
     /**
      * Ported from sass implementation in C.
      *
      * @see {https://github.com/sass/libsass/blob/0e6b4a2850092356aa3ece07c6b249f0221caced/functions.cpp#L209}
      */
-    if (!mixinColor || !mixinColor.rgb) {
+    if (!(mixinColor instanceof Color)) {
       throw new Error(`Argument to "mix" was not a Color instance, but rather an instance of ${typeof mixinColor}`);
     }
 
     const color1 = mixinColor.rgb();
     const color2 = this.rgb();
-    const p = typeof weight === 'undefined' ? 0.5 : weight;
+    const p = arguments.length >= 2 ? weight : 0.5;
 
     const w = 2 * p - 1;
     const a = color1.alpha() - color2.alpha();
@@ -578,6 +710,13 @@ export default class Color {
 
 const maxfn100 = maxfn(100);
 const maxfn255 = maxfn(255);
+
+/**
+ * @param {string|Array<string>} model - The model(s).
+ * @param {number} channel - The channel number.
+ * @param {Function} [modifier] - The modifier function.
+ * @returns {Function} - The bound getset function.
+ */
 const getset = function getset(model, channel, modifier) {
   const modelArray = castArray(model);
 

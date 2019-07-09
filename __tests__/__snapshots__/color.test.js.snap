@@ -1,5 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`color color object throwing checks 1`] = `"Argument to \\"contrast\\" was not a Color instance, but rather an instance of object"`;
+
+exports[`color color object throwing checks 2`] = `"Argument to \\"level\\" was not a Color instance, but rather an instance of object"`;
+
 exports[`color exceptions 1`] = `"Unable to parse color from string: unknow"`;
 
 exports[`color exceptions 2`] = `"Unable to parse color from object: {}"`;
