@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) Graham Fairweather",
-  "date": "2019-07-11T20:42:26.449Z",
+  "date": "2019-07-11T21:02:20.034Z",
   "describe": "",
   "description": "Color conversion and manipulation library",
   "file": "color.js",
-  "hash": "2201fb84cf5e813cd14a",
+  "hash": "0f250726cd6da2f7411b",
   "license": "MIT",
-  "version": "1.0.5"
+  "version": "1.0.6"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -120,7 +120,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 39);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -128,7 +128,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ (function(module, exports, __webpack_require__) {
 
 const conversions = __webpack_require__(9);
-const route = __webpack_require__(18);
+const route = __webpack_require__(20);
 
 const convert = {};
 
@@ -215,8 +215,8 @@ module.exports = convert;
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var colorNames = __webpack_require__(14);
-var swizzle = __webpack_require__(15);
+var colorNames = __webpack_require__(16);
+var swizzle = __webpack_require__(17);
 
 var reverseNames = {};
 
@@ -454,80 +454,7 @@ function hexDouble(num) {
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseHas = __webpack_require__(27),
-    hasPath = __webpack_require__(28);
-
-/**
- * Checks if `path` is a direct property of `object`.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Object
- * @param {Object} object The object to query.
- * @param {Array|string} path The path to check.
- * @returns {boolean} Returns `true` if `path` exists, else `false`.
- * @example
- *
- * var object = { 'a': { 'b': 2 } };
- * var other = _.create({ 'a': _.create({ 'b': 2 }) });
- *
- * _.has(object, 'a');
- * // => true
- *
- * _.has(object, 'a.b');
- * // => true
- *
- * _.has(object, ['a', 'b']);
- * // => true
- *
- * _.has(other, 'a');
- * // => false
- */
-function has(object, path) {
-  return object != null && hasPath(object, path, baseHas);
-}
-
-module.exports = has;
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-/**
- * Checks if `value` is classified as an `Array` object.
- *
- * @static
- * @memberOf _
- * @since 0.1.0
- * @category Lang
- * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is an array, else `false`.
- * @example
- *
- * _.isArray([1, 2, 3]);
- * // => true
- *
- * _.isArray(document.body.children);
- * // => false
- *
- * _.isArray('abc');
- * // => false
- *
- * _.isArray(_.noop);
- * // => false
- */
-var isArray = Array.isArray;
-
-module.exports = isArray;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var toFinite = __webpack_require__(22);
+var toFinite = __webpack_require__(24);
 
 /**
  * Converts `value` to an integer.
@@ -566,10 +493,83 @@ module.exports = toInteger;
 
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var baseHas = __webpack_require__(29),
+    hasPath = __webpack_require__(30);
+
+/**
+ * Checks if `path` is a direct property of `object`.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path to check.
+ * @returns {boolean} Returns `true` if `path` exists, else `false`.
+ * @example
+ *
+ * var object = { 'a': { 'b': 2 } };
+ * var other = _.create({ 'a': _.create({ 'b': 2 }) });
+ *
+ * _.has(object, 'a');
+ * // => true
+ *
+ * _.has(object, 'a.b');
+ * // => true
+ *
+ * _.has(object, ['a', 'b']);
+ * // => true
+ *
+ * _.has(other, 'a');
+ * // => false
+ */
+function has(object, path) {
+  return object != null && hasPath(object, path, baseHas);
+}
+
+module.exports = has;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+module.exports = isArray;
+
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseClamp = __webpack_require__(19),
+var baseClamp = __webpack_require__(21),
     toNumber = __webpack_require__(10);
 
 /**
@@ -614,9 +614,9 @@ module.exports = clamp;
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseSlice = __webpack_require__(20),
-    isIterateeCall = __webpack_require__(21),
-    toInteger = __webpack_require__(4);
+var baseSlice = __webpack_require__(22),
+    isIterateeCall = __webpack_require__(23),
+    toInteger = __webpack_require__(2);
 
 /**
  * Creates a slice of `array` from `start` up to, but not including, `end`.
@@ -657,7 +657,7 @@ module.exports = slice;
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isArray = __webpack_require__(3);
+var isArray = __webpack_require__(4);
 
 /**
  * Casts `value` as an array if it's not one.
@@ -707,7 +707,7 @@ module.exports = castArray;
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var baseIndexOf = __webpack_require__(38);
+var baseIndexOf = __webpack_require__(40);
 
 /**
  * A specialized version of `_.includes` for arrays without support for
@@ -732,7 +732,7 @@ module.exports = arrayIncludes;
 
 /* MIT license */
 /* eslint-disable no-mixed-operators */
-const cssKeywords = __webpack_require__(17);
+const cssKeywords = __webpack_require__(19);
 
 // NOTE: conversions should only return primitive values (i.e. arrays, or
 //       values that give correct `typeof` results).
@@ -1629,7 +1629,7 @@ module.exports = identity;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var createRound = __webpack_require__(23);
+var createRound = __webpack_require__(25);
 
 /**
  * Computes `number` rounded to `precision`.
@@ -1692,1113 +1692,75 @@ module.exports = isNil;
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-module.exports = {
-	"aliceblue": [240, 248, 255],
-	"antiquewhite": [250, 235, 215],
-	"aqua": [0, 255, 255],
-	"aquamarine": [127, 255, 212],
-	"azure": [240, 255, 255],
-	"beige": [245, 245, 220],
-	"bisque": [255, 228, 196],
-	"black": [0, 0, 0],
-	"blanchedalmond": [255, 235, 205],
-	"blue": [0, 0, 255],
-	"blueviolet": [138, 43, 226],
-	"brown": [165, 42, 42],
-	"burlywood": [222, 184, 135],
-	"cadetblue": [95, 158, 160],
-	"chartreuse": [127, 255, 0],
-	"chocolate": [210, 105, 30],
-	"coral": [255, 127, 80],
-	"cornflowerblue": [100, 149, 237],
-	"cornsilk": [255, 248, 220],
-	"crimson": [220, 20, 60],
-	"cyan": [0, 255, 255],
-	"darkblue": [0, 0, 139],
-	"darkcyan": [0, 139, 139],
-	"darkgoldenrod": [184, 134, 11],
-	"darkgray": [169, 169, 169],
-	"darkgreen": [0, 100, 0],
-	"darkgrey": [169, 169, 169],
-	"darkkhaki": [189, 183, 107],
-	"darkmagenta": [139, 0, 139],
-	"darkolivegreen": [85, 107, 47],
-	"darkorange": [255, 140, 0],
-	"darkorchid": [153, 50, 204],
-	"darkred": [139, 0, 0],
-	"darksalmon": [233, 150, 122],
-	"darkseagreen": [143, 188, 143],
-	"darkslateblue": [72, 61, 139],
-	"darkslategray": [47, 79, 79],
-	"darkslategrey": [47, 79, 79],
-	"darkturquoise": [0, 206, 209],
-	"darkviolet": [148, 0, 211],
-	"deeppink": [255, 20, 147],
-	"deepskyblue": [0, 191, 255],
-	"dimgray": [105, 105, 105],
-	"dimgrey": [105, 105, 105],
-	"dodgerblue": [30, 144, 255],
-	"firebrick": [178, 34, 34],
-	"floralwhite": [255, 250, 240],
-	"forestgreen": [34, 139, 34],
-	"fuchsia": [255, 0, 255],
-	"gainsboro": [220, 220, 220],
-	"ghostwhite": [248, 248, 255],
-	"gold": [255, 215, 0],
-	"goldenrod": [218, 165, 32],
-	"gray": [128, 128, 128],
-	"green": [0, 128, 0],
-	"greenyellow": [173, 255, 47],
-	"grey": [128, 128, 128],
-	"honeydew": [240, 255, 240],
-	"hotpink": [255, 105, 180],
-	"indianred": [205, 92, 92],
-	"indigo": [75, 0, 130],
-	"ivory": [255, 255, 240],
-	"khaki": [240, 230, 140],
-	"lavender": [230, 230, 250],
-	"lavenderblush": [255, 240, 245],
-	"lawngreen": [124, 252, 0],
-	"lemonchiffon": [255, 250, 205],
-	"lightblue": [173, 216, 230],
-	"lightcoral": [240, 128, 128],
-	"lightcyan": [224, 255, 255],
-	"lightgoldenrodyellow": [250, 250, 210],
-	"lightgray": [211, 211, 211],
-	"lightgreen": [144, 238, 144],
-	"lightgrey": [211, 211, 211],
-	"lightpink": [255, 182, 193],
-	"lightsalmon": [255, 160, 122],
-	"lightseagreen": [32, 178, 170],
-	"lightskyblue": [135, 206, 250],
-	"lightslategray": [119, 136, 153],
-	"lightslategrey": [119, 136, 153],
-	"lightsteelblue": [176, 196, 222],
-	"lightyellow": [255, 255, 224],
-	"lime": [0, 255, 0],
-	"limegreen": [50, 205, 50],
-	"linen": [250, 240, 230],
-	"magenta": [255, 0, 255],
-	"maroon": [128, 0, 0],
-	"mediumaquamarine": [102, 205, 170],
-	"mediumblue": [0, 0, 205],
-	"mediumorchid": [186, 85, 211],
-	"mediumpurple": [147, 112, 219],
-	"mediumseagreen": [60, 179, 113],
-	"mediumslateblue": [123, 104, 238],
-	"mediumspringgreen": [0, 250, 154],
-	"mediumturquoise": [72, 209, 204],
-	"mediumvioletred": [199, 21, 133],
-	"midnightblue": [25, 25, 112],
-	"mintcream": [245, 255, 250],
-	"mistyrose": [255, 228, 225],
-	"moccasin": [255, 228, 181],
-	"navajowhite": [255, 222, 173],
-	"navy": [0, 0, 128],
-	"oldlace": [253, 245, 230],
-	"olive": [128, 128, 0],
-	"olivedrab": [107, 142, 35],
-	"orange": [255, 165, 0],
-	"orangered": [255, 69, 0],
-	"orchid": [218, 112, 214],
-	"palegoldenrod": [238, 232, 170],
-	"palegreen": [152, 251, 152],
-	"paleturquoise": [175, 238, 238],
-	"palevioletred": [219, 112, 147],
-	"papayawhip": [255, 239, 213],
-	"peachpuff": [255, 218, 185],
-	"peru": [205, 133, 63],
-	"pink": [255, 192, 203],
-	"plum": [221, 160, 221],
-	"powderblue": [176, 224, 230],
-	"purple": [128, 0, 128],
-	"rebeccapurple": [102, 51, 153],
-	"red": [255, 0, 0],
-	"rosybrown": [188, 143, 143],
-	"royalblue": [65, 105, 225],
-	"saddlebrown": [139, 69, 19],
-	"salmon": [250, 128, 114],
-	"sandybrown": [244, 164, 96],
-	"seagreen": [46, 139, 87],
-	"seashell": [255, 245, 238],
-	"sienna": [160, 82, 45],
-	"silver": [192, 192, 192],
-	"skyblue": [135, 206, 235],
-	"slateblue": [106, 90, 205],
-	"slategray": [112, 128, 144],
-	"slategrey": [112, 128, 144],
-	"snow": [255, 250, 250],
-	"springgreen": [0, 255, 127],
-	"steelblue": [70, 130, 180],
-	"tan": [210, 180, 140],
-	"teal": [0, 128, 128],
-	"thistle": [216, 191, 216],
-	"tomato": [255, 99, 71],
-	"turquoise": [64, 224, 208],
-	"violet": [238, 130, 238],
-	"wheat": [245, 222, 179],
-	"white": [255, 255, 255],
-	"whitesmoke": [245, 245, 245],
-	"yellow": [255, 255, 0],
-	"yellowgreen": [154, 205, 50]
-};
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var isArrayish = __webpack_require__(16);
-
-var concat = Array.prototype.concat;
-var slice = Array.prototype.slice;
-
-var swizzle = module.exports = function swizzle(args) {
-	var results = [];
-
-	for (var i = 0, len = args.length; i < len; i++) {
-		var arg = args[i];
-
-		if (isArrayish(arg)) {
-			// http://jsperf.com/javascript-array-concat-vs-push/98
-			results = concat.call(results, slice.call(arg));
-		} else {
-			results.push(arg);
-		}
-	}
-
-	return results;
-};
-
-swizzle.wrap = function (fn) {
-	return function () {
-		return fn(swizzle(arguments));
-	};
-};
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports) {
-
-module.exports = function isArrayish(obj) {
-	if (!obj || typeof obj === 'string') {
-		return false;
-	}
-
-	return obj instanceof Array || Array.isArray(obj) ||
-		(obj.length >= 0 && (obj.splice instanceof Function ||
-			(Object.getOwnPropertyDescriptor(obj, (obj.length - 1)) && obj.constructor.name !== 'String')));
-};
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = {
-	"aliceblue": [240, 248, 255],
-	"antiquewhite": [250, 235, 215],
-	"aqua": [0, 255, 255],
-	"aquamarine": [127, 255, 212],
-	"azure": [240, 255, 255],
-	"beige": [245, 245, 220],
-	"bisque": [255, 228, 196],
-	"black": [0, 0, 0],
-	"blanchedalmond": [255, 235, 205],
-	"blue": [0, 0, 255],
-	"blueviolet": [138, 43, 226],
-	"brown": [165, 42, 42],
-	"burlywood": [222, 184, 135],
-	"cadetblue": [95, 158, 160],
-	"chartreuse": [127, 255, 0],
-	"chocolate": [210, 105, 30],
-	"coral": [255, 127, 80],
-	"cornflowerblue": [100, 149, 237],
-	"cornsilk": [255, 248, 220],
-	"crimson": [220, 20, 60],
-	"cyan": [0, 255, 255],
-	"darkblue": [0, 0, 139],
-	"darkcyan": [0, 139, 139],
-	"darkgoldenrod": [184, 134, 11],
-	"darkgray": [169, 169, 169],
-	"darkgreen": [0, 100, 0],
-	"darkgrey": [169, 169, 169],
-	"darkkhaki": [189, 183, 107],
-	"darkmagenta": [139, 0, 139],
-	"darkolivegreen": [85, 107, 47],
-	"darkorange": [255, 140, 0],
-	"darkorchid": [153, 50, 204],
-	"darkred": [139, 0, 0],
-	"darksalmon": [233, 150, 122],
-	"darkseagreen": [143, 188, 143],
-	"darkslateblue": [72, 61, 139],
-	"darkslategray": [47, 79, 79],
-	"darkslategrey": [47, 79, 79],
-	"darkturquoise": [0, 206, 209],
-	"darkviolet": [148, 0, 211],
-	"deeppink": [255, 20, 147],
-	"deepskyblue": [0, 191, 255],
-	"dimgray": [105, 105, 105],
-	"dimgrey": [105, 105, 105],
-	"dodgerblue": [30, 144, 255],
-	"firebrick": [178, 34, 34],
-	"floralwhite": [255, 250, 240],
-	"forestgreen": [34, 139, 34],
-	"fuchsia": [255, 0, 255],
-	"gainsboro": [220, 220, 220],
-	"ghostwhite": [248, 248, 255],
-	"gold": [255, 215, 0],
-	"goldenrod": [218, 165, 32],
-	"gray": [128, 128, 128],
-	"green": [0, 128, 0],
-	"greenyellow": [173, 255, 47],
-	"grey": [128, 128, 128],
-	"honeydew": [240, 255, 240],
-	"hotpink": [255, 105, 180],
-	"indianred": [205, 92, 92],
-	"indigo": [75, 0, 130],
-	"ivory": [255, 255, 240],
-	"khaki": [240, 230, 140],
-	"lavender": [230, 230, 250],
-	"lavenderblush": [255, 240, 245],
-	"lawngreen": [124, 252, 0],
-	"lemonchiffon": [255, 250, 205],
-	"lightblue": [173, 216, 230],
-	"lightcoral": [240, 128, 128],
-	"lightcyan": [224, 255, 255],
-	"lightgoldenrodyellow": [250, 250, 210],
-	"lightgray": [211, 211, 211],
-	"lightgreen": [144, 238, 144],
-	"lightgrey": [211, 211, 211],
-	"lightpink": [255, 182, 193],
-	"lightsalmon": [255, 160, 122],
-	"lightseagreen": [32, 178, 170],
-	"lightskyblue": [135, 206, 250],
-	"lightslategray": [119, 136, 153],
-	"lightslategrey": [119, 136, 153],
-	"lightsteelblue": [176, 196, 222],
-	"lightyellow": [255, 255, 224],
-	"lime": [0, 255, 0],
-	"limegreen": [50, 205, 50],
-	"linen": [250, 240, 230],
-	"magenta": [255, 0, 255],
-	"maroon": [128, 0, 0],
-	"mediumaquamarine": [102, 205, 170],
-	"mediumblue": [0, 0, 205],
-	"mediumorchid": [186, 85, 211],
-	"mediumpurple": [147, 112, 219],
-	"mediumseagreen": [60, 179, 113],
-	"mediumslateblue": [123, 104, 238],
-	"mediumspringgreen": [0, 250, 154],
-	"mediumturquoise": [72, 209, 204],
-	"mediumvioletred": [199, 21, 133],
-	"midnightblue": [25, 25, 112],
-	"mintcream": [245, 255, 250],
-	"mistyrose": [255, 228, 225],
-	"moccasin": [255, 228, 181],
-	"navajowhite": [255, 222, 173],
-	"navy": [0, 0, 128],
-	"oldlace": [253, 245, 230],
-	"olive": [128, 128, 0],
-	"olivedrab": [107, 142, 35],
-	"orange": [255, 165, 0],
-	"orangered": [255, 69, 0],
-	"orchid": [218, 112, 214],
-	"palegoldenrod": [238, 232, 170],
-	"palegreen": [152, 251, 152],
-	"paleturquoise": [175, 238, 238],
-	"palevioletred": [219, 112, 147],
-	"papayawhip": [255, 239, 213],
-	"peachpuff": [255, 218, 185],
-	"peru": [205, 133, 63],
-	"pink": [255, 192, 203],
-	"plum": [221, 160, 221],
-	"powderblue": [176, 224, 230],
-	"purple": [128, 0, 128],
-	"rebeccapurple": [102, 51, 153],
-	"red": [255, 0, 0],
-	"rosybrown": [188, 143, 143],
-	"royalblue": [65, 105, 225],
-	"saddlebrown": [139, 69, 19],
-	"salmon": [250, 128, 114],
-	"sandybrown": [244, 164, 96],
-	"seagreen": [46, 139, 87],
-	"seashell": [255, 245, 238],
-	"sienna": [160, 82, 45],
-	"silver": [192, 192, 192],
-	"skyblue": [135, 206, 235],
-	"slateblue": [106, 90, 205],
-	"slategray": [112, 128, 144],
-	"slategrey": [112, 128, 144],
-	"snow": [255, 250, 250],
-	"springgreen": [0, 255, 127],
-	"steelblue": [70, 130, 180],
-	"tan": [210, 180, 140],
-	"teal": [0, 128, 128],
-	"thistle": [216, 191, 216],
-	"tomato": [255, 99, 71],
-	"turquoise": [64, 224, 208],
-	"violet": [238, 130, 238],
-	"wheat": [245, 222, 179],
-	"white": [255, 255, 255],
-	"whitesmoke": [245, 245, 245],
-	"yellow": [255, 255, 0],
-	"yellowgreen": [154, 205, 50]
-};
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-const conversions = __webpack_require__(9);
-
-/*
-	This function routes a model to all other models.
-
-	all functions that are routed have a property `.conversion` attached
-	to the returned synthetic function. This property is an array
-	of strings, each with the steps in between the 'from' and 'to'
-	color models (inclusive).
-
-	conversions that are not possible simply are not included.
-*/
-
-function buildGraph() {
-	const graph = {};
-	// https://jsperf.com/object-keys-vs-for-in-with-closure/3
-	const models = Object.keys(conversions);
-
-	for (let len = models.length, i = 0; i < len; i++) {
-		graph[models[i]] = {
-			// http://jsperf.com/1-vs-infinity
-			// micro-opt, but this is simple.
-			distance: -1,
-			parent: null
-		};
-	}
-
-	return graph;
-}
-
-// https://en.wikipedia.org/wiki/Breadth-first_search
-function deriveBFS(fromModel) {
-	const graph = buildGraph();
-	const queue = [fromModel]; // Unshift -> queue -> pop
-
-	graph[fromModel].distance = 0;
-
-	while (queue.length) {
-		const current = queue.pop();
-		const adjacents = Object.keys(conversions[current]);
-
-		for (let len = adjacents.length, i = 0; i < len; i++) {
-			const adjacent = adjacents[i];
-			const node = graph[adjacent];
-
-			if (node.distance === -1) {
-				node.distance = graph[current].distance + 1;
-				node.parent = current;
-				queue.unshift(adjacent);
-			}
-		}
-	}
-
-	return graph;
-}
-
-function link(from, to) {
-	return function (args) {
-		return to(from(args));
-	};
-}
-
-function wrapConversion(toModel, graph) {
-	const path = [graph[toModel].parent, toModel];
-	let fn = conversions[graph[toModel].parent][toModel];
-
-	let cur = graph[toModel].parent;
-	while (graph[cur].parent) {
-		path.unshift(graph[cur].parent);
-		fn = link(conversions[graph[cur].parent][cur], fn);
-		cur = graph[cur].parent;
-	}
-
-	fn.conversion = path;
-	return fn;
-}
-
-module.exports = function (fromModel) {
-	const graph = deriveBFS(fromModel);
-	const conversion = {};
-
-	const models = Object.keys(graph);
-	for (let len = models.length, i = 0; i < len; i++) {
-		const toModel = models[i];
-		const node = graph[toModel];
-
-		if (node.parent === null) {
-			// No possible conversion, or this node is the source model.
-			continue;
-		}
-
-		conversion[toModel] = wrapConversion(toModel, graph);
-	}
-
-	return conversion;
-};
-
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-/**
- * The base implementation of `_.clamp` which doesn't coerce arguments.
- *
- * @private
- * @param {number} number The number to clamp.
- * @param {number} [lower] The lower bound.
- * @param {number} upper The upper bound.
- * @returns {number} Returns the clamped number.
- */
-function baseClamp(number, lower, upper) {
-  if (number === number) {
-    if (upper !== undefined) {
-      number = number <= upper ? number : upper;
-    }
-    if (lower !== undefined) {
-      number = number >= lower ? number : lower;
-    }
-  }
-  return number;
-}
-
-module.exports = baseClamp;
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-/**
- * The base implementation of `_.slice` without an iteratee call guard.
- *
- * @private
- * @param {Array} array The array to slice.
- * @param {number} [start=0] The start position.
- * @param {number} [end=array.length] The end position.
- * @returns {Array} Returns the slice of `array`.
- */
-function baseSlice(array, start, end) {
-  var index = -1,
-      length = array.length;
-
-  if (start < 0) {
-    start = -start > length ? 0 : (length + start);
-  }
-  end = end > length ? length : end;
-  if (end < 0) {
-    end += length;
-  }
-  length = start > end ? 0 : ((end - start) >>> 0);
-  start >>>= 0;
-
-  var result = Array(length);
-  while (++index < length) {
-    result[index] = array[index + start];
-  }
-  return result;
-}
-
-module.exports = baseSlice;
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-/**
- * This method returns `false`.
- *
- * @static
- * @memberOf _
- * @since 4.13.0
- * @category Util
- * @returns {boolean} Returns `false`.
- * @example
- *
- * _.times(2, _.stubFalse);
- * // => [false, false]
- */
-function stubFalse() {
-  return false;
-}
-
-module.exports = stubFalse;
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports) {
-
-/**
- * This method returns the first argument it receives.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Util
- * @param {*} value Any value.
- * @returns {*} Returns `value`.
- * @example
- *
- * var object = { 'a': 1 };
- *
- * console.log(_.identity(object) === object);
- * // => true
- */
-function identity(value) {
-  return value;
-}
-
-module.exports = identity;
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var root = __webpack_require__(24),
-    toInteger = __webpack_require__(4),
-    toNumber = __webpack_require__(10),
-    toString = __webpack_require__(11);
-
-/* Built-in method references for those with the same name as other `lodash` methods. */
-var nativeIsFinite = root.isFinite,
-    nativeMin = Math.min;
-
-/**
- * Creates a function like `_.round`.
- *
- * @private
- * @param {string} methodName The name of the `Math` method to use when rounding.
- * @returns {Function} Returns the new round function.
- */
-function createRound(methodName) {
-  var func = Math[methodName];
-  return function(number, precision) {
-    number = toNumber(number);
-    precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
-    if (precision && nativeIsFinite(number)) {
-      // Shift with exponential notation to avoid floating-point issues.
-      // See [MDN](https://mdn.io/round#Examples) for more details.
-      var pair = (toString(number) + 'e').split('e'),
-          value = func(pair[0] + 'e' + (+pair[1] + precision));
-
-      pair = (toString(value) + 'e').split('e');
-      return +(pair[0] + 'e' + (+pair[1] - precision));
-    }
-    return func(number);
-  };
-}
-
-module.exports = createRound;
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var freeGlobal = __webpack_require__(25);
-
-/** Detect free variable `self`. */
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
-
-/** Used as a reference to the global object. */
-var root = freeGlobal || freeSelf || Function('return this')();
-
-module.exports = root;
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
-
-module.exports = freeGlobal;
-
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(26)))
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || new Function("return this")();
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports) {
-
-/** Used for built-in method references. */
-var objectProto = Object.prototype;
-
-/** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
-
-/**
- * The base implementation of `_.has` without support for deep paths.
- *
- * @private
- * @param {Object} [object] The object to query.
- * @param {Array|string} key The key to check.
- * @returns {boolean} Returns `true` if `key` exists, else `false`.
- */
-function baseHas(object, key) {
-  return object != null && hasOwnProperty.call(object, key);
-}
-
-module.exports = baseHas;
-
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var castPath = __webpack_require__(29),
-    isArguments = __webpack_require__(34),
-    isArray = __webpack_require__(3),
-    isIndex = __webpack_require__(35),
-    isLength = __webpack_require__(36),
-    toKey = __webpack_require__(37);
-
-/**
- * Checks if `path` exists on `object`.
- *
- * @private
- * @param {Object} object The object to query.
- * @param {Array|string} path The path to check.
- * @param {Function} hasFunc The function to check properties.
- * @returns {boolean} Returns `true` if `path` exists, else `false`.
- */
-function hasPath(object, path, hasFunc) {
-  path = castPath(path, object);
-
-  var index = -1,
-      length = path.length,
-      result = false;
-
-  while (++index < length) {
-    var key = toKey(path[index]);
-    if (!(result = object != null && hasFunc(object, key))) {
-      break;
-    }
-    object = object[key];
-  }
-  if (result || ++index != length) {
-    return result;
-  }
-  length = object == null ? 0 : object.length;
-  return !!length && isLength(length) && isIndex(key, length) &&
-    (isArray(object) || isArguments(object));
-}
-
-module.exports = hasPath;
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isArray = __webpack_require__(3),
-    isKey = __webpack_require__(30),
-    stringToPath = __webpack_require__(32),
-    toString = __webpack_require__(11);
-
-/**
- * Casts `value` to a path array if it's not one.
- *
- * @private
- * @param {*} value The value to inspect.
- * @param {Object} [object] The object to query keys on.
- * @returns {Array} Returns the cast property path array.
- */
-function castPath(value, object) {
-  if (isArray(value)) {
-    return value;
-  }
-  return isKey(value, object) ? [value] : stringToPath(toString(value));
-}
-
-module.exports = castPath;
-
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isArray = __webpack_require__(3),
-    isSymbol = __webpack_require__(31);
-
-/** Used to match property names within property paths. */
-var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
-    reIsPlainProp = /^\w*$/;
-
-/**
- * Checks if `value` is a property name and not a property path.
- *
- * @private
- * @param {*} value The value to check.
- * @param {Object} [object] The object to query keys on.
- * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
- */
-function isKey(value, object) {
-  if (isArray(value)) {
-    return false;
-  }
-  var type = typeof value;
-  if (type == 'number' || type == 'symbol' || type == 'boolean' ||
-      value == null || isSymbol(value)) {
-    return true;
-  }
-  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
-    (object != null && value in Object(object));
-}
-
-module.exports = isKey;
-
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-/**
- * This method returns `false`.
- *
- * @static
- * @memberOf _
- * @since 4.13.0
- * @category Util
- * @returns {boolean} Returns `false`.
- * @example
- *
- * _.times(2, _.stubFalse);
- * // => [false, false]
- */
-function stubFalse() {
-  return false;
-}
-
-module.exports = stubFalse;
-
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var memoizeCapped = __webpack_require__(33);
-
-/** Used to match property names within property paths. */
-var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
-
-/** Used to match backslashes in property paths. */
-var reEscapeChar = /\\(\\)?/g;
-
-/**
- * Converts `string` to a property path array.
- *
- * @private
- * @param {string} string The string to convert.
- * @returns {Array} Returns the property path array.
- */
-var stringToPath = memoizeCapped(function(string) {
-  var result = [];
-  if (string.charCodeAt(0) === 46 /* . */) {
-    result.push('');
-  }
-  string.replace(rePropName, function(match, number, quote, subString) {
-    result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
-  });
-  return result;
-});
-
-module.exports = stringToPath;
-
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports) {
-
-/**
- * This method returns the first argument it receives.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Util
- * @param {*} value Any value.
- * @returns {*} Returns `value`.
- * @example
- *
- * var object = { 'a': 1 };
- *
- * console.log(_.identity(object) === object);
- * // => true
- */
-function identity(value) {
-  return value;
-}
-
-module.exports = identity;
-
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports) {
-
-/**
- * This method returns `false`.
- *
- * @static
- * @memberOf _
- * @since 4.13.0
- * @category Util
- * @returns {boolean} Returns `false`.
- * @example
- *
- * _.times(2, _.stubFalse);
- * // => [false, false]
- */
-function stubFalse() {
-  return false;
-}
-
-module.exports = stubFalse;
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports) {
-
-/** Used as references for various `Number` constants. */
-var MAX_SAFE_INTEGER = 9007199254740991;
-
-/** Used to detect unsigned integer values. */
-var reIsUint = /^(?:0|[1-9]\d*)$/;
-
-/**
- * Checks if `value` is a valid array-like index.
- *
- * @private
- * @param {*} value The value to check.
- * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
- * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
- */
-function isIndex(value, length) {
-  var type = typeof value;
-  length = length == null ? MAX_SAFE_INTEGER : length;
-
-  return !!length &&
-    (type == 'number' ||
-      (type != 'symbol' && reIsUint.test(value))) &&
-        (value > -1 && value % 1 == 0 && value < length);
-}
-
-module.exports = isIndex;
-
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports) {
+var isInteger = __webpack_require__(41);
 
 /** Used as references for various `Number` constants. */
 var MAX_SAFE_INTEGER = 9007199254740991;
 
 /**
- * Checks if `value` is a valid array-like length.
+ * Checks if `value` is a safe integer. An integer is safe if it's an IEEE-754
+ * double precision number which isn't the result of a rounded unsafe integer.
  *
- * **Note:** This method is loosely based on
- * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ * **Note:** This method is based on
+ * [`Number.isSafeInteger`](https://mdn.io/Number/isSafeInteger).
  *
  * @static
  * @memberOf _
  * @since 4.0.0
  * @category Lang
  * @param {*} value The value to check.
- * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @returns {boolean} Returns `true` if `value` is a safe integer, else `false`.
  * @example
  *
- * _.isLength(3);
+ * _.isSafeInteger(3);
  * // => true
  *
- * _.isLength(Number.MIN_VALUE);
+ * _.isSafeInteger(Number.MIN_VALUE);
  * // => false
  *
- * _.isLength(Infinity);
+ * _.isSafeInteger(Infinity);
  * // => false
  *
- * _.isLength('3');
+ * _.isSafeInteger('3');
  * // => false
  */
-function isLength(value) {
-  return typeof value == 'number' &&
-    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+function isSafeInteger(value) {
+  return isInteger(value) && value >= -MAX_SAFE_INTEGER && value <= MAX_SAFE_INTEGER;
 }
 
-module.exports = isLength;
+module.exports = isSafeInteger;
 
 
 /***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-/**
- * This method returns the first argument it receives.
- *
- * @static
- * @since 0.1.0
- * @memberOf _
- * @category Util
- * @param {*} value Any value.
- * @returns {*} Returns `value`.
- * @example
- *
- * var object = { 'a': 1 };
- *
- * console.log(_.identity(object) === object);
- * // => true
- */
-function identity(value) {
-  return value;
-}
-
-module.exports = identity;
-
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-/**
- * A specialized version of `_.indexOf` which performs strict equality
- * comparisons of values, i.e. `===`.
- *
- * @private
- * @param {Array} array The array to inspect.
- * @param {*} value The value to search for.
- * @param {number} fromIndex The index to search from.
- * @returns {number} Returns the index of the matched value, else `-1`.
- */
-function strictIndexOf(array, value, fromIndex) {
-  var index = fromIndex - 1,
-      length = array.length;
-
-  while (++index < length) {
-    if (array[index] === value) {
-      return index;
-    }
-  }
-  return -1;
-}
-
-module.exports = strictIndexOf;
-
-
-/***/ }),
-/* 39 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-
-// EXTERNAL MODULE: ./node_modules/color-string/index.js
-var color_string = __webpack_require__(1);
-var color_string_default = /*#__PURE__*/__webpack_require__.n(color_string);
-
-// EXTERNAL MODULE: ./node_modules/color-convert/index.js
-var color_convert = __webpack_require__(0);
-var color_convert_default = /*#__PURE__*/__webpack_require__.n(color_convert);
-
-// EXTERNAL MODULE: ./node_modules/lodash/clamp.js
-var clamp = __webpack_require__(5);
-var clamp_default = /*#__PURE__*/__webpack_require__.n(clamp);
-
-// EXTERNAL MODULE: ./node_modules/lodash/slice.js
-var slice = __webpack_require__(6);
-var slice_default = /*#__PURE__*/__webpack_require__.n(slice);
-
-// EXTERNAL MODULE: ./node_modules/lodash/round.js
-var lodash_round = __webpack_require__(12);
-var round_default = /*#__PURE__*/__webpack_require__.n(lodash_round);
-
-// EXTERNAL MODULE: ./node_modules/lodash/castArray.js
-var castArray = __webpack_require__(7);
-var castArray_default = /*#__PURE__*/__webpack_require__.n(castArray);
-
-// EXTERNAL MODULE: ./node_modules/lodash/has.js
-var has = __webpack_require__(2);
-var has_default = /*#__PURE__*/__webpack_require__.n(has);
-
-// EXTERNAL MODULE: ./node_modules/lodash/isNil.js
-var isNil = __webpack_require__(13);
-var isNil_default = /*#__PURE__*/__webpack_require__.n(isNil);
-
-// EXTERNAL MODULE: ./node_modules/lodash/toInteger.js
-var toInteger = __webpack_require__(4);
-var toInteger_default = /*#__PURE__*/__webpack_require__.n(toInteger);
-
-// EXTERNAL MODULE: ./node_modules/lodash/includes.js
-var includes = __webpack_require__(8);
-var includes_default = /*#__PURE__*/__webpack_require__.n(includes);
-
-// CONCATENATED MODULE: ./Global/Assets/isCountingNumber.js
-/**
- * Test if a value is a counting number, 1 -> MAX_SAFE_INTEGER.
- *
- * @param {*} value - The value to be tested.
- * @returns {boolean} True if value is a counting number.
- */
-function isCountingNumber(value) {
-  /* eslint-disable-next-line compat/compat */
-  return Number.isSafeInteger(value) && value > 0;
-}
-
-// CONCATENATED MODULE: ./dist/color.esm.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hashedModelKeys", function() { return hashedModelKeys; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return color_esm_Color; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Color; });
+/* harmony import */ var color_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var color_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(color_string__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var color_convert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(0);
+/* harmony import */ var color_convert__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(color_convert__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lodash_clamp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
+/* harmony import */ var lodash_clamp__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_clamp__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var lodash_slice__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6);
+/* harmony import */ var lodash_slice__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash_slice__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash_round__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(12);
+/* harmony import */ var lodash_round__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_round__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var lodash_castArray__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7);
+/* harmony import */ var lodash_castArray__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash_castArray__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var lodash_has__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3);
+/* harmony import */ var lodash_has__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash_has__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var lodash_isNil__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(13);
+/* harmony import */ var lodash_isNil__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_isNil__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var lodash_toInteger__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2);
+/* harmony import */ var lodash_toInteger__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(lodash_toInteger__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var lodash_includes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8);
+/* harmony import */ var lodash_includes__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(lodash_includes__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var lodash_isSafeInteger__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(14);
+/* harmony import */ var lodash_isSafeInteger__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(lodash_isSafeInteger__WEBPACK_IMPORTED_MODULE_10__);
 var _this = undefined;
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
@@ -2838,6 +1800,17 @@ function _newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { t
 
 
 
+/**
+ * Test if a value is a counting number, 1 -> MAX_SAFE_INTEGER.
+ *
+ * @param {*} value - The value to be tested.
+ * @returns {boolean} True if value is a counting number.
+ */
+
+var isCountingNumber = function isCountingNumber(value) {
+  return lodash_isSafeInteger__WEBPACK_IMPORTED_MODULE_10___default()(value) && value > 0;
+};
+
 var EMPTY_STRING = '';
 var ALPHA = 'alpha';
 var RGB = 'rgb';
@@ -2864,10 +1837,10 @@ var skippedModels = Object.freeze([
 'hex']);
 /** @type {Readonly<string>} */
 
-var hashedModelKeys = Object.freeze(Object.keys(color_convert_default.a).reduce(function (hashed, model) {
+var hashedModelKeys = Object.freeze(Object.keys(color_convert__WEBPACK_IMPORTED_MODULE_1___default.a).reduce(function (hashed, model) {
   _newArrowCheck(this, _this);
 
-  var prop = slice_default()(color_convert_default.a[model].labels).sort().join(EMPTY_STRING);
+  var prop = lodash_slice__WEBPACK_IMPORTED_MODULE_3___default()(color_convert__WEBPACK_IMPORTED_MODULE_1___default.a[model].labels).sort().join(EMPTY_STRING);
   hashed[prop] = model;
   return hashed;
 }.bind(undefined), Object.create(null)));
@@ -2894,10 +1867,10 @@ var minimums = Object.freeze({
  * @returns {function({value: number}): number} - The bound clamp function.
  */
 
-var color_esm_maxfn = function maxfn(max) {
+var maxfn = function maxfn(max) {
   return function boundMaxfn(value) {
     // noinspection JSCheckFunctionSignatures
-    return clamp_default()(value, 0, max);
+    return lodash_clamp__WEBPACK_IMPORTED_MODULE_2___default()(value, 0, max);
   };
 };
 /**
@@ -2940,9 +1913,9 @@ var isModel = function isModel(value) {
  */
 
 
-var color_esm_getPlaces = function getPlaces(value) {
+var getPlaces = function getPlaces(value) {
   var defaultTo = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-  return typeof value === 'number' ? toInteger_default()(value) || 0 : defaultTo;
+  return typeof value === 'number' ? lodash_toInteger__WEBPACK_IMPORTED_MODULE_8___default()(value) || 0 : defaultTo;
 };
 /**
  * Convert a color object to an array.
@@ -2967,13 +1940,13 @@ var getColorArray = function getColorArray(colorObject) {
  */
 
 
-var color_esm_getModel = function getModel(value) {
+var getModel = function getModel(value) {
   if (isModel(value)) {
-    if (includes_default()(skippedModels, value)) {
+    if (lodash_includes__WEBPACK_IMPORTED_MODULE_9___default()(skippedModels, value)) {
       return null;
     }
 
-    if (!has_default()(color_convert_default.a, value)) {
+    if (!lodash_has__WEBPACK_IMPORTED_MODULE_6___default()(color_convert__WEBPACK_IMPORTED_MODULE_1___default.a, value)) {
       throw new Error("Unknown model: ".concat(value));
     }
   }
@@ -3011,7 +1984,7 @@ var limiters = Object.create(null);
  * @property {number} valpha - The alpha value of the color.
  */
 
-var color_esm_Color =
+var Color =
 /*#__PURE__*/
 function () {
   /**
@@ -3023,9 +1996,9 @@ function () {
 
     _classCallCheck(this, Color);
 
-    var model = color_esm_getModel(modelOption);
+    var model = getModel(modelOption);
 
-    if (isNil_default()(obj)) {
+    if (lodash_isNil__WEBPACK_IMPORTED_MODULE_7___default()(obj)) {
       this.model = RGB;
       this.color = [0, 0, 0];
       this.valpha = 1;
@@ -3034,20 +2007,20 @@ function () {
       this.color = _toConsumableArray(obj.color);
       this.valpha = obj.valpha;
     } else if (typeof obj === 'string') {
-      var result = color_string_default.a.get(obj);
+      var result = color_string__WEBPACK_IMPORTED_MODULE_0___default.a.get(obj);
 
       if (result === null) {
         throw new Error("Unable to parse color from string: ".concat(obj));
       }
 
       this.model = result.model;
-      var channels = color_convert_default.a[this.model].channels;
+      var channels = color_convert__WEBPACK_IMPORTED_MODULE_1___default.a[this.model].channels;
       this.color = result.value.slice(0, channels);
       this.valpha = typeof result.value[channels] === 'number' ? result.value[channels] : 1;
     } else if (isCountingNumber(obj.length)) {
       this.model = model || RGB;
-      var _channels = color_convert_default.a[this.model].channels;
-      var newArr = slice_default()(obj, 0, _channels);
+      var _channels = color_convert__WEBPACK_IMPORTED_MODULE_1___default.a[this.model].channels;
+      var newArr = lodash_slice__WEBPACK_IMPORTED_MODULE_3___default()(obj, 0, _channels);
       this.color = zeroArray(newArr, _channels);
       this.valpha = typeof obj[_channels] === 'number' ? obj[_channels] : 1;
     } else if (typeof obj === 'number') {
@@ -3064,19 +2037,19 @@ function () {
       this.valpha = 1;
       var keys = Object.keys(obj);
 
-      if (has_default()(obj, ALPHA)) {
+      if (lodash_has__WEBPACK_IMPORTED_MODULE_6___default()(obj, ALPHA)) {
         keys.splice(keys.indexOf(ALPHA), 1);
         this.valpha = typeof obj.alpha === 'number' ? obj.alpha : 0;
       }
 
       var hashedKeys = keys.sort().join(EMPTY_STRING);
 
-      if (!has_default()(hashedModelKeys, hashedKeys)) {
+      if (!lodash_has__WEBPACK_IMPORTED_MODULE_6___default()(hashedModelKeys, hashedKeys)) {
         throw new Error("Unable to parse color from object: ".concat(JSON.stringify(obj)));
       }
 
       this.model = hashedModelKeys[hashedKeys];
-      var color = color_convert_default.a[this.model].labels.split(EMPTY_STRING).map(function (label) {
+      var color = color_convert__WEBPACK_IMPORTED_MODULE_1___default.a[this.model].labels.split(EMPTY_STRING).map(function (label) {
         _newArrowCheck(this, _this2);
 
         return obj[label];
@@ -3087,7 +2060,7 @@ function () {
 
 
     if (limiters[this.model]) {
-      var _channels2 = color_convert_default.a[this.model].channels;
+      var _channels2 = color_convert__WEBPACK_IMPORTED_MODULE_1___default.a[this.model].channels;
       var limiter = limiters[this.model];
 
       for (var index = 0; index < _channels2; index += 1) {
@@ -3099,7 +2072,7 @@ function () {
       }
     }
 
-    this.valpha = clamp_default()(this.valpha, 0, 1);
+    this.valpha = lodash_clamp__WEBPACK_IMPORTED_MODULE_2___default()(this.valpha, 0, 1);
     Object.freeze(this.color);
     Object.defineProperties(this, colorDescription);
   }
@@ -3124,9 +2097,9 @@ function () {
   }, {
     key: "string",
     value: function string(places) {
-      var colorObject = (has_default()(color_string_default.a.to, this.model) ? this : this.rgb()).round(color_esm_getPlaces(places));
+      var colorObject = (lodash_has__WEBPACK_IMPORTED_MODULE_6___default()(color_string__WEBPACK_IMPORTED_MODULE_0___default.a.to, this.model) ? this : this.rgb()).round(getPlaces(places));
       var args = getColorArray(colorObject);
-      return color_string_default.a.to[colorObject.model](args);
+      return color_string__WEBPACK_IMPORTED_MODULE_0___default.a.to[colorObject.model](args);
     }
     /**
      * @param {number} [places] - The number of places to round to.
@@ -3136,9 +2109,9 @@ function () {
   }, {
     key: "percentString",
     value: function percentString(places) {
-      var colorObject = this.rgb().round(color_esm_getPlaces(places));
+      var colorObject = this.rgb().round(getPlaces(places));
       var args = getColorArray(colorObject);
-      return color_string_default.a.to.rgb.percent(args);
+      return color_string__WEBPACK_IMPORTED_MODULE_0___default.a.to.rgb.percent(args);
     }
     /**
      * @returns {Array<number>} - An array representation of the model.
@@ -3158,7 +2131,7 @@ function () {
     value: function object() {
       var _this3 = this;
 
-      var labels = color_convert_default.a[this.model].labels;
+      var labels = color_convert__WEBPACK_IMPORTED_MODULE_1___default.a[this.model].labels;
       var result = labels.split(EMPTY_STRING).reduce(function (obj, key, index) {
         _newArrowCheck(this, _this3);
 
@@ -3225,12 +2198,12 @@ function () {
     value: function round(places) {
       var _this6 = this;
 
-      var placesMax = Math.max(color_esm_getPlaces(places, 0), 0); // noinspection JSCheckFunctionSignatures
+      var placesMax = Math.max(getPlaces(places, 0), 0); // noinspection JSCheckFunctionSignatures
 
       return new Color([].concat(_toConsumableArray(this.color.map(function (value) {
         _newArrowCheck(this, _this6);
 
-        return round_default()(value, placesMax);
+        return lodash_round__WEBPACK_IMPORTED_MODULE_4___default()(value, placesMax);
       }.bind(this))), [this.valpha]), this.model);
     }
     /**
@@ -3242,7 +2215,7 @@ function () {
     key: "alpha",
     value: function alpha(val) {
       if (arguments.length) {
-        return new Color([].concat(_toConsumableArray(this.color), [clamp_default()(val, 0, 1)]), this.model);
+        return new Color([].concat(_toConsumableArray(this.color), [lodash_clamp__WEBPACK_IMPORTED_MODULE_2___default()(val, 0, 1)]), this.model);
       }
 
       return this.valpha;
@@ -3259,7 +2232,7 @@ function () {
         return new Color(val);
       }
 
-      return color_convert_default.a[this.model].keyword(this.color);
+      return color_convert__WEBPACK_IMPORTED_MODULE_1___default.a[this.model].keyword(this.color);
     }
     /**
      * @param {*} [val] - A new color definition.
@@ -3273,7 +2246,7 @@ function () {
         return new Color(val);
       }
 
-      return color_string_default.a.to.hex(this.rgb().round().color);
+      return color_string__WEBPACK_IMPORTED_MODULE_0___default.a.to.hex(this.rgb().round().color);
     }
     /**
      * @returns {number} - The current RGB value.
@@ -3622,8 +2595,8 @@ function () {
 }();
 
 
-var maxfn100 = color_esm_maxfn(100);
-var maxfn255 = color_esm_maxfn(255);
+var maxfn100 = maxfn(100);
+var maxfn255 = maxfn(255);
 /**
  * @param {string|Array<string>} model - The model(s).
  * @param {number} channel - The channel number.
@@ -3631,10 +2604,10 @@ var maxfn255 = color_esm_maxfn(255);
  * @returns {Function} - The bound getset function.
  */
 
-var color_esm_getset = function getset(model, channel, modifier) {
+var getset = function getset(model, channel, modifier) {
   var _this9 = this;
 
-  var modelArray = castArray_default()(model);
+  var modelArray = lodash_castArray__WEBPACK_IMPORTED_MODULE_5___default()(model);
   modelArray.forEach(function (m) {
     _newArrowCheck(this, _this9);
 
@@ -3673,7 +2646,7 @@ var color_esm_getset = function getset(model, channel, modifier) {
         object.alpha = this.valpha;
       }
 
-      return new color_esm_Color(object, modelValue);
+      return new Color(object, modelValue);
     }
     /* eslint-disable-next-line babel/no-invalid-this */
 
@@ -3683,96 +2656,96 @@ var color_esm_getset = function getset(model, channel, modifier) {
   };
 };
 
-Object.defineProperties(color_esm_Color.prototype, {
+Object.defineProperties(Color.prototype, {
   a: {
-    value: color_esm_getset(LAB, 1)
+    value: getset(LAB, 1)
   },
   b: {
-    value: color_esm_getset(LAB, 2)
+    value: getset(LAB, 2)
   },
   black: {
-    value: color_esm_getset(CMYK, 3, maxfn100)
+    value: getset(CMYK, 3, maxfn100)
   },
   blue: {
-    value: color_esm_getset(RGB, 2, maxfn255)
+    value: getset(RGB, 2, maxfn255)
   },
   chroma: {
-    value: color_esm_getset(HCG, 1, maxfn100)
+    value: getset(HCG, 1, maxfn100)
   },
   cyan: {
-    value: color_esm_getset(CMYK, 0, maxfn100)
+    value: getset(CMYK, 0, maxfn100)
   },
   gray: {
-    value: color_esm_getset(HCG, 2, maxfn100)
+    value: getset(HCG, 2, maxfn100)
   },
   green: {
-    value: color_esm_getset(RGB, 1, maxfn255)
+    value: getset(RGB, 1, maxfn255)
   },
   hue: {
-    value: color_esm_getset([HSL, HSV, HWB, HCG], 0, function (val) {
+    value: getset([HSL, HSV, HWB, HCG], 0, function (val) {
       _newArrowCheck(this, _this);
 
       return (val % 360 + 360) % 360;
     }.bind(undefined))
   },
   l: {
-    value: color_esm_getset(LAB, 0, maxfn100)
+    value: getset(LAB, 0, maxfn100)
   },
   lightness: {
-    value: color_esm_getset(HSL, 2, maxfn100)
+    value: getset(HSL, 2, maxfn100)
   },
   magenta: {
-    value: color_esm_getset(CMYK, 1, maxfn100)
+    value: getset(CMYK, 1, maxfn100)
   },
 
   /* rgb */
   red: {
-    value: color_esm_getset(RGB, 0, maxfn255)
+    value: getset(RGB, 0, maxfn255)
   },
   saturationl: {
-    value: color_esm_getset(HSL, 1, maxfn100)
+    value: getset(HSL, 1, maxfn100)
   },
   saturationv: {
-    value: color_esm_getset(HSV, 1, maxfn100)
+    value: getset(HSV, 1, maxfn100)
   },
   value: {
-    value: color_esm_getset(HSV, 2, maxfn100)
+    value: getset(HSV, 2, maxfn100)
   },
   wblack: {
-    value: color_esm_getset(HWB, 2, maxfn100)
+    value: getset(HWB, 2, maxfn100)
   },
   white: {
-    value: color_esm_getset(HWB, 1, maxfn100)
+    value: getset(HWB, 1, maxfn100)
   },
   x: {
-    value: color_esm_getset(XYZ, 0, maxfn100)
+    value: getset(XYZ, 0, maxfn100)
   },
   y: {
-    value: color_esm_getset(XYZ, 1, maxfn100)
+    value: getset(XYZ, 1, maxfn100)
   },
   yellow: {
-    value: color_esm_getset(CMYK, 2, maxfn100)
+    value: getset(CMYK, 2, maxfn100)
   },
   z: {
-    value: color_esm_getset(XYZ, 2, maxfn100)
+    value: getset(XYZ, 2, maxfn100)
   }
 });
 /* model conversion methods and static constructors */
 
-Object.keys(color_convert_default.a).forEach(function (model) {
+Object.keys(color_convert__WEBPACK_IMPORTED_MODULE_1___default.a).forEach(function (model) {
   _newArrowCheck(this, _this);
 
-  if (includes_default()(skippedModels, model)) {
+  if (lodash_includes__WEBPACK_IMPORTED_MODULE_9___default()(skippedModels, model)) {
     return;
   }
 
-  var channels = color_convert_default.a[model].channels;
+  var channels = color_convert__WEBPACK_IMPORTED_MODULE_1___default.a[model].channels;
   /* conversion methods */
 
-  Object.defineProperty(color_esm_Color.prototype, model, {
+  Object.defineProperty(Color.prototype, model, {
     value: function conversionMethod() {
       if (this.model === model) {
-        return new color_esm_Color(this);
+        return new Color(this);
       }
 
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
@@ -3780,16 +2753,16 @@ Object.keys(color_convert_default.a).forEach(function (model) {
       }
 
       if (args.length) {
-        return new color_esm_Color(args, model);
+        return new Color(args, model);
       }
 
       var newAlpha = typeof args[channels] === 'number' ? channels : this.valpha;
-      return new color_esm_Color([].concat(_toConsumableArray(castArray_default()(color_convert_default.a[this.model][model].raw(this.color))), [newAlpha]), model);
+      return new Color([].concat(_toConsumableArray(lodash_castArray__WEBPACK_IMPORTED_MODULE_5___default()(color_convert__WEBPACK_IMPORTED_MODULE_1___default.a[this.model][model].raw(this.color))), [newAlpha]), model);
     }
   });
   /* 'static' construction methods */
 
-  Object.defineProperty(color_esm_Color, model, {
+  Object.defineProperty(Color, model, {
     enumerable: true,
     value: function constructionMethod() {
       for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
@@ -3798,11 +2771,1099 @@ Object.keys(color_convert_default.a).forEach(function (model) {
 
       var color = args[0];
       var col = typeof color === 'number' ? zeroArray(args, channels) : color;
-      return new color_esm_Color(col, model);
+      return new Color(col, model);
     }
   });
 }.bind(undefined));
 
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+	"aliceblue": [240, 248, 255],
+	"antiquewhite": [250, 235, 215],
+	"aqua": [0, 255, 255],
+	"aquamarine": [127, 255, 212],
+	"azure": [240, 255, 255],
+	"beige": [245, 245, 220],
+	"bisque": [255, 228, 196],
+	"black": [0, 0, 0],
+	"blanchedalmond": [255, 235, 205],
+	"blue": [0, 0, 255],
+	"blueviolet": [138, 43, 226],
+	"brown": [165, 42, 42],
+	"burlywood": [222, 184, 135],
+	"cadetblue": [95, 158, 160],
+	"chartreuse": [127, 255, 0],
+	"chocolate": [210, 105, 30],
+	"coral": [255, 127, 80],
+	"cornflowerblue": [100, 149, 237],
+	"cornsilk": [255, 248, 220],
+	"crimson": [220, 20, 60],
+	"cyan": [0, 255, 255],
+	"darkblue": [0, 0, 139],
+	"darkcyan": [0, 139, 139],
+	"darkgoldenrod": [184, 134, 11],
+	"darkgray": [169, 169, 169],
+	"darkgreen": [0, 100, 0],
+	"darkgrey": [169, 169, 169],
+	"darkkhaki": [189, 183, 107],
+	"darkmagenta": [139, 0, 139],
+	"darkolivegreen": [85, 107, 47],
+	"darkorange": [255, 140, 0],
+	"darkorchid": [153, 50, 204],
+	"darkred": [139, 0, 0],
+	"darksalmon": [233, 150, 122],
+	"darkseagreen": [143, 188, 143],
+	"darkslateblue": [72, 61, 139],
+	"darkslategray": [47, 79, 79],
+	"darkslategrey": [47, 79, 79],
+	"darkturquoise": [0, 206, 209],
+	"darkviolet": [148, 0, 211],
+	"deeppink": [255, 20, 147],
+	"deepskyblue": [0, 191, 255],
+	"dimgray": [105, 105, 105],
+	"dimgrey": [105, 105, 105],
+	"dodgerblue": [30, 144, 255],
+	"firebrick": [178, 34, 34],
+	"floralwhite": [255, 250, 240],
+	"forestgreen": [34, 139, 34],
+	"fuchsia": [255, 0, 255],
+	"gainsboro": [220, 220, 220],
+	"ghostwhite": [248, 248, 255],
+	"gold": [255, 215, 0],
+	"goldenrod": [218, 165, 32],
+	"gray": [128, 128, 128],
+	"green": [0, 128, 0],
+	"greenyellow": [173, 255, 47],
+	"grey": [128, 128, 128],
+	"honeydew": [240, 255, 240],
+	"hotpink": [255, 105, 180],
+	"indianred": [205, 92, 92],
+	"indigo": [75, 0, 130],
+	"ivory": [255, 255, 240],
+	"khaki": [240, 230, 140],
+	"lavender": [230, 230, 250],
+	"lavenderblush": [255, 240, 245],
+	"lawngreen": [124, 252, 0],
+	"lemonchiffon": [255, 250, 205],
+	"lightblue": [173, 216, 230],
+	"lightcoral": [240, 128, 128],
+	"lightcyan": [224, 255, 255],
+	"lightgoldenrodyellow": [250, 250, 210],
+	"lightgray": [211, 211, 211],
+	"lightgreen": [144, 238, 144],
+	"lightgrey": [211, 211, 211],
+	"lightpink": [255, 182, 193],
+	"lightsalmon": [255, 160, 122],
+	"lightseagreen": [32, 178, 170],
+	"lightskyblue": [135, 206, 250],
+	"lightslategray": [119, 136, 153],
+	"lightslategrey": [119, 136, 153],
+	"lightsteelblue": [176, 196, 222],
+	"lightyellow": [255, 255, 224],
+	"lime": [0, 255, 0],
+	"limegreen": [50, 205, 50],
+	"linen": [250, 240, 230],
+	"magenta": [255, 0, 255],
+	"maroon": [128, 0, 0],
+	"mediumaquamarine": [102, 205, 170],
+	"mediumblue": [0, 0, 205],
+	"mediumorchid": [186, 85, 211],
+	"mediumpurple": [147, 112, 219],
+	"mediumseagreen": [60, 179, 113],
+	"mediumslateblue": [123, 104, 238],
+	"mediumspringgreen": [0, 250, 154],
+	"mediumturquoise": [72, 209, 204],
+	"mediumvioletred": [199, 21, 133],
+	"midnightblue": [25, 25, 112],
+	"mintcream": [245, 255, 250],
+	"mistyrose": [255, 228, 225],
+	"moccasin": [255, 228, 181],
+	"navajowhite": [255, 222, 173],
+	"navy": [0, 0, 128],
+	"oldlace": [253, 245, 230],
+	"olive": [128, 128, 0],
+	"olivedrab": [107, 142, 35],
+	"orange": [255, 165, 0],
+	"orangered": [255, 69, 0],
+	"orchid": [218, 112, 214],
+	"palegoldenrod": [238, 232, 170],
+	"palegreen": [152, 251, 152],
+	"paleturquoise": [175, 238, 238],
+	"palevioletred": [219, 112, 147],
+	"papayawhip": [255, 239, 213],
+	"peachpuff": [255, 218, 185],
+	"peru": [205, 133, 63],
+	"pink": [255, 192, 203],
+	"plum": [221, 160, 221],
+	"powderblue": [176, 224, 230],
+	"purple": [128, 0, 128],
+	"rebeccapurple": [102, 51, 153],
+	"red": [255, 0, 0],
+	"rosybrown": [188, 143, 143],
+	"royalblue": [65, 105, 225],
+	"saddlebrown": [139, 69, 19],
+	"salmon": [250, 128, 114],
+	"sandybrown": [244, 164, 96],
+	"seagreen": [46, 139, 87],
+	"seashell": [255, 245, 238],
+	"sienna": [160, 82, 45],
+	"silver": [192, 192, 192],
+	"skyblue": [135, 206, 235],
+	"slateblue": [106, 90, 205],
+	"slategray": [112, 128, 144],
+	"slategrey": [112, 128, 144],
+	"snow": [255, 250, 250],
+	"springgreen": [0, 255, 127],
+	"steelblue": [70, 130, 180],
+	"tan": [210, 180, 140],
+	"teal": [0, 128, 128],
+	"thistle": [216, 191, 216],
+	"tomato": [255, 99, 71],
+	"turquoise": [64, 224, 208],
+	"violet": [238, 130, 238],
+	"wheat": [245, 222, 179],
+	"white": [255, 255, 255],
+	"whitesmoke": [245, 245, 245],
+	"yellow": [255, 255, 0],
+	"yellowgreen": [154, 205, 50]
+};
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isArrayish = __webpack_require__(18);
+
+var concat = Array.prototype.concat;
+var slice = Array.prototype.slice;
+
+var swizzle = module.exports = function swizzle(args) {
+	var results = [];
+
+	for (var i = 0, len = args.length; i < len; i++) {
+		var arg = args[i];
+
+		if (isArrayish(arg)) {
+			// http://jsperf.com/javascript-array-concat-vs-push/98
+			results = concat.call(results, slice.call(arg));
+		} else {
+			results.push(arg);
+		}
+	}
+
+	return results;
+};
+
+swizzle.wrap = function (fn) {
+	return function () {
+		return fn(swizzle(arguments));
+	};
+};
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = function isArrayish(obj) {
+	if (!obj || typeof obj === 'string') {
+		return false;
+	}
+
+	return obj instanceof Array || Array.isArray(obj) ||
+		(obj.length >= 0 && (obj.splice instanceof Function ||
+			(Object.getOwnPropertyDescriptor(obj, (obj.length - 1)) && obj.constructor.name !== 'String')));
+};
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+	"aliceblue": [240, 248, 255],
+	"antiquewhite": [250, 235, 215],
+	"aqua": [0, 255, 255],
+	"aquamarine": [127, 255, 212],
+	"azure": [240, 255, 255],
+	"beige": [245, 245, 220],
+	"bisque": [255, 228, 196],
+	"black": [0, 0, 0],
+	"blanchedalmond": [255, 235, 205],
+	"blue": [0, 0, 255],
+	"blueviolet": [138, 43, 226],
+	"brown": [165, 42, 42],
+	"burlywood": [222, 184, 135],
+	"cadetblue": [95, 158, 160],
+	"chartreuse": [127, 255, 0],
+	"chocolate": [210, 105, 30],
+	"coral": [255, 127, 80],
+	"cornflowerblue": [100, 149, 237],
+	"cornsilk": [255, 248, 220],
+	"crimson": [220, 20, 60],
+	"cyan": [0, 255, 255],
+	"darkblue": [0, 0, 139],
+	"darkcyan": [0, 139, 139],
+	"darkgoldenrod": [184, 134, 11],
+	"darkgray": [169, 169, 169],
+	"darkgreen": [0, 100, 0],
+	"darkgrey": [169, 169, 169],
+	"darkkhaki": [189, 183, 107],
+	"darkmagenta": [139, 0, 139],
+	"darkolivegreen": [85, 107, 47],
+	"darkorange": [255, 140, 0],
+	"darkorchid": [153, 50, 204],
+	"darkred": [139, 0, 0],
+	"darksalmon": [233, 150, 122],
+	"darkseagreen": [143, 188, 143],
+	"darkslateblue": [72, 61, 139],
+	"darkslategray": [47, 79, 79],
+	"darkslategrey": [47, 79, 79],
+	"darkturquoise": [0, 206, 209],
+	"darkviolet": [148, 0, 211],
+	"deeppink": [255, 20, 147],
+	"deepskyblue": [0, 191, 255],
+	"dimgray": [105, 105, 105],
+	"dimgrey": [105, 105, 105],
+	"dodgerblue": [30, 144, 255],
+	"firebrick": [178, 34, 34],
+	"floralwhite": [255, 250, 240],
+	"forestgreen": [34, 139, 34],
+	"fuchsia": [255, 0, 255],
+	"gainsboro": [220, 220, 220],
+	"ghostwhite": [248, 248, 255],
+	"gold": [255, 215, 0],
+	"goldenrod": [218, 165, 32],
+	"gray": [128, 128, 128],
+	"green": [0, 128, 0],
+	"greenyellow": [173, 255, 47],
+	"grey": [128, 128, 128],
+	"honeydew": [240, 255, 240],
+	"hotpink": [255, 105, 180],
+	"indianred": [205, 92, 92],
+	"indigo": [75, 0, 130],
+	"ivory": [255, 255, 240],
+	"khaki": [240, 230, 140],
+	"lavender": [230, 230, 250],
+	"lavenderblush": [255, 240, 245],
+	"lawngreen": [124, 252, 0],
+	"lemonchiffon": [255, 250, 205],
+	"lightblue": [173, 216, 230],
+	"lightcoral": [240, 128, 128],
+	"lightcyan": [224, 255, 255],
+	"lightgoldenrodyellow": [250, 250, 210],
+	"lightgray": [211, 211, 211],
+	"lightgreen": [144, 238, 144],
+	"lightgrey": [211, 211, 211],
+	"lightpink": [255, 182, 193],
+	"lightsalmon": [255, 160, 122],
+	"lightseagreen": [32, 178, 170],
+	"lightskyblue": [135, 206, 250],
+	"lightslategray": [119, 136, 153],
+	"lightslategrey": [119, 136, 153],
+	"lightsteelblue": [176, 196, 222],
+	"lightyellow": [255, 255, 224],
+	"lime": [0, 255, 0],
+	"limegreen": [50, 205, 50],
+	"linen": [250, 240, 230],
+	"magenta": [255, 0, 255],
+	"maroon": [128, 0, 0],
+	"mediumaquamarine": [102, 205, 170],
+	"mediumblue": [0, 0, 205],
+	"mediumorchid": [186, 85, 211],
+	"mediumpurple": [147, 112, 219],
+	"mediumseagreen": [60, 179, 113],
+	"mediumslateblue": [123, 104, 238],
+	"mediumspringgreen": [0, 250, 154],
+	"mediumturquoise": [72, 209, 204],
+	"mediumvioletred": [199, 21, 133],
+	"midnightblue": [25, 25, 112],
+	"mintcream": [245, 255, 250],
+	"mistyrose": [255, 228, 225],
+	"moccasin": [255, 228, 181],
+	"navajowhite": [255, 222, 173],
+	"navy": [0, 0, 128],
+	"oldlace": [253, 245, 230],
+	"olive": [128, 128, 0],
+	"olivedrab": [107, 142, 35],
+	"orange": [255, 165, 0],
+	"orangered": [255, 69, 0],
+	"orchid": [218, 112, 214],
+	"palegoldenrod": [238, 232, 170],
+	"palegreen": [152, 251, 152],
+	"paleturquoise": [175, 238, 238],
+	"palevioletred": [219, 112, 147],
+	"papayawhip": [255, 239, 213],
+	"peachpuff": [255, 218, 185],
+	"peru": [205, 133, 63],
+	"pink": [255, 192, 203],
+	"plum": [221, 160, 221],
+	"powderblue": [176, 224, 230],
+	"purple": [128, 0, 128],
+	"rebeccapurple": [102, 51, 153],
+	"red": [255, 0, 0],
+	"rosybrown": [188, 143, 143],
+	"royalblue": [65, 105, 225],
+	"saddlebrown": [139, 69, 19],
+	"salmon": [250, 128, 114],
+	"sandybrown": [244, 164, 96],
+	"seagreen": [46, 139, 87],
+	"seashell": [255, 245, 238],
+	"sienna": [160, 82, 45],
+	"silver": [192, 192, 192],
+	"skyblue": [135, 206, 235],
+	"slateblue": [106, 90, 205],
+	"slategray": [112, 128, 144],
+	"slategrey": [112, 128, 144],
+	"snow": [255, 250, 250],
+	"springgreen": [0, 255, 127],
+	"steelblue": [70, 130, 180],
+	"tan": [210, 180, 140],
+	"teal": [0, 128, 128],
+	"thistle": [216, 191, 216],
+	"tomato": [255, 99, 71],
+	"turquoise": [64, 224, 208],
+	"violet": [238, 130, 238],
+	"wheat": [245, 222, 179],
+	"white": [255, 255, 255],
+	"whitesmoke": [245, 245, 245],
+	"yellow": [255, 255, 0],
+	"yellowgreen": [154, 205, 50]
+};
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const conversions = __webpack_require__(9);
+
+/*
+	This function routes a model to all other models.
+
+	all functions that are routed have a property `.conversion` attached
+	to the returned synthetic function. This property is an array
+	of strings, each with the steps in between the 'from' and 'to'
+	color models (inclusive).
+
+	conversions that are not possible simply are not included.
+*/
+
+function buildGraph() {
+	const graph = {};
+	// https://jsperf.com/object-keys-vs-for-in-with-closure/3
+	const models = Object.keys(conversions);
+
+	for (let len = models.length, i = 0; i < len; i++) {
+		graph[models[i]] = {
+			// http://jsperf.com/1-vs-infinity
+			// micro-opt, but this is simple.
+			distance: -1,
+			parent: null
+		};
+	}
+
+	return graph;
+}
+
+// https://en.wikipedia.org/wiki/Breadth-first_search
+function deriveBFS(fromModel) {
+	const graph = buildGraph();
+	const queue = [fromModel]; // Unshift -> queue -> pop
+
+	graph[fromModel].distance = 0;
+
+	while (queue.length) {
+		const current = queue.pop();
+		const adjacents = Object.keys(conversions[current]);
+
+		for (let len = adjacents.length, i = 0; i < len; i++) {
+			const adjacent = adjacents[i];
+			const node = graph[adjacent];
+
+			if (node.distance === -1) {
+				node.distance = graph[current].distance + 1;
+				node.parent = current;
+				queue.unshift(adjacent);
+			}
+		}
+	}
+
+	return graph;
+}
+
+function link(from, to) {
+	return function (args) {
+		return to(from(args));
+	};
+}
+
+function wrapConversion(toModel, graph) {
+	const path = [graph[toModel].parent, toModel];
+	let fn = conversions[graph[toModel].parent][toModel];
+
+	let cur = graph[toModel].parent;
+	while (graph[cur].parent) {
+		path.unshift(graph[cur].parent);
+		fn = link(conversions[graph[cur].parent][cur], fn);
+		cur = graph[cur].parent;
+	}
+
+	fn.conversion = path;
+	return fn;
+}
+
+module.exports = function (fromModel) {
+	const graph = deriveBFS(fromModel);
+	const conversion = {};
+
+	const models = Object.keys(graph);
+	for (let len = models.length, i = 0; i < len; i++) {
+		const toModel = models[i];
+		const node = graph[toModel];
+
+		if (node.parent === null) {
+			// No possible conversion, or this node is the source model.
+			continue;
+		}
+
+		conversion[toModel] = wrapConversion(toModel, graph);
+	}
+
+	return conversion;
+};
+
+
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.clamp` which doesn't coerce arguments.
+ *
+ * @private
+ * @param {number} number The number to clamp.
+ * @param {number} [lower] The lower bound.
+ * @param {number} upper The upper bound.
+ * @returns {number} Returns the clamped number.
+ */
+function baseClamp(number, lower, upper) {
+  if (number === number) {
+    if (upper !== undefined) {
+      number = number <= upper ? number : upper;
+    }
+    if (lower !== undefined) {
+      number = number >= lower ? number : lower;
+    }
+  }
+  return number;
+}
+
+module.exports = baseClamp;
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+/**
+ * The base implementation of `_.slice` without an iteratee call guard.
+ *
+ * @private
+ * @param {Array} array The array to slice.
+ * @param {number} [start=0] The start position.
+ * @param {number} [end=array.length] The end position.
+ * @returns {Array} Returns the slice of `array`.
+ */
+function baseSlice(array, start, end) {
+  var index = -1,
+      length = array.length;
+
+  if (start < 0) {
+    start = -start > length ? 0 : (length + start);
+  }
+  end = end > length ? length : end;
+  if (end < 0) {
+    end += length;
+  }
+  length = start > end ? 0 : ((end - start) >>> 0);
+  start >>>= 0;
+
+  var result = Array(length);
+  while (++index < length) {
+    result[index] = array[index + start];
+  }
+  return result;
+}
+
+module.exports = baseSlice;
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = stubFalse;
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = identity;
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var root = __webpack_require__(26),
+    toInteger = __webpack_require__(2),
+    toNumber = __webpack_require__(10),
+    toString = __webpack_require__(11);
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeIsFinite = root.isFinite,
+    nativeMin = Math.min;
+
+/**
+ * Creates a function like `_.round`.
+ *
+ * @private
+ * @param {string} methodName The name of the `Math` method to use when rounding.
+ * @returns {Function} Returns the new round function.
+ */
+function createRound(methodName) {
+  var func = Math[methodName];
+  return function(number, precision) {
+    number = toNumber(number);
+    precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
+    if (precision && nativeIsFinite(number)) {
+      // Shift with exponential notation to avoid floating-point issues.
+      // See [MDN](https://mdn.io/round#Examples) for more details.
+      var pair = (toString(number) + 'e').split('e'),
+          value = func(pair[0] + 'e' + (+pair[1] + precision));
+
+      pair = (toString(value) + 'e').split('e');
+      return +(pair[0] + 'e' + (+pair[1] - precision));
+    }
+    return func(number);
+  };
+}
+
+module.exports = createRound;
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var freeGlobal = __webpack_require__(27);
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+module.exports = root;
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+module.exports = freeGlobal;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(28)))
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || new Function("return this")();
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports) {
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * The base implementation of `_.has` without support for deep paths.
+ *
+ * @private
+ * @param {Object} [object] The object to query.
+ * @param {Array|string} key The key to check.
+ * @returns {boolean} Returns `true` if `key` exists, else `false`.
+ */
+function baseHas(object, key) {
+  return object != null && hasOwnProperty.call(object, key);
+}
+
+module.exports = baseHas;
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var castPath = __webpack_require__(31),
+    isArguments = __webpack_require__(36),
+    isArray = __webpack_require__(4),
+    isIndex = __webpack_require__(37),
+    isLength = __webpack_require__(38),
+    toKey = __webpack_require__(39);
+
+/**
+ * Checks if `path` exists on `object`.
+ *
+ * @private
+ * @param {Object} object The object to query.
+ * @param {Array|string} path The path to check.
+ * @param {Function} hasFunc The function to check properties.
+ * @returns {boolean} Returns `true` if `path` exists, else `false`.
+ */
+function hasPath(object, path, hasFunc) {
+  path = castPath(path, object);
+
+  var index = -1,
+      length = path.length,
+      result = false;
+
+  while (++index < length) {
+    var key = toKey(path[index]);
+    if (!(result = object != null && hasFunc(object, key))) {
+      break;
+    }
+    object = object[key];
+  }
+  if (result || ++index != length) {
+    return result;
+  }
+  length = object == null ? 0 : object.length;
+  return !!length && isLength(length) && isIndex(key, length) &&
+    (isArray(object) || isArguments(object));
+}
+
+module.exports = hasPath;
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isArray = __webpack_require__(4),
+    isKey = __webpack_require__(32),
+    stringToPath = __webpack_require__(34),
+    toString = __webpack_require__(11);
+
+/**
+ * Casts `value` to a path array if it's not one.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {Array} Returns the cast property path array.
+ */
+function castPath(value, object) {
+  if (isArray(value)) {
+    return value;
+  }
+  return isKey(value, object) ? [value] : stringToPath(toString(value));
+}
+
+module.exports = castPath;
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isArray = __webpack_require__(4),
+    isSymbol = __webpack_require__(33);
+
+/** Used to match property names within property paths. */
+var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/,
+    reIsPlainProp = /^\w*$/;
+
+/**
+ * Checks if `value` is a property name and not a property path.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {Object} [object] The object to query keys on.
+ * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
+ */
+function isKey(value, object) {
+  if (isArray(value)) {
+    return false;
+  }
+  var type = typeof value;
+  if (type == 'number' || type == 'symbol' || type == 'boolean' ||
+      value == null || isSymbol(value)) {
+    return true;
+  }
+  return reIsPlainProp.test(value) || !reIsDeepProp.test(value) ||
+    (object != null && value in Object(object));
+}
+
+module.exports = isKey;
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = stubFalse;
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var memoizeCapped = __webpack_require__(35);
+
+/** Used to match property names within property paths. */
+var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+
+/** Used to match backslashes in property paths. */
+var reEscapeChar = /\\(\\)?/g;
+
+/**
+ * Converts `string` to a property path array.
+ *
+ * @private
+ * @param {string} string The string to convert.
+ * @returns {Array} Returns the property path array.
+ */
+var stringToPath = memoizeCapped(function(string) {
+  var result = [];
+  if (string.charCodeAt(0) === 46 /* . */) {
+    result.push('');
+  }
+  string.replace(rePropName, function(match, number, quote, subString) {
+    result.push(quote ? subString.replace(reEscapeChar, '$1') : (number || match));
+  });
+  return result;
+});
+
+module.exports = stringToPath;
+
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = identity;
+
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns `false`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.13.0
+ * @category Util
+ * @returns {boolean} Returns `false`.
+ * @example
+ *
+ * _.times(2, _.stubFalse);
+ * // => [false, false]
+ */
+function stubFalse() {
+  return false;
+}
+
+module.exports = stubFalse;
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports) {
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/** Used to detect unsigned integer values. */
+var reIsUint = /^(?:0|[1-9]\d*)$/;
+
+/**
+ * Checks if `value` is a valid array-like index.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+ * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+ */
+function isIndex(value, length) {
+  var type = typeof value;
+  length = length == null ? MAX_SAFE_INTEGER : length;
+
+  return !!length &&
+    (type == 'number' ||
+      (type != 'symbol' && reIsUint.test(value))) &&
+        (value > -1 && value % 1 == 0 && value < length);
+}
+
+module.exports = isIndex;
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports) {
+
+/** Used as references for various `Number` constants. */
+var MAX_SAFE_INTEGER = 9007199254740991;
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+module.exports = isLength;
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports) {
+
+/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // => true
+ */
+function identity(value) {
+  return value;
+}
+
+module.exports = identity;
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports) {
+
+/**
+ * A specialized version of `_.indexOf` which performs strict equality
+ * comparisons of values, i.e. `===`.
+ *
+ * @private
+ * @param {Array} array The array to inspect.
+ * @param {*} value The value to search for.
+ * @param {number} fromIndex The index to search from.
+ * @returns {number} Returns the index of the matched value, else `-1`.
+ */
+function strictIndexOf(array, value, fromIndex) {
+  var index = fromIndex - 1,
+      length = array.length;
+
+  while (++index < length) {
+    if (array[index] === value) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+module.exports = strictIndexOf;
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__(2);
+
+/**
+ * Checks if `value` is an integer.
+ *
+ * **Note:** This method is based on
+ * [`Number.isInteger`](https://mdn.io/Number/isInteger).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an integer, else `false`.
+ * @example
+ *
+ * _.isInteger(3);
+ * // => true
+ *
+ * _.isInteger(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isInteger(Infinity);
+ * // => false
+ *
+ * _.isInteger('3');
+ * // => false
+ */
+function isInteger(value) {
+  return typeof value == 'number' && value == toInteger(value);
+}
+
+module.exports = isInteger;
 
 
 /***/ })

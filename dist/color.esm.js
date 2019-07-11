@@ -36,7 +36,18 @@ import has from 'lodash/has';
 import isNil from 'lodash/isNil';
 import toInteger from 'lodash/toInteger';
 import includes from 'lodash/includes';
-import isCountingNumber from 'Global/Assets/isCountingNumber';
+import isSafeInteger from 'lodash/isSafeInteger';
+/**
+ * Test if a value is a counting number, 1 -> MAX_SAFE_INTEGER.
+ *
+ * @param {*} value - The value to be tested.
+ * @returns {boolean} True if value is a counting number.
+ */
+
+var isCountingNumber = function isCountingNumber(value) {
+  return isSafeInteger(value) && value > 0;
+};
+
 var EMPTY_STRING = '';
 var ALPHA = 'alpha';
 var RGB = 'rgb';

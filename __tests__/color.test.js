@@ -1,4 +1,4 @@
-import Color, {hashedModelKeys} from '../src/color';
+import Color, {hashedModelKeys} from 'src/color';
 
 describe('color', () => {
   it('hashedModelKeys', function() {

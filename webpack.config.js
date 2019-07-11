@@ -282,8 +282,7 @@ module.exports = function generateConfig(env) {
       alias: {
         RootDir: path.resolve(__dirname, '.'),
         dist: path.resolve(__dirname, './dist'),
-        Src: path.resolve(__dirname, './src'),
-        Global: path.resolve(__dirname, './Global'),
+        src: path.resolve(__dirname, './src'),
       },
       extensions: ['.js', '.json'],
     },
