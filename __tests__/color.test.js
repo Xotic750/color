@@ -34,55 +34,55 @@ describe('color', () => {
 
   it('color() argument', function() {
     expect.assertions(15);
-    expect(new Color('#0A1E19').rgb().object()).toEqual({
+    expect(new Color('#0A1E19').rgb().object()).toStrictEqual({
       b: 25,
       g: 30,
       r: 10,
     });
-    expect(new Color('rgb(10, 30, 25)').rgb().object()).toEqual({
+    expect(new Color('rgb(10, 30, 25)').rgb().object()).toStrictEqual({
       b: 25,
       g: 30,
       r: 10,
     });
-    expect(new Color('rgba(10, 30, 25, 0.4)').rgb().object()).toEqual({
+    expect(new Color('rgba(10, 30, 25, 0.4)').rgb().object()).toStrictEqual({
       alpha: 0.4,
       b: 25,
       g: 30,
       r: 10,
     });
-    expect(new Color('rgb(4%, 12%, 10%)').rgb().object()).toEqual({
+    expect(new Color('rgb(4%, 12%, 10%)').rgb().object()).toStrictEqual({
       b: 26,
       g: 31,
       r: 10,
     });
-    expect(new Color('rgba(4%, 12%, 10%, 0.4)').rgb().object()).toEqual({
+    expect(new Color('rgba(4%, 12%, 10%, 0.4)').rgb().object()).toStrictEqual({
       alpha: 0.4,
       b: 26,
       g: 31,
       r: 10,
     });
-    expect(new Color('blue').rgb().object()).toEqual({
+    expect(new Color('blue').rgb().object()).toStrictEqual({
       b: 255,
       g: 0,
       r: 0,
     });
-    expect(new Color('hsl(120, 50%, 60%)').hsl().object()).toEqual({
+    expect(new Color('hsl(120, 50%, 60%)').hsl().object()).toStrictEqual({
       h: 120,
       l: 60,
       s: 50,
     });
-    expect(new Color('hsla(120, 50%, 60%, 0.4)').hsl().object()).toEqual({
+    expect(new Color('hsla(120, 50%, 60%, 0.4)').hsl().object()).toStrictEqual({
       alpha: 0.4,
       h: 120,
       l: 60,
       s: 50,
     });
-    expect(new Color('hwb(120, 50%, 60%)').hwb().object()).toEqual({
+    expect(new Color('hwb(120, 50%, 60%)').hwb().object()).toStrictEqual({
       b: 60,
       h: 120,
       w: 50,
     });
-    expect(new Color('hwb(120, 50%, 60%, 0.4)').hwb().object()).toEqual({
+    expect(new Color('hwb(120, 50%, 60%, 0.4)').hwb().object()).toStrictEqual({
       alpha: 0.4,
       b: 60,
       h: 120,
@@ -97,7 +97,7 @@ describe('color', () => {
       })
         .rgb()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 25,
       g: 30,
       r: 10,
@@ -110,7 +110,7 @@ describe('color', () => {
       })
         .hsl()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       h: 10,
       l: 25,
       s: 30,
@@ -123,7 +123,7 @@ describe('color', () => {
       })
         .hsv()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       h: 10,
       s: 30,
       v: 25,
@@ -136,7 +136,7 @@ describe('color', () => {
       })
         .hwb()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 25,
       h: 10,
       w: 30,
@@ -150,7 +150,7 @@ describe('color', () => {
       })
         .cmyk()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       c: 10,
       k: 10,
       m: 30,
@@ -164,7 +164,7 @@ describe('color', () => {
       Color.rgb(10, 30, 25)
         .rgb()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 25,
       g: 30,
       r: 10,
@@ -173,7 +173,7 @@ describe('color', () => {
       Color.rgb(10, 30, 25, 0.4)
         .rgb()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       alpha: 0.4,
       b: 25,
       g: 30,
@@ -183,7 +183,7 @@ describe('color', () => {
       Color.rgb([10, 30, 25])
         .rgb()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 25,
       g: 30,
       r: 10,
@@ -192,7 +192,7 @@ describe('color', () => {
       Color.rgb([10, 30, 25, 0.4])
         .rgb()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       alpha: 0.4,
       b: 25,
       g: 30,
@@ -206,7 +206,7 @@ describe('color', () => {
       })
         .rgb()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 25,
       g: 30,
       r: 10,
@@ -220,7 +220,7 @@ describe('color', () => {
       })
         .rgb()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       alpha: 0.4,
       b: 25,
       g: 30,
@@ -231,7 +231,7 @@ describe('color', () => {
       Color.hsl([260, 10, 10])
         .hsl()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       h: 260,
       l: 10,
       s: 10,
@@ -240,7 +240,7 @@ describe('color', () => {
       Color.hsv([260, 10, 10])
         .hsv()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       h: 260,
       s: 10,
       v: 10,
@@ -249,7 +249,7 @@ describe('color', () => {
       Color.hwb([260, 10, 10])
         .hwb()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 10,
       h: 260,
       w: 10,
@@ -258,7 +258,7 @@ describe('color', () => {
       Color.cmyk([10, 10, 10, 10])
         .cmyk()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       c: 10,
       k: 10,
       m: 10,
@@ -283,7 +283,7 @@ describe('color', () => {
         .rgb()
         .round()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 25,
       g: 30,
       r: 10,
@@ -293,7 +293,7 @@ describe('color', () => {
         .hsl()
         .round()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       h: 165,
       l: 8,
       s: 50,
@@ -303,7 +303,7 @@ describe('color', () => {
         .hsv()
         .round()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       h: 165,
       s: 67,
       v: 12,
@@ -313,7 +313,7 @@ describe('color', () => {
         .hwb()
         .round()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 88,
       h: 165,
       w: 4,
@@ -323,7 +323,7 @@ describe('color', () => {
         .cmyk()
         .round()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       c: 67,
       k: 88,
       m: 0,
@@ -341,14 +341,14 @@ describe('color', () => {
       })
         .rgb()
         .array(),
-    ).toEqual([10, 20, 30]);
+    ).toStrictEqual([10, 20, 30]);
     expect(
       new Color({
         b: 30,
         g: 20,
         r: 10,
       }).unitArray(),
-    ).toEqual([10 / 255, 20 / 255, 30 / 255]);
+    ).toStrictEqual([10 / 255, 20 / 255, 30 / 255]);
     expect(
       new Color({
         alpha: 0.5,
@@ -356,14 +356,14 @@ describe('color', () => {
         g: 20,
         r: 10,
       }).unitArray(),
-    ).toEqual([10 / 255, 20 / 255, 30 / 255, 0.5]);
+    ).toStrictEqual([10 / 255, 20 / 255, 30 / 255, 0.5]);
     expect(
       new Color({
         b: 30,
         g: 20,
         r: 10,
       }).unitObject(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 30 / 255,
       g: 20 / 255,
       r: 10 / 255,
@@ -375,7 +375,7 @@ describe('color', () => {
         g: 20,
         r: 10,
       }).unitObject(),
-    ).toEqual({
+    ).toStrictEqual({
       alpha: 0.5,
       b: 30 / 255,
       g: 20 / 255,
@@ -389,7 +389,7 @@ describe('color', () => {
       })
         .hsl()
         .array(),
-    ).toEqual([10, 20, 30]);
+    ).toStrictEqual([10, 20, 30]);
     expect(
       new Color({
         h: 10,
@@ -398,7 +398,7 @@ describe('color', () => {
       })
         .hsv()
         .array(),
-    ).toEqual([10, 20, 30]);
+    ).toStrictEqual([10, 20, 30]);
     expect(
       new Color({
         b: 30,
@@ -407,7 +407,7 @@ describe('color', () => {
       })
         .hwb()
         .array(),
-    ).toEqual([10, 20, 30]);
+    ).toStrictEqual([10, 20, 30]);
     expect(
       new Color({
         c: 10,
@@ -417,7 +417,7 @@ describe('color', () => {
       })
         .cmyk()
         .array(),
-    ).toEqual([10, 20, 30, 40]);
+    ).toStrictEqual([10, 20, 30, 40]);
   });
 
   it('multiple times', function() {
@@ -427,8 +427,8 @@ describe('color', () => {
       g: 20,
       r: 10,
     });
-    expect(color.rgb().array()).toEqual([10, 20, 30]);
-    expect(color.rgb().array()).toEqual([10, 20, 30]);
+    expect(color.rgb().array()).toStrictEqual([10, 20, 30]);
+    expect(color.rgb().array()).toStrictEqual([10, 20, 30]);
   });
 
   it('channel getters/setters', function() {
@@ -714,7 +714,7 @@ describe('color', () => {
         .lightness(50)
         .hsl()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       h: 0,
       l: 50,
       s: 0,
@@ -730,7 +730,7 @@ describe('color', () => {
         .hsv()
         .round()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       h: 60,
       s: 100,
       v: 20,
@@ -758,7 +758,7 @@ describe('color', () => {
     expect(new Color('rgb(10, 30, 25)').hwb().string(0)).toBe('hwb(165, 4%, 88%)');
     expect(new Color('rgb(10, 30, 25, 0.3)').hwb().string(0)).toBe('hwb(165, 4%, 88%, 0.3)');
     expect(new Color('rgb(0, 0, 255)').keyword()).toBe('blue');
-    expect(new Color('rgb(0, 0, 255)').keyword('red')).toEqual(new Color('red'));
+    expect(new Color('rgb(0, 0, 255)').keyword('red')).toStrictEqual(new Color('red'));
     expect(Color.rgb(155.5, 243.1555, 88.1999).string()).toBe('rgb(156, 243, 88)');
   });
 
@@ -799,7 +799,7 @@ describe('color', () => {
         .rgb()
         .round()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 107,
       g: 107,
       r: 107,
@@ -814,7 +814,7 @@ describe('color', () => {
         .rgb()
         .round()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       b: 121,
       g: 133,
       r: 188,
@@ -830,7 +830,7 @@ describe('color', () => {
         .rgb()
         .round()
         .object(),
-    ).toEqual({
+    ).toStrictEqual({
       alpha: 0.5,
       b: 121,
       g: 133,
@@ -1155,15 +1155,15 @@ describe('color', () => {
 
   it('blacklist model', function() {
     expect.assertions(3);
-    expect(new Color('white', 'keyword')).toEqual(new Color('white'));
-    expect(new Color('white', 'gray')).toEqual(new Color('white'));
-    expect(new Color('white', 'hex')).toEqual(new Color('white'));
+    expect(new Color('white', 'keyword')).toStrictEqual(new Color('white'));
+    expect(new Color('white', 'gray')).toStrictEqual(new Color('white'));
+    expect(new Color('white', 'hex')).toStrictEqual(new Color('white'));
   });
 
   it('zero array', function() {
     expect.assertions(2);
-    expect(new Color({0: 255, 1: 0, 2: 0, length: 3})).toEqual(new Color('red'));
-    expect(new Color({0: '255', 1: '255', 2: '255', length: 3})).toEqual(new Color('black'));
+    expect(new Color({0: 255, 1: 0, 2: 0, length: 3})).toStrictEqual(new Color('red'));
+    expect(new Color({0: '255', 1: '255', 2: '255', length: 3})).toStrictEqual(new Color('black'));
   });
 
   it('color object throwing checks', function() {

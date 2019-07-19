@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) Graham Fairweather",
-  "date": "2019-07-11T21:02:20.034Z",
+  "date": "2019-07-19T00:32:42.788Z",
   "describe": "",
   "description": "Color conversion and manipulation library",
   "file": "color.js",
-  "hash": "0f250726cd6da2f7411b",
+  "hash": "d3b7636221988760f97b",
   "license": "MIT",
-  "version": "1.0.6"
+  "version": "1.0.7"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -2565,7 +2565,7 @@ function () {
      * @param {Color} mixinColor - The color to mix in.
      * @param {number} [weight=0.5] - The mixing weight.
      * @returns {Color} - The new mixed color.
-     * @throws {Error} if mixinColor is not a Color object.
+     * @throws {Error} If mixinColor is not a Color object.
      */
 
   }, {

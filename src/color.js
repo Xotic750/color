@@ -687,7 +687,7 @@ export default class Color {
    * @param {Color} mixinColor - The color to mix in.
    * @param {number} [weight=0.5] - The mixing weight.
    * @returns {Color} - The new mixed color.
-   * @throws {Error} if mixinColor is not a Color object.
+   * @throws {Error} If mixinColor is not a Color object.
    */
   mix(mixinColor, weight) {
     /**
