@@ -1,7 +1,7 @@
-<a href="https://travis-ci.org/Xotic750/Xotic750/color"
+<a href="https://travis-ci.org/Xotic750/color"
   title="Travis status">
 <img
-  src="https://travis-ci.org/Xotic750/Xotic750/color.svg?branch=master"
+  src="https://travis-ci.org/Xotic750/color.svg?branch=master"
   alt="Travis status" height="18">
 </a>
 <a href="https://david-dm.org/Xotic750/Xotic750/color"
