@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) Graham Fairweather",
-  "date": "2019-07-25T23:20:49.646Z",
+  "date": "2019-07-26T16:36:45.588Z",
   "describe": "",
   "description": "Color conversion and manipulation library",
   "file": "color.js",
   "hash": "e137bef8c18d6c6c472d",
   "license": "MIT",
-  "version": "1.0.13"
+  "version": "1.0.14"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {

@@ -1,29 +1,39 @@
-<a href="https://travis-ci.org/Xotic750/color"
+<a
+  href="https://travis-ci.org/Xotic750/@xotic750/color"
   title="Travis status">
 <img
-  src="https://travis-ci.org/Xotic750/color.svg?branch=master"
+  src="https://travis-ci.org/Xotic750/@xotic750/color.svg?branch=master"
   alt="Travis status" height="18">
 </a>
-<a href="https://david-dm.org/Xotic750/Xotic750/color"
+<a
+  href="https://david-dm.org/Xotic750/@xotic750/color"
   title="Dependency status">
-<img src="https://david-dm.org/Xotic750/Xotic750/color/status.svg"
+<img src="https://david-dm.org/Xotic750/@xotic750/color/status.svg"
   alt="Dependency status" height="18"/>
 </a>
 <a
-  href="https://david-dm.org/Xotic750/Xotic750/color?type=dev"
+  href="https://david-dm.org/Xotic750/@xotic750/color?type=dev"
   title="devDependency status">
-<img src="https://david-dm.org/Xotic750/Xotic750/color/dev-status.svg"
+<img src="https://david-dm.org/Xotic750/@xotic750/color/dev-status.svg"
   alt="devDependency status" height="18"/>
 </a>
-<a href="https://badge.fury.io/js/%40xotic750%2Fcolor" 
+<a
+  href="https://badge.fury.io/js/%40xotic750%2color"
   title="npm version">
-<img src="https://badge.fury.io/js/%40xotic750%2Fcolor.svg"
-    alt="npm version" height="18">
+<img src="https://badge.fury.io/js/%40xotic750%2color.svg"
+  alt="npm version" height="18">
 </a>
-<a href="https://www.jsdelivr.com/package/npm/@xotic750/color"
+<a
+  href="https://www.jsdelivr.com/package/npm/@xotic750/color"
   title="jsDelivr hits">
 <img src="https://data.jsdelivr.com/v1/package/npm/@xotic750/color/badge?style=rounded"
   alt="jsDelivr hits" height="18">
+</a>
+<a
+  href="https://bettercodehub.com/results/Xotic750/@xotic750/color"
+  title="bettercodehub score">
+<img src="https://bettercodehub.com/edge/badge/Xotic750/@xotic750/color?branch=master"
+  alt="bettercodehub score" height="18">
 </a>
 
 # @xotic750/color
