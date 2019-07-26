@@ -1,5 +1,5 @@
 <a
-  href="https://travis-ci.org/Xotic750/@xotic750/color"
+  href="https://travis-ci.org/Xotic750/color"
   title="Travis status">
 <img
   src="https://travis-ci.org/Xotic750/@xotic750/color.svg?branch=master"
@@ -30,9 +30,9 @@
   alt="jsDelivr hits" height="18">
 </a>
 <a
-  href="https://bettercodehub.com/results/Xotic750/@xotic750/color"
+  href="https://bettercodehub.com/results/Xotic750/color"
   title="bettercodehub score">
-<img src="https://bettercodehub.com/edge/badge/Xotic750/@xotic750/color?branch=master"
+<img src="https://bettercodehub.com/edge/badge/Xotic750/color?branch=master"
   alt="bettercodehub score" height="18">
 </a>
 
