@@ -2,19 +2,19 @@
   href="https://travis-ci.org/Xotic750/color"
   title="Travis status">
 <img
-  src="https://travis-ci.org/Xotic750/@xotic750/color.svg?branch=master"
+  src="https://travis-ci.org/Xotic750/color.svg?branch=master"
   alt="Travis status" height="18">
 </a>
 <a
-  href="https://david-dm.org/Xotic750/@xotic750/color"
+  href="https://david-dm.org/Xotic750/color"
   title="Dependency status">
-<img src="https://david-dm.org/Xotic750/@xotic750/color/status.svg"
+<img src="https://david-dm.org/Xotic750/color/status.svg"
   alt="Dependency status" height="18"/>
 </a>
 <a
-  href="https://david-dm.org/Xotic750/@xotic750/color?type=dev"
+  href="https://david-dm.org/Xotic750/color?type=dev"
   title="devDependency status">
-<img src="https://david-dm.org/Xotic750/@xotic750/color/dev-status.svg"
+<img src="https://david-dm.org/Xotic750/color/dev-status.svg"
   alt="devDependency status" height="18"/>
 </a>
 <a
