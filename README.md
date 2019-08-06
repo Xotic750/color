@@ -18,15 +18,15 @@
   alt="devDependency status" height="18"/>
 </a>
 <a
-  href="https://badge.fury.io/js/%40xotic750%2Fcolor"
+  href="https://badge.fury.io/js/%40xotic750%2color"
   title="npm version">
-<img src="https://badge.fury.io/js/%40xotic750%2Fcolor.svg"
+<img src="https://badge.fury.io/js/%40xotic750%2color.svg"
   alt="npm version" height="18">
 </a>
 <a
-  href="https://www.jsdelivr.com/package/npm/@xotic750/color"
+  href="https://www.jsdelivr.com/package/npm/color"
   title="jsDelivr hits">
-<img src="https://data.jsdelivr.com/v1/package/npm/@xotic750/color/badge?style=rounded"
+<img src="https://data.jsdelivr.com/v1/package/npm/color/badge?style=rounded"
   alt="jsDelivr hits" height="18">
 </a>
 <a
@@ -34,6 +34,12 @@
   title="bettercodehub score">
 <img src="https://bettercodehub.com/edge/badge/Xotic750/color?branch=master"
   alt="bettercodehub score" height="18">
+</a>
+<a
+  href="https://coveralls.io/github/Xotic750/color?branch=master"
+  title="Coverage Status">
+<img src="https://coveralls.io/repos/github/Xotic750/color/badge.svg?branch=master"
+  alt="Coverage Status" height="18">
 </a>
 
 # @xotic750/color
