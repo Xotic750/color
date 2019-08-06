@@ -2,7 +2,7 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) Graham Fairweather",
-  "date": "2019-08-04T23:54:04.467Z",
+  "date": "2019-08-06T11:29:24.825Z",
   "describe": "",
   "description": "Color conversion and manipulation library",
   "file": "color.js",
