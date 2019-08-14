@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`color color object throwing checks 1`] = `"Argument to \\"contrast\\" was not a Color instance, but rather an instance of object"`;
+exports[`color color object throwing checks 1`] = `"Argument to \\"contrast\\" was not a Color instance."`;
 
-exports[`color color object throwing checks 2`] = `"Argument to \\"level\\" was not a Color instance, but rather an instance of object"`;
+exports[`color color object throwing checks 2`] = `"Argument to \\"level\\" was not a Color instance."`;
+
+exports[`color contrast fixed to 6 places 1`] = `1.083324`;
 
 exports[`color exceptions 1`] = `"Unable to parse color from string: unknow"`;
 
@@ -30,9 +32,11 @@ Object {
 }
 `;
 
-exports[`color mix: throw 1`] = `"Argument to \\"mix\\" was not a Color instance, but rather an instance of undefined"`;
+exports[`color luminosity fixed to 6 places 1`] = `0.439638`;
 
-exports[`color mix: throw 2`] = `"Argument to \\"mix\\" was not a Color instance, but rather an instance of object"`;
+exports[`color mix: throw 1`] = `"Argument to \\"mix\\" was not a Color instance."`;
+
+exports[`color mix: throw 2`] = `"Argument to \\"mix\\" was not a Color instance."`;
 
 exports[`color toString 1`] = `"rgb(255, 255, 255)"`;
 
