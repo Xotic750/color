@@ -27,11 +27,9 @@ import trim from 'trim-x';
 import defineProperties, { defineProperty } from 'object-define-properties-x';
 import indexOf from 'index-of-x';
 import stable from 'stable';
-import $species$ from 'symbol-species-x';
 import renameFunction from 'rename-function-x';
 import toLength from 'to-length-x';
 import assertIsFunction from 'assert-is-function-x';
-import assertIsObject from 'assert-is-object-x';
 var TO_FIXED_MAX = 20;
 var TO_FIXED_NORMAL = 6;
 var TO_FIXED_MIN = 1;
@@ -305,7 +303,7 @@ var Color = function Color(obj, modelOption) {
       this.valpha = typeof obj.alpha === 'number' ? obj.alpha : 0;
     }
 
-    var hashedKeys = keys.sort().join(EMPTY_STRING);
+    var hashedKeys = join(stable(keys), EMPTY_STRING);
     this.model = assertHas(hashedModelKeys, hashedKeys, "Unable to parse color from object: ".concat(stringify(obj)));
     var color = map(split(convert[this.model].labels, EMPTY_STRING), function iteratee(label) {
       return obj[label];
@@ -345,27 +343,6 @@ var assertThisInstanceOf = function assertThisInstanceOf(value) {
   }
 };
 
-var speciesConstructor = function speciesConstructor(O, defaultConstructor) {
-  var C = O.constructor;
-
-  if (typeof C === 'undefined') {
-    return defaultConstructor;
-  }
-
-  var S = assertIsObject(C, 'Bad constructor')[$species$];
-
-  if (isNil(S)) {
-    return defaultConstructor;
-  }
-
-  return assertIsFunction(S, 'Bad @@species');
-};
-
-defineProperty(Color, $species$, {
-  get: function get() {
-    return this;
-  }
-});
 defineProperties(Color.prototype, {
   /**
    * @param {number} [places] - The number of places to round to.
@@ -491,10 +468,9 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function round(places) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
       var rounded = map(this.color, roundToPlaces(getPlaces(places, 0)));
       push(rounded, this.valpha);
-      return new Ctr(rounded, this.model);
+      return new Color(rounded, this.model);
     }
   },
 
@@ -506,10 +482,9 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function alpha(val) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
 
       if (arguments.length) {
-        return new Ctr(concat(this.color, clamp(val, 0, 1)), this.model);
+        return new Color(concat(this.color, clamp(val, 0, 1)), this.model);
       }
 
       return this.valpha;
@@ -524,10 +499,9 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function keyword(val) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
 
       if (arguments.length) {
-        return new Ctr(val);
+        return new Color(val);
       }
 
       return convert[this.model].keyword(this.color);
@@ -542,10 +516,9 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function hex(val) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
 
       if (arguments.length) {
-        return new Ctr(val);
+        return new Color(val);
       }
 
       return colorString.to.hex(this.rgb().round().color);
@@ -660,7 +633,6 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function negate() {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
       var rgb = reduce(rgbKeys, function iteratee(object, key) {
         object[key] = 255 - object[key];
         return object;
@@ -670,7 +642,7 @@ defineProperties(Color.prototype, {
         rgb.alpha = this.valpha;
       }
 
-      return new Ctr(rgb, this.model);
+      return new Color(rgb, this.model);
     }
   },
 
@@ -682,7 +654,6 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function lighten(ratio) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
       var color = slice(this.hsl().color);
       var obj = {
         h: color[0],
@@ -694,7 +665,7 @@ defineProperties(Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new Color(obj, this.model);
     }
   },
 
@@ -706,7 +677,6 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function darken(ratio) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
       var color = slice(this.hsl().color);
       var obj = {
         h: color[0],
@@ -718,7 +688,7 @@ defineProperties(Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new Color(obj, this.model);
     }
   },
 
@@ -730,7 +700,6 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function saturate(ratio) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
       var color = slice(this.hsl().color);
       var obj = {
         h: color[0],
@@ -742,7 +711,7 @@ defineProperties(Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new Color(obj, this.model);
     }
   },
 
@@ -754,7 +723,6 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function desaturate(ratio) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
       var color = slice(this.hsl().color);
       var obj = {
         h: color[0],
@@ -766,7 +734,7 @@ defineProperties(Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new Color(obj, this.model);
     }
   },
 
@@ -778,7 +746,6 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function whiten(ratio) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
       var color = slice(this.hwb().color);
       var obj = {
         b: color[2],
@@ -790,7 +757,7 @@ defineProperties(Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new Color(obj, this.model);
     }
   },
 
@@ -802,7 +769,6 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function blacken(ratio) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
       var color = slice(this.hwb().color);
       var obj = {
         b: color[2] + color[2] * ratio,
@@ -814,7 +780,7 @@ defineProperties(Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new Color(obj, this.model);
     }
   },
 
@@ -865,7 +831,6 @@ defineProperties(Color.prototype, {
     configurable: true,
     value: function rotate(degrees) {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
       var color = slice(this.hsl().color);
       var hue = color[0];
       var hueAngle = (hue + degrees) % 360;
@@ -880,7 +845,7 @@ defineProperties(Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new Color(obj, this.model);
     }
   },
 
@@ -963,11 +928,8 @@ var getset = function getset(model, channel) {
         /* eslint-disable-next-line babel/no-invalid-this */
         object.alpha = this.valpha;
       }
-      /* eslint-disable-next-line babel/no-invalid-this */
 
-
-      var Ctr = speciesConstructor(this, Color);
-      return new Ctr(object, modelValue);
+      return new Color(object, modelValue);
     }
     /* eslint-disable-next-line babel/no-invalid-this */
 
@@ -1085,10 +1047,9 @@ forEach(objectKeys(convert), function iteratee(model) {
     configurable: true,
     value: function conversionMethod() {
       assertThisInstanceOf(this);
-      var Ctr = speciesConstructor(this, Color);
 
       if (this.model === model) {
-        return new Ctr(this);
+        return new Color(this);
       }
       /* eslint-disable-next-line prefer-rest-params */
 
@@ -1096,13 +1057,14 @@ forEach(objectKeys(convert), function iteratee(model) {
       var args = slice(arguments);
 
       if (args.length) {
-        return new Ctr(args, model);
+        return new Color(args, model);
       }
 
       var newAlpha = typeof args[channels] === 'number' ? channels : this.valpha;
-      return new Ctr(concat(castArray(convert[this.model][model].raw(this.color)), newAlpha), model);
+      return new Color(concat(castArray(convert[this.model][model].raw(this.color)), newAlpha), model);
     }
   });
+  renameFunction(Color.prototype[model], "conversionMethod".concat(model.toUpperCase()));
   /* 'static' construction methods */
 
   defineProperty(Color, model, {
@@ -1118,6 +1080,7 @@ forEach(objectKeys(convert), function iteratee(model) {
       return new Ctr(col, model);
     }
   });
+  renameFunction(Color[model], "constructionMethod".concat(model.toUpperCase()));
 });
 export default Color;
 

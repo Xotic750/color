@@ -1190,11 +1190,18 @@ describe('color', () => {
   });
 
   it('subclassing ES5', function() {
-    expect.assertions(6);
+    expect.assertions(12);
     const MyColor = function(executor) {
       Color.call(this, executor);
       this.mine = 'yeah';
+      this.hexColor = this.hex();
     };
+
+    Object.defineProperty(MyColor, Symbol.species, {
+      get() {
+        return this;
+      },
+    });
 
     MyColor.prototype = Object.create(Color.prototype);
     MyColor.prototype.constructor = MyColor;
@@ -1208,12 +1215,58 @@ describe('color', () => {
     expect(myColor).toBeInstanceOf(Color);
     expect(myColor.hex()).toBe(new Color('white').hex());
     expect(myColor.mine).toBe('yeah');
-    expect(MyColor.rgb).toBe(Color.rgb);
-    expect(MyColor.rgb()).toBeInstanceOf(MyColor);
+
+    const MyColor2 = function(executor) {
+      MyColor.call(this, executor);
+
+      this.conrastRatio = new MyColor('white').contrast(this);
+    };
+
+    Object.defineProperty(MyColor2, Symbol.species, {
+      get() {
+        return this;
+      },
+    });
+
+    MyColor2.prototype = Object.create(MyColor.prototype);
+    MyColor2.prototype.constructor = MyColor2;
+
+    Object.keys(MyColor).forEach((key) => {
+      MyColor2[key] = MyColor[key];
+    });
+
+    const myColor2 = new MyColor2('white');
+    expect(myColor2).toBeInstanceOf(MyColor2);
+    expect(myColor2).toBeInstanceOf(Color);
+    expect(myColor2.hex()).toBe(new Color('white').hex());
+    expect(myColor2.mine).toBe('yeah');
+
+    const MyColor3 = function(executor) {
+      MyColor2.call(this, executor);
+    };
+
+    Object.defineProperty(MyColor3, Symbol.species, {
+      get() {
+        return this;
+      },
+    });
+
+    MyColor3.prototype = Object.create(MyColor2.prototype);
+    MyColor3.prototype.constructor = MyColor3;
+
+    Object.keys(MyColor2).forEach((key) => {
+      MyColor3[key] = MyColor2[key];
+    });
+
+    const myColor3 = new MyColor3('white');
+    expect(myColor3).toBeInstanceOf(MyColor3);
+    expect(myColor3).toBeInstanceOf(Color);
+    expect(myColor3.hex()).toBe(new Color('white').hex());
+    expect(myColor3.mine).toBe('yeah');
   });
 
   it('subclassing ES6', function() {
-    expect.assertions(8);
+    expect.assertions(4);
     // This is the "correct" es6-compatible way.
     const MyColor = function(executor) {
       const self = new Color(executor);
@@ -1233,14 +1286,10 @@ describe('color', () => {
     expect(myColor).toBeInstanceOf(Color);
     expect(myColor.hex()).toBe(new Color('white').hex());
     expect(myColor.mine).toBe('yeah');
-    expect(Color[Symbol.species]).toBe(Color);
-    expect(MyColor[Symbol.species]).toBe(MyColor);
-    expect(MyColor.rgb).toBe(Color.rgb);
-    expect(MyColor.rgb()).toBeInstanceOf(MyColor);
   });
 
   it('subclassing with class', function() {
-    expect.assertions(8);
+    expect.assertions(4);
     class MyColor extends Color {
       constructor(...args) {
         super(...args);
@@ -1253,9 +1302,5 @@ describe('color', () => {
     expect(myColor).toBeInstanceOf(Color);
     expect(myColor.hex()).toBe(new Color('white').hex());
     expect(myColor.mine).toBe('yeah');
-    expect(Color[Symbol.species]).toBe(Color);
-    expect(MyColor[Symbol.species]).toBe(MyColor);
-    expect(MyColor.rgb).toBe(Color.rgb);
-    expect(MyColor.rgb()).toBeInstanceOf(MyColor);
   });
 });

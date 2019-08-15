@@ -2,13 +2,13 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) Graham Fairweather",
-  "date": "2019-08-14T19:58:46.773Z",
+  "date": "2019-08-15T12:16:04.687Z",
   "describe": "",
   "description": "Color conversion and manipulation library",
   "file": "color.js",
-  "hash": "9e9acb1465807b264400",
+  "hash": "ee4d99a0f4b094098aae",
   "license": "MIT",
-  "version": "1.1.0"
+  "version": "1.1.1"
 }
 */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -20,7 +20,7 @@
 		exports["color"] = factory();
 	else
 		root["color"] = factory();
-})((function () {
+})((function() {
   'use strict';
 
   var ObjectCtr = {}.constructor;
@@ -220,7 +220,7 @@ if (hasSymbols) {
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const conversions = __webpack_require__(7);
+const conversions = __webpack_require__(8);
 const route = __webpack_require__(14);
 
 const convert = {};
@@ -335,7 +335,7 @@ module.exports = function isString(value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var colorNames = __webpack_require__(6);
+var colorNames = __webpack_require__(7);
 var swizzle = __webpack_require__(12);
 
 var reverseNames = {};
@@ -612,6 +612,120 @@ module.exports = supportsStandardArguments ? isStandardArguments : isLegacyArgum
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
+//! stable.js 0.1.8, https://github.com/Two-Screen/stable
+//! © 2018 Angry Bytes and contributors. MIT licensed.
+
+(function (global, factory) {
+   true ? module.exports = factory() :
+  undefined;
+}(this, (function () { 'use strict';
+
+  // A stable array sort, because `Array#sort()` is not guaranteed stable.
+  // This is an implementation of merge sort, without recursion.
+
+  var stable = function (arr, comp) {
+    return exec(arr.slice(), comp)
+  };
+
+  stable.inplace = function (arr, comp) {
+    var result = exec(arr, comp);
+
+    // This simply copies back if the result isn't in the original array,
+    // which happens on an odd number of passes.
+    if (result !== arr) {
+      pass(result, null, arr.length, arr);
+    }
+
+    return arr
+  };
+
+  // Execute the sort using the input array and a second buffer as work space.
+  // Returns one of those two, containing the final result.
+  function exec(arr, comp) {
+    if (typeof(comp) !== 'function') {
+      comp = function (a, b) {
+        return String(a).localeCompare(b)
+      };
+    }
+
+    // Short-circuit when there's nothing to sort.
+    var len = arr.length;
+    if (len <= 1) {
+      return arr
+    }
+
+    // Rather than dividing input, simply iterate chunks of 1, 2, 4, 8, etc.
+    // Chunks are the size of the left or right hand in merge sort.
+    // Stop when the left-hand covers all of the array.
+    var buffer = new Array(len);
+    for (var chk = 1; chk < len; chk *= 2) {
+      pass(arr, comp, chk, buffer);
+
+      var tmp = arr;
+      arr = buffer;
+      buffer = tmp;
+    }
+
+    return arr
+  }
+
+  // Run a single pass with the given chunk size.
+  var pass = function (arr, comp, chk, result) {
+    var len = arr.length;
+    var i = 0;
+    // Step size / double chunk size.
+    var dbl = chk * 2;
+    // Bounds of the left and right chunks.
+    var l, r, e;
+    // Iterators over the left and right chunk.
+    var li, ri;
+
+    // Iterate over pairs of chunks.
+    for (l = 0; l < len; l += dbl) {
+      r = l + chk;
+      e = r + chk;
+      if (r > len) r = len;
+      if (e > len) e = len;
+
+      // Iterate both chunks in parallel.
+      li = l;
+      ri = r;
+      while (true) {
+        // Compare the chunks.
+        if (li < r && ri < e) {
+          // This works for a regular `sort()` compatible comparator,
+          // but also for a simple comparator like: `a > b`
+          if (comp(arr[li], arr[ri]) <= 0) {
+            result[i++] = arr[li++];
+          }
+          else {
+            result[i++] = arr[ri++];
+          }
+        }
+        // Nothing to compare, just flush what's left.
+        else if (li < r) {
+          result[i++] = arr[li++];
+        }
+        else if (ri < e) {
+          result[i++] = arr[ri++];
+        }
+        // Both iterators are at the chunk ends.
+        else {
+          break
+        }
+      }
+    }
+  };
+
+  return stable;
+
+})));
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -768,12 +882,12 @@ module.exports = {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
 /* eslint-disable no-mixed-operators */
-const cssKeywords = __webpack_require__(6);
+const cssKeywords = __webpack_require__(7);
 
 // NOTE: conversions should only return primitive values (i.e. arrays, or
 //       values that give correct `typeof` results).
@@ -1613,7 +1727,7 @@ convert.rgb.gray = function (rgb) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1637,7 +1751,7 @@ module.exports = function isArguments(value) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1664,14 +1778,14 @@ module.exports = function isDateObject(value) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(8);
+var isArgs = __webpack_require__(9);
 
 var origKeys = Object.keys;
 var keysShim = origKeys ? function keys(o) { return origKeys(o); } : __webpack_require__(18);
@@ -1700,120 +1814,6 @@ keysShim.shim = function shimObjectKeys() {
 };
 
 module.exports = keysShim;
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! stable.js 0.1.8, https://github.com/Two-Screen/stable
-//! © 2018 Angry Bytes and contributors. MIT licensed.
-
-(function (global, factory) {
-   true ? module.exports = factory() :
-  undefined;
-}(this, (function () { 'use strict';
-
-  // A stable array sort, because `Array#sort()` is not guaranteed stable.
-  // This is an implementation of merge sort, without recursion.
-
-  var stable = function (arr, comp) {
-    return exec(arr.slice(), comp)
-  };
-
-  stable.inplace = function (arr, comp) {
-    var result = exec(arr, comp);
-
-    // This simply copies back if the result isn't in the original array,
-    // which happens on an odd number of passes.
-    if (result !== arr) {
-      pass(result, null, arr.length, arr);
-    }
-
-    return arr
-  };
-
-  // Execute the sort using the input array and a second buffer as work space.
-  // Returns one of those two, containing the final result.
-  function exec(arr, comp) {
-    if (typeof(comp) !== 'function') {
-      comp = function (a, b) {
-        return String(a).localeCompare(b)
-      };
-    }
-
-    // Short-circuit when there's nothing to sort.
-    var len = arr.length;
-    if (len <= 1) {
-      return arr
-    }
-
-    // Rather than dividing input, simply iterate chunks of 1, 2, 4, 8, etc.
-    // Chunks are the size of the left or right hand in merge sort.
-    // Stop when the left-hand covers all of the array.
-    var buffer = new Array(len);
-    for (var chk = 1; chk < len; chk *= 2) {
-      pass(arr, comp, chk, buffer);
-
-      var tmp = arr;
-      arr = buffer;
-      buffer = tmp;
-    }
-
-    return arr
-  }
-
-  // Run a single pass with the given chunk size.
-  var pass = function (arr, comp, chk, result) {
-    var len = arr.length;
-    var i = 0;
-    // Step size / double chunk size.
-    var dbl = chk * 2;
-    // Bounds of the left and right chunks.
-    var l, r, e;
-    // Iterators over the left and right chunk.
-    var li, ri;
-
-    // Iterate over pairs of chunks.
-    for (l = 0; l < len; l += dbl) {
-      r = l + chk;
-      e = r + chk;
-      if (r > len) r = len;
-      if (e > len) e = len;
-
-      // Iterate both chunks in parallel.
-      li = l;
-      ri = r;
-      while (true) {
-        // Compare the chunks.
-        if (li < r && ri < e) {
-          // This works for a regular `sort()` compatible comparator,
-          // but also for a simple comparator like: `a > b`
-          if (comp(arr[li], arr[ri]) <= 0) {
-            result[i++] = arr[li++];
-          }
-          else {
-            result[i++] = arr[ri++];
-          }
-        }
-        // Nothing to compare, just flush what's left.
-        else if (li < r) {
-          result[i++] = arr[li++];
-        }
-        else if (ri < e) {
-          result[i++] = arr[ri++];
-        }
-        // Both iterators are at the chunk ends.
-        else {
-          break
-        }
-      }
-    }
-  };
-
-  return stable;
-
-})));
 
 
 /***/ }),
@@ -1871,7 +1871,7 @@ module.exports = function isArrayish(obj) {
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const conversions = __webpack_require__(7);
+const conversions = __webpack_require__(8);
 
 /*
 	This function routes a model to all other models.
@@ -2078,7 +2078,7 @@ if (!Object.keys) {
 	// modified from https://github.com/es-shims/es5-shim
 	var has = Object.prototype.hasOwnProperty;
 	var toStr = Object.prototype.toString;
-	var isArgs = __webpack_require__(8); // eslint-disable-line global-require
+	var isArgs = __webpack_require__(9); // eslint-disable-line global-require
 	var isEnumerable = Object.prototype.propertyIsEnumerable;
 	var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 	var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -2275,7 +2275,7 @@ var is_primitive = __webpack_require__(0);
 var is_primitive_default = /*#__PURE__*/__webpack_require__.n(is_primitive);
 
 // EXTERNAL MODULE: ./node_modules/is-date-object/index.js
-var is_date_object = __webpack_require__(9);
+var is_date_object = __webpack_require__(10);
 var is_date_object_default = /*#__PURE__*/__webpack_require__.n(is_date_object);
 
 // CONCATENATED MODULE: ./node_modules/to-boolean-x/dist/to-boolean-x.esm.js
@@ -5243,7 +5243,7 @@ var is_regexp_x_esm_isRegex = function isRegex(value) {
 
 
 // EXTERNAL MODULE: ./node_modules/object-keys/index.js
-var object_keys = __webpack_require__(10);
+var object_keys = __webpack_require__(11);
 var object_keys_default = /*#__PURE__*/__webpack_require__.n(object_keys);
 
 // CONCATENATED MODULE: ./node_modules/object-keys-x/dist/object-keys-x.esm.js
@@ -6379,27 +6379,8 @@ var $map = array_map_x_esm_isWorking ? patchedMap : array_map_x_esm_implementati
 
 
 // EXTERNAL MODULE: ./node_modules/stable/stable.js
-var stable = __webpack_require__(11);
+var stable = __webpack_require__(6);
 var stable_default = /*#__PURE__*/__webpack_require__.n(stable);
-
-// CONCATENATED MODULE: ./node_modules/symbol-species-x/dist/symbol-species-x.esm.js
-
-/**
- * The species accessor property allows subclasses to override the default constructor for objects.
- *
- * Possible values are.
- *
- * Symbol.species
- * '@@species'.
- *
- * @type {symbol|string}
- */
-
-var symbolSpecies = has_symbol_support_x_esm && Symbol.species || '@@species';
-/* eslint-disable-line compat/compat */
-
-/* harmony default export */ var symbol_species_x_esm = (symbolSpecies);
-
 
 // CONCATENATED MODULE: ./node_modules/is-var-name/index.mjs
 /*!
@@ -6488,8 +6469,6 @@ function color_esm_nonIterableRest() { throw new TypeError("Invalid attempt to d
 function color_esm_iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function color_esm_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
 
 
 
@@ -6788,7 +6767,7 @@ var color_esm_Color = function Color(obj, modelOption) {
       this.valpha = typeof obj.alpha === 'number' ? obj.alpha : 0;
     }
 
-    var hashedKeys = keys.sort().join(color_esm_EMPTY_STRING);
+    var hashedKeys = join(stable_default()(keys), color_esm_EMPTY_STRING);
     this.model = color_esm_assertHas(hashedModelKeys, hashedKeys, "Unable to parse color from object: ".concat(stringify(obj)));
     var color = array_map_x_esm(split(color_convert_default.a[this.model].labels, color_esm_EMPTY_STRING), function iteratee(label) {
       return obj[label];
@@ -6828,27 +6807,6 @@ var color_esm_assertThisInstanceOf = function assertThisInstanceOf(value) {
   }
 };
 
-var color_esm_speciesConstructor = function speciesConstructor(O, defaultConstructor) {
-  var C = O.constructor;
-
-  if (typeof C === 'undefined') {
-    return defaultConstructor;
-  }
-
-  var S = assert_is_object_x_esm(C, 'Bad constructor')[symbol_species_x_esm];
-
-  if (is_nil_x_esm(S)) {
-    return defaultConstructor;
-  }
-
-  return assert_is_function_x_esm(S, 'Bad @@species');
-};
-
-object_define_properties_x_esm_defineProperty(color_esm_Color, symbol_species_x_esm, {
-  get: function get() {
-    return this;
-  }
-});
 object_define_properties_x_esm(color_esm_Color.prototype, {
   /**
    * @param {number} [places] - The number of places to round to.
@@ -6974,10 +6932,9 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function round(places) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
       var rounded = array_map_x_esm(this.color, roundToPlaces(color_esm_getPlaces(places, 0)));
       push(rounded, this.valpha);
-      return new Ctr(rounded, this.model);
+      return new color_esm_Color(rounded, this.model);
     }
   },
 
@@ -6989,10 +6946,9 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function alpha(val) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
 
       if (arguments.length) {
-        return new Ctr(color_esm_concat(this.color, math_clamp_x_esm(val, 0, 1)), this.model);
+        return new color_esm_Color(color_esm_concat(this.color, math_clamp_x_esm(val, 0, 1)), this.model);
       }
 
       return this.valpha;
@@ -7007,10 +6963,9 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function keyword(val) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
 
       if (arguments.length) {
-        return new Ctr(val);
+        return new color_esm_Color(val);
       }
 
       return color_convert_default.a[this.model].keyword(this.color);
@@ -7025,10 +6980,9 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function hex(val) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
 
       if (arguments.length) {
-        return new Ctr(val);
+        return new color_esm_Color(val);
       }
 
       return color_string_default.a.to.hex(this.rgb().round().color);
@@ -7143,7 +7097,6 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function negate() {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
       var rgb = array_reduce_x_esm(rgbKeys, function iteratee(object, key) {
         object[key] = 255 - object[key];
         return object;
@@ -7153,7 +7106,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
         rgb.alpha = this.valpha;
       }
 
-      return new Ctr(rgb, this.model);
+      return new color_esm_Color(rgb, this.model);
     }
   },
 
@@ -7165,7 +7118,6 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function lighten(ratio) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
       var color = array_slice_x_esm(this.hsl().color);
       var obj = {
         h: color[0],
@@ -7177,7 +7129,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new color_esm_Color(obj, this.model);
     }
   },
 
@@ -7189,7 +7141,6 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function darken(ratio) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
       var color = array_slice_x_esm(this.hsl().color);
       var obj = {
         h: color[0],
@@ -7201,7 +7152,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new color_esm_Color(obj, this.model);
     }
   },
 
@@ -7213,7 +7164,6 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function saturate(ratio) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
       var color = array_slice_x_esm(this.hsl().color);
       var obj = {
         h: color[0],
@@ -7225,7 +7175,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new color_esm_Color(obj, this.model);
     }
   },
 
@@ -7237,7 +7187,6 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function desaturate(ratio) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
       var color = array_slice_x_esm(this.hsl().color);
       var obj = {
         h: color[0],
@@ -7249,7 +7198,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new color_esm_Color(obj, this.model);
     }
   },
 
@@ -7261,7 +7210,6 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function whiten(ratio) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
       var color = array_slice_x_esm(this.hwb().color);
       var obj = {
         b: color[2],
@@ -7273,7 +7221,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new color_esm_Color(obj, this.model);
     }
   },
 
@@ -7285,7 +7233,6 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function blacken(ratio) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
       var color = array_slice_x_esm(this.hwb().color);
       var obj = {
         b: color[2] + color[2] * ratio,
@@ -7297,7 +7244,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new color_esm_Color(obj, this.model);
     }
   },
 
@@ -7348,7 +7295,6 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     configurable: true,
     value: function rotate(degrees) {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
       var color = array_slice_x_esm(this.hsl().color);
       var hue = color[0];
       var hueAngle = (hue + degrees) % 360;
@@ -7363,7 +7309,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
         obj.alpha = this.valpha;
       }
 
-      return new Ctr(obj, this.model);
+      return new color_esm_Color(obj, this.model);
     }
   },
 
@@ -7446,11 +7392,8 @@ var color_esm_getset = function getset(model, channel) {
         /* eslint-disable-next-line babel/no-invalid-this */
         object.alpha = this.valpha;
       }
-      /* eslint-disable-next-line babel/no-invalid-this */
 
-
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
-      return new Ctr(object, modelValue);
+      return new color_esm_Color(object, modelValue);
     }
     /* eslint-disable-next-line babel/no-invalid-this */
 
@@ -7568,10 +7511,9 @@ array_for_each_x_esm(object_keys_x_esm(color_convert_default.a), function iterat
     configurable: true,
     value: function conversionMethod() {
       color_esm_assertThisInstanceOf(this);
-      var Ctr = color_esm_speciesConstructor(this, color_esm_Color);
 
       if (this.model === model) {
-        return new Ctr(this);
+        return new color_esm_Color(this);
       }
       /* eslint-disable-next-line prefer-rest-params */
 
@@ -7579,13 +7521,14 @@ array_for_each_x_esm(object_keys_x_esm(color_convert_default.a), function iterat
       var args = array_slice_x_esm(arguments);
 
       if (args.length) {
-        return new Ctr(args, model);
+        return new color_esm_Color(args, model);
       }
 
       var newAlpha = typeof args[channels] === 'number' ? channels : this.valpha;
-      return new Ctr(color_esm_concat(color_esm_castArray(color_convert_default.a[this.model][model].raw(this.color)), newAlpha), model);
+      return new color_esm_Color(color_esm_concat(color_esm_castArray(color_convert_default.a[this.model][model].raw(this.color)), newAlpha), model);
     }
   });
+  rename_function_x_esm(color_esm_Color.prototype[model], "conversionMethod".concat(model.toUpperCase()));
   /* 'static' construction methods */
 
   object_define_properties_x_esm_defineProperty(color_esm_Color, model, {
@@ -7601,6 +7544,7 @@ array_for_each_x_esm(object_keys_x_esm(color_convert_default.a), function iterat
       return new Ctr(col, model);
     }
   });
+  rename_function_x_esm(color_esm_Color[model], "constructionMethod".concat(model.toUpperCase()));
 });
 /* harmony default export */ var color_esm = __webpack_exports__["default"] = (color_esm_Color);
 
