@@ -30,6 +30,7 @@ import stable from 'stable';
 import renameFunction from 'rename-function-x';
 import toLength from 'to-length-x';
 import assertIsFunction from 'assert-is-function-x';
+import freeze from 'object-freeze-x';
 var TO_FIXED_MAX = 20;
 var TO_FIXED_NORMAL = 6;
 var TO_FIXED_MIN = 1;
@@ -46,10 +47,6 @@ var toFixed = bind($call, TO_FIXED_MAX.toFixed);
 
 var mathPow = Math.pow;
 var stringify = JSON.stringify;
-var nativeFreeze = {}.constructor.freeze;
-var freeze = typeof nativeFreeze === 'function' ? nativeFreeze : function freeze(value) {
-  return value;
-};
 
 var castArray = function castArray(value) {
   return isArray(value) ? value : [value];

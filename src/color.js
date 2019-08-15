@@ -22,6 +22,7 @@ import stable from 'stable';
 import renameFunction from 'rename-function-x';
 import toLength from 'to-length-x';
 import assertIsFunction from 'assert-is-function-x';
+import freeze from 'object-freeze-x';
 
 const TO_FIXED_MAX = 20;
 const TO_FIXED_NORMAL = 6;
@@ -38,14 +39,6 @@ const toFixed = bind($call, TO_FIXED_MAX.toFixed);
 /* eslint-disable-next-line no-restricted-properties */
 const {pow: mathPow} = Math;
 const {stringify} = JSON;
-const nativeFreeze = {}.constructor.freeze;
-const freeze =
-  typeof nativeFreeze === 'function'
-    ? nativeFreeze
-    : function freeze(value) {
-        return value;
-      };
-
 const castArray = function castArray(value) {
   return isArray(value) ? value : [value];
 };
