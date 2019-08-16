@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) Graham Fairweather",
-  "date": "2019-08-15T21:06:21.605Z",
+  "date": "2019-08-16T23:38:25.242Z",
   "describe": "",
   "description": "Color conversion and manipulation library",
   "file": "color.js",
-  "hash": "507478ea1d343a97ccd8",
+  "hash": "cb16ae34d85e113f22c7",
   "license": "MIT",
   "version": "1.1.1"
 }
@@ -6596,6 +6596,26 @@ var object_freeze_x_esm_freeze = typeof nativeFreeze === 'function' ? patchedFre
 /* harmony default export */ var object_freeze_x_esm = (object_freeze_x_esm_freeze);
 
 
+// CONCATENATED MODULE: ./node_modules/cast-array-x/dist/cast-array-x.esm.js
+
+/**
+ * Casts value as an array if it's not one.
+ *
+ * @param {*} [value] - The value to inspect.
+ * @returns {Array} Returns the cast array.
+ */
+
+var cast_array_x_esm_castArray = function castArray(value) {
+  if (arguments.length === 0) {
+    return [];
+  }
+
+  return is_array_x_esm(value) ? value : [value];
+};
+
+/* harmony default export */ var cast_array_x_esm = (cast_array_x_esm_castArray);
+
+
 // CONCATENATED MODULE: ./dist/color.esm.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hashedModelKeys", function() { return hashedModelKeys; });
 function color_esm_slicedToArray(arr, i) { return color_esm_arrayWithHoles(arr) || color_esm_iterableToArrayLimit(arr, i) || color_esm_nonIterableRest(); }
@@ -6605,6 +6625,7 @@ function color_esm_nonIterableRest() { throw new TypeError("Invalid attempt to d
 function color_esm_iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function color_esm_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6647,17 +6668,12 @@ var toFixed = bind_x_esm($call, TO_FIXED_MAX.toFixed);
 
 var mathPow = Math.pow;
 var stringify = JSON.stringify;
-
-var color_esm_castArray = function castArray(value) {
-  return is_array_x_esm(value) ? value : [value];
-};
 /**
  * Test if a value is a counting number, 1 -> MAX_SAFE_INTEGER.
  *
  * @param {*} value - The value to be tested.
  * @returns {boolean} True if value is a counting number.
  */
-
 
 var color_esm_isCountingNumber = function isCountingNumber(value) {
   return is_length_x_esm(value) && value > 0;
@@ -7489,7 +7505,7 @@ var maxfn255 = color_esm_maxfn(255); // eslint-disable jsdoc/check-param-names
 // eslint-enable jsdoc/check-param-names
 
 var color_esm_getset = function getset(model, channel) {
-  var modelArray = color_esm_castArray(model);
+  var modelArray = cast_array_x_esm(model);
   /* eslint-disable-next-line prefer-rest-params */
 
   var modifier = arguments[2];
@@ -7658,7 +7674,7 @@ array_for_each_x_esm(object_keys_x_esm(color_convert_default.a), function iterat
       }
 
       var newAlpha = typeof args[channels] === 'number' ? channels : this.valpha;
-      return new color_esm_Color(color_esm_concat(color_esm_castArray(color_convert_default.a[this.model][model].raw(this.color)), newAlpha), model);
+      return new color_esm_Color(color_esm_concat(cast_array_x_esm(color_convert_default.a[this.model][model].raw(this.color)), newAlpha), model);
     }
   });
   rename_function_x_esm(color_esm_Color.prototype[model], "conversionMethod".concat(model.toUpperCase()));

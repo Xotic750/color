@@ -31,6 +31,7 @@ import renameFunction from 'rename-function-x';
 import toLength from 'to-length-x';
 import assertIsFunction from 'assert-is-function-x';
 import freeze from 'object-freeze-x';
+import castArray from 'cast-array-x';
 var TO_FIXED_MAX = 20;
 var TO_FIXED_NORMAL = 6;
 var TO_FIXED_MIN = 1;
@@ -47,17 +48,12 @@ var toFixed = bind($call, TO_FIXED_MAX.toFixed);
 
 var mathPow = Math.pow;
 var stringify = JSON.stringify;
-
-var castArray = function castArray(value) {
-  return isArray(value) ? value : [value];
-};
 /**
  * Test if a value is a counting number, 1 -> MAX_SAFE_INTEGER.
  *
  * @param {*} value - The value to be tested.
  * @returns {boolean} True if value is a counting number.
  */
-
 
 var isCountingNumber = function isCountingNumber(value) {
   return isLength(value) && value > 0;

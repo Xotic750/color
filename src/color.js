@@ -23,6 +23,7 @@ import renameFunction from 'rename-function-x';
 import toLength from 'to-length-x';
 import assertIsFunction from 'assert-is-function-x';
 import freeze from 'object-freeze-x';
+import castArray from 'cast-array-x';
 
 const TO_FIXED_MAX = 20;
 const TO_FIXED_NORMAL = 6;
@@ -39,9 +40,6 @@ const toFixed = bind($call, TO_FIXED_MAX.toFixed);
 /* eslint-disable-next-line no-restricted-properties */
 const {pow: mathPow} = Math;
 const {stringify} = JSON;
-const castArray = function castArray(value) {
-  return isArray(value) ? value : [value];
-};
 
 /**
  * Test if a value is a counting number, 1 -> MAX_SAFE_INTEGER.

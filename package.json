@@ -55,6 +55,7 @@
     "array-slice-x": "^4.2.0",
     "assert-is-function-x": "^3.1.0",
     "bind-x": "^4.1.0",
+    "cast-array-x": "^1.0.0",
     "color-convert": "^2.0.0",
     "color-string": "^1.5.3",
     "has-own-property-x": "^4.1.0",
