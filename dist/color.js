@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) Graham Fairweather",
-  "date": "2019-08-18T16:08:56.930Z",
+  "date": "2019-08-19T22:46:41.783Z",
   "describe": "",
   "description": "Color conversion and manipulation library",
   "file": "color.js",
-  "hash": "cb16ae34d85e113f22c7",
+  "hash": "9f2b193d0cbb5e1c4e45",
   "license": "MIT",
   "version": "1.1.1"
 }
@@ -1552,7 +1552,7 @@ convert.rgb.hcg = function (rgb) {
 	if (max === g) {
 		hue = 2 + (b - r) / chroma;
 	} else {
-		hue = 4 + (r - g) / chroma + 4;
+		hue = 4 + (r - g) / chroma;
 	}
 
 	hue /= 6;
@@ -5700,7 +5700,7 @@ var get_own_enumerable_property_symbols_x_esm_getOwnEnumerablePropertySymbols = 
 
 
 
-var get_own_enumerable_keys_x_esm_concat = [].concat;
+var concat = [].concat;
 /**
  * This method returns only the enumerable own keys of an object.
  *
@@ -5711,7 +5711,7 @@ var get_own_enumerable_keys_x_esm_concat = [].concat;
 
 var get_own_enumerable_keys_x_esm_getOwnNonEnumerableKeys = function getOwnNonEnumerableKeys(target) {
   var object = to_object_x_esm(target);
-  return get_own_enumerable_keys_x_esm_concat.call(object_keys_x_esm(object), get_own_enumerable_property_symbols_x_esm(object));
+  return concat.call(object_keys_x_esm(object), get_own_enumerable_property_symbols_x_esm(object));
 };
 
 /* harmony default export */ var get_own_enumerable_keys_x_esm = (get_own_enumerable_keys_x_esm_getOwnNonEnumerableKeys);
@@ -6008,159 +6008,216 @@ var $create = object_create_x_esm_isWorking ? nativeCreate : object_create_x_esm
 /* harmony default export */ var object_create_x_esm = ($create);
 
 
-// CONCATENATED MODULE: ./node_modules/bind-x/dist/bind-x.esm.js
-var bind_x_esm_this = undefined;
+// CONCATENATED MODULE: ./node_modules/is-primitive-x/dist/is-primitive-x.esm.js
+function is_primitive_x_esm_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { is_primitive_x_esm_typeof = function _typeof(obj) { return typeof obj; }; } else { is_primitive_x_esm_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return is_primitive_x_esm_typeof(obj); }
 
-function bind_x_esm_newArrowCheck(innerThis, boundThis) { if (innerThis !== boundThis) { throw new TypeError("Cannot instantiate an arrow function"); } }
-
-
-
-
-
-var nb = assert_is_function_x_esm.bind;
-var nativeBind = typeof nb === 'function' && nb;
-var bind_x_esm_isWorking;
-
-if (nativeBind) {
-  /* eslint-disable-next-line no-void */
-  var gra = void 0;
-  /* eslint-disable-next-line no-void */
-
-  var context = void 0;
-  /* eslint-disable-next-line no-unused-vars */
-
-  var bind_x_esm_fn = function fn(arg1, arg2) {
-    /* eslint-disable-next-line babel/no-invalid-this */
-    context = this;
-    gra = arg1;
-    /* eslint-disable-next-line prefer-rest-params */
-
-    return arguments;
-  };
-
-  var bind_x_esm_testThis = [];
-  var bind_x_esm_res = attempt_x_esm.call(bind_x_esm_fn, nativeBind, bind_x_esm_testThis, 1);
-  bind_x_esm_isWorking = bind_x_esm_res.threw === false && typeof bind_x_esm_res.value === 'function';
-
-  if (bind_x_esm_isWorking) {
-    bind_x_esm_res = attempt_x_esm(bind_x_esm_res.value, 2, 3);
-    bind_x_esm_isWorking = bind_x_esm_res.threw === false && gra === 1 && context === bind_x_esm_testThis && bind_x_esm_res.value.length === 3;
-  }
-
-  if (bind_x_esm_isWorking) {
-    var oracle = [1, 2, 3];
-
-    var bind_x_esm_Ctr = function Ctr() {
-      bind_x_esm_isWorking = this !== oracle;
-      return oracle;
-    };
-
-    bind_x_esm_res = attempt_x_esm.call(bind_x_esm_Ctr, nativeBind, null);
-    bind_x_esm_isWorking = bind_x_esm_res.threw === false && typeof bind_x_esm_res.value === 'function';
-
-    if (bind_x_esm_isWorking) {
-      bind_x_esm_res = attempt_x_esm(function () {
-        bind_x_esm_newArrowCheck(this, bind_x_esm_this);
-
-        /* eslint-disable-next-line babel/new-cap,new-cap */
-        return new bind_x_esm_res.value();
-      }.bind(undefined));
-
-      if (bind_x_esm_isWorking) {
-        bind_x_esm_isWorking = bind_x_esm_res.threw === false && bind_x_esm_res.value === oracle;
-      }
-    }
-  }
-}
-/* eslint-disable-next-line no-unused-vars */
-
-
-var patchedBind = function bind(target, thisArg) {
-  /* eslint-disable-next-line prefer-rest-params */
-  return nativeBind.apply(assert_is_function_x_esm(target), array_slice_x_esm(arguments, 1));
+/**
+ * Returns true if the value is a primitive.
+ *
+ * @param {*} [val] - The value to test.
+ * @returns {boolean} True if a primitive, otherwise false..
+ */
+var isPrimitive = function isPrimitive(val) {
+  return is_primitive_x_esm_typeof(val) === 'object' ? val === null : typeof val !== 'function';
 };
 
-var bind_x_esm_concat = function concat(a, b) {
-  var aLength = a.length;
-  var bLength = b.length;
-  var result = array_slice_x_esm(a);
-  result.length += bLength;
-
-  for (var index = 0; index < bLength; index += 1) {
-    result[aLength + index] = b[index];
-  }
-
-  return result;
-};
-/* eslint-disable-next-line lodash/prefer-noop */
+/* harmony default export */ var is_primitive_x_esm = (isPrimitive);
 
 
-var Empty = function Empty() {};
+// CONCATENATED MODULE: ./node_modules/util-pusher-x/dist/util-pusher-x.esm.js
 
-var bind_x_esm_implementation = function bind(target, thisArg) {
-  assert_is_function_x_esm(target);
+
+var util_pusher_x_esm_EMPTY_STRING = '';
+var split = util_pusher_x_esm_EMPTY_STRING.split;
+var splitter = [util_pusher_x_esm_EMPTY_STRING];
+
+var util_pusher_x_esm_getIterable = function getIterable(arrayLike) {
+  // noinspection JSUnresolvedFunction
+  return is_string_default()(arrayLike) ? split.apply(arrayLike, splitter) : arrayLike;
+}; // eslint-disable jsdoc/no-undefined-types
+// noinspection JSCommentMatchesSignature
+
+/**
+ * This pushes or concatenates into a new or existing array.
+ *
+ * @param {Array} arrayLike - The source.
+ * @param {number} [from=0] - The from source index.
+ * @param {Array} [target=[]] - The target array.
+ * @returns {*} The target array.
+ */
+// eslint-enable jsdoc/no-undefined-types
+
+
+var util_pusher_x_esm_pusher = function pusher(arrayLike, from) {
   /* eslint-disable-next-line prefer-rest-params */
+  var target = arguments.length > 2 ? arguments[2] : [];
 
-  var args = array_slice_x_esm(arguments, 2);
-  var bound;
+  if (typeof arrayLike !== 'string' && is_primitive_x_esm(arrayLike)) {
+    return target;
+  }
 
-  var binder = function _binder() {
-    /* eslint-disable-next-line babel/no-invalid-this */
-    if (this instanceof bound) {
-      /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
-      var result = target.apply(this, bind_x_esm_concat(args, arguments));
-      /* eslint-disable-next-line babel/no-invalid-this */
+  var iterable = util_pusher_x_esm_getIterable(arrayLike);
+  var length = iterable.length;
 
-      return is_primitive_default()(result) ? this : result;
-    }
-    /* eslint-disable-next-line prefer-rest-params */
+  for (var i = from || 0; i < length; i += 1) {
+    target[target.length] = arrayLike[i];
+  }
+
+  return target;
+};
+
+/* harmony default export */ var util_pusher_x_esm = (util_pusher_x_esm_pusher);
 
 
-    return target.apply(thisArg, bind_x_esm_concat(args, arguments));
+// CONCATENATED MODULE: ./node_modules/simple-bind-x/dist/simple-bind-x.esm.js
+function simple_bind_x_esm_slicedToArray(arr, i) { return simple_bind_x_esm_arrayWithHoles(arr) || simple_bind_x_esm_iterableToArrayLimit(arr, i) || simple_bind_x_esm_nonIterableRest(); }
+
+function simple_bind_x_esm_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function simple_bind_x_esm_iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function simple_bind_x_esm_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var simple_bind_x_esm_ERROR_MESSAGE = 'bind called on incompatible ';
+var simple_bind_x_esm_object = {};
+var simple_bind_x_esm_ObjectCtr = simple_bind_x_esm_object.constructor;
+var simple_bind_x_esm_toStringTag = simple_bind_x_esm_object.toString;
+var funcType = '[object Function]';
+var simple_bind_x_esm_ZERO = 0;
+var argsOffset = 2;
+
+var simple_bind_x_esm_getMax = function getMax(a, b) {
+  return a >= b ? a : b;
+};
+
+var simple_bind_x_esm_assertIsFunction = function assertIsFunction(value) {
+  if (typeof value !== 'function' && simple_bind_x_esm_toStringTag.apply(value) !== funcType) {
+    throw new TypeError(simple_bind_x_esm_ERROR_MESSAGE + value);
+  }
+};
+
+var boundFns = [function zero(binder) {
+  return function boundFn() {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments));
   };
+}, function one(binder, boundLength) {
+  return function boundFn(a) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a]));
+  };
+}, function two(binder, boundLength) {
+  return function boundFn(a, b) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b]));
+  };
+}, function three(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c]));
+  };
+}, function four(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c, d) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c, d]));
+  };
+}, function five(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c, d, e) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c, d, e]));
+  };
+}, function six(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c, d, e, f) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c, d, e, f]));
+  };
+}, function seven(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c, d, e, f, g) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c, d, e, f, g]));
+  };
+}, function eight(binder, boundLength) {
+  /* eslint-disable-next-line max-params */
+  return function boundFn(a, b, c, d, e, f, g, h) {
+    /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
+    return binder.apply(this, util_pusher_x_esm(arguments, boundLength, [a, b, c, d, e, f, g, h]));
+  };
+}];
 
-  var boundLength = target.length - args.length;
+var getBoundFn = function getBoundFn(args) {
+  var _args = simple_bind_x_esm_slicedToArray(args, 3),
+      binder = _args[0],
+      target = _args[1],
+      bindArgs = _args[2];
 
-  if (boundLength < 0) {
-    boundLength = 0;
-  }
-
-  var lastIndex = boundLength - 1;
-  var boundArgs = '';
-
-  for (var index = 0; index < boundLength; index += 1) {
-    boundArgs += "$_".concat(index, "_$").concat(index < lastIndex ? ',' : '');
-  }
-  /* eslint-disable-next-line no-new-func */
-
-
-  bound = Function('binder', 'slice', "return function (".concat(boundArgs, "){ return binder.apply(this,slice(arguments)); }"))(binder, array_slice_x_esm);
+  var boundLength = simple_bind_x_esm_getMax(simple_bind_x_esm_ZERO, target.length - simple_bind_x_esm_getMax(simple_bind_x_esm_ZERO, bindArgs.length - argsOffset));
+  var fn = boundFns[boundLength];
+  var boundFn = fn ? fn(binder, boundLength) : boundFns[simple_bind_x_esm_ZERO](binder);
 
   if (target.prototype) {
+    /* eslint-disable-next-line lodash/prefer-noop */
+    var Empty = function Empty() {};
+
     Empty.prototype = target.prototype;
-    bound.prototype = new Empty();
+    boundFn.prototype = new Empty();
     Empty.prototype = null;
   }
 
-  return bound;
+  return boundFn;
 };
+
+var getResult = function getResult(target, boundArgs) {
+  /* eslint-disable-next-line babel/no-invalid-this */
+  var result = target.apply(this, boundArgs);
+  /* eslint-disable-next-line babel/no-invalid-this,babel/new-cap */
+
+  return simple_bind_x_esm_ObjectCtr(result) === result ? result : this;
+}; // eslint-disable jsdoc/check-param-names
+// noinspection JSCommentMatchesSignature
+
 /**
  * The bind() method creates a new function that, when called, has its this
  * keyword set to the provided value, with a given sequence of arguments
  * preceding any provided when the new function is called.
  *
  * @param {Function} target - The target function.
- * @param {*} thisArg - The value to be passed as the this parameter to the target
+ * @param {*} [thisArg] - The value to be passed as the this parameter to the target
  *  function when the bound function is called. The value is ignored if the
  *  bound function is constructed using the new operator.
- * @param {*} [args] - Arguments to prepend to arguments provided to the bouund
+ * @param {...*} [args] - Arguments to prepend to arguments provided to the bound
  *  function when invoking the target function.
  * @throws {TypeError} If target is not a function.
  * @returns {Function} The bound function.
  */
+// eslint-enable jsdoc/check-param-names
 
-var $bind = bind_x_esm_isWorking ? patchedBind : bind_x_esm_implementation;
-/* harmony default export */ var bind_x_esm = ($bind);
+
+var simple_bind_x_esm_bind = function bind(target, thisArg) {
+  simple_bind_x_esm_assertIsFunction(target);
+  /* eslint-disable-next-line prefer-rest-params */
+
+  var bindArgs = arguments;
+  var bound;
+
+  var binder = function binder() {
+    /* eslint-disable-next-line prefer-rest-params */
+    var boundArgs = util_pusher_x_esm(arguments, simple_bind_x_esm_ZERO, util_pusher_x_esm(bindArgs, argsOffset));
+    /* eslint-disable-next-line babel/no-invalid-this */
+
+    return this instanceof bound ? getResult.apply(this, [target, boundArgs]) : target.apply(thisArg, boundArgs);
+  };
+
+  bound = getBoundFn([binder, target, bindArgs]);
+  return bound;
+};
+
+/* harmony default export */ var simple_bind_x_esm = (simple_bind_x_esm_bind);
 
 
 // CONCATENATED MODULE: ./node_modules/array-reduce-x/dist/array-reduce-x.esm.js
@@ -6616,6 +6673,82 @@ var cast_array_x_esm_castArray = function castArray(value) {
 /* harmony default export */ var cast_array_x_esm = (cast_array_x_esm_castArray);
 
 
+// CONCATENATED MODULE: ./node_modules/simple-call-x/dist/simple-call-x.esm.js
+
+
+var $TypeError = TypeError;
+var nativeApply = simple_bind_x_esm.apply,
+    nativeCall = simple_bind_x_esm.call;
+var $apply = simple_bind_x_esm(nativeCall, nativeApply);
+var simple_call_x_esm_toStringTag = simple_bind_x_esm(nativeApply, {}.toString);
+var simple_call_x_esm_ERROR_MESSAGE = ' is not a function';
+var simple_call_x_esm_funcType = '[object Function]';
+
+var simple_call_x_esm_assertIsFunction = function assertIsFunction(value) {
+  if (typeof value !== 'function' && simple_call_x_esm_toStringTag(value) !== simple_call_x_esm_funcType) {
+    throw new $TypeError(value + simple_call_x_esm_ERROR_MESSAGE);
+  }
+
+  return value;
+}; // eslint-disable jsdoc/check-param-names
+// noinspection JSCommentMatchesSignature
+
+/**
+ * The abstract operation Call is used to call the [[Call]] internal method of a function object.
+ *
+ * @function call
+ * @param {Function} F - The target function.
+ * @param {*} [V] - The context.
+ * @param {Array} [args] - Argument to call the function with.
+ * @throws {TypeError} If target is not a function.
+ * @returns {*} The the result of invoking the function.
+ * @see https://www.ecma-international.org/ecma-262/6.0/#sec-call
+ */
+// eslint-enable jsdoc/check-param-names
+
+
+var simple_call_x_esm_call = function call(F, V) {
+  /* eslint-disable-next-line prefer-rest-params */
+  return $apply(simple_call_x_esm_assertIsFunction(F), V, util_pusher_x_esm(arguments[2]));
+};
+
+/* harmony default export */ var simple_call_x_esm = (simple_call_x_esm_call);
+
+
+// CONCATENATED MODULE: ./node_modules/simple-methodize-x/dist/simple-methodize-x.esm.js
+
+
+var simple_methodize_x_esm_toStringTag = {}.toString;
+var simple_methodize_x_esm_ERROR_MESSAGE = 'methodize called on incompatible ';
+var simple_methodize_x_esm_funcType = '[object Function]';
+
+var simple_methodize_x_esm_assertIsFunction = function assertIsFunction(value) {
+  if (typeof value !== 'function' && simple_call_x_esm(simple_methodize_x_esm_toStringTag, value) !== simple_methodize_x_esm_funcType) {
+    throw new TypeError(simple_methodize_x_esm_ERROR_MESSAGE + value);
+  }
+
+  return value;
+};
+/**
+ * Methodize a prototype method. Compliant to 8 arguments.
+ *
+ * @param {Function} prototypeMethod - The prototype method to methodize.
+ * @throws {TypeError} If target is not a function.
+ * @returns {Function} The static method.
+ */
+
+
+var simple_methodize_x_esm_methodize = function methodize(prototypeMethod) {
+  simple_methodize_x_esm_assertIsFunction(prototypeMethod);
+  return function methodized() {
+    /* eslint-disable-next-line prefer-rest-params */
+    return simple_call_x_esm(prototypeMethod, arguments[0], util_pusher_x_esm(arguments, 1));
+  };
+};
+
+/* harmony default export */ var simple_methodize_x_esm = (simple_methodize_x_esm_methodize);
+
+
 // CONCATENATED MODULE: ./dist/color.esm.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hashedModelKeys", function() { return hashedModelKeys; });
 function color_esm_slicedToArray(arr, i) { return color_esm_arrayWithHoles(arr) || color_esm_iterableToArrayLimit(arr, i) || color_esm_nonIterableRest(); }
@@ -6652,18 +6785,18 @@ function color_esm_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var TO_FIXED_MAX = 20;
 var TO_FIXED_NORMAL = 6;
 var TO_FIXED_MIN = 1;
 var color_esm_EMPTY_STRING = '';
-var $call = bind_x_esm.call;
-var split = bind_x_esm($call, color_esm_EMPTY_STRING.split);
+var color_esm_split = simple_methodize_x_esm(color_esm_EMPTY_STRING.split);
 var EMPTY_ARRAY = [];
-var push = bind_x_esm($call, EMPTY_ARRAY.push);
-var color_esm_concat = bind_x_esm($call, EMPTY_ARRAY.concat);
-var splice = bind_x_esm($call, EMPTY_ARRAY.splice);
-var join = bind_x_esm($call, EMPTY_ARRAY.join);
-var toFixed = bind_x_esm($call, TO_FIXED_MAX.toFixed);
+var push = simple_methodize_x_esm(EMPTY_ARRAY.push);
+var color_esm_concat = simple_methodize_x_esm(EMPTY_ARRAY.concat);
+var splice = simple_methodize_x_esm(EMPTY_ARRAY.splice);
+var join = simple_methodize_x_esm(EMPTY_ARRAY.join);
+var toFixed = simple_methodize_x_esm(TO_FIXED_MAX.toFixed);
 /* eslint-disable-next-line no-restricted-properties */
 
 var mathPow = Math.pow;
@@ -6692,7 +6825,7 @@ var AA = 'AA';
 var AAA = 'AAA';
 /** @type {ReadonlyArray<string>} */
 
-var rgbKeys = object_freeze_x_esm(split(RGB, color_esm_EMPTY_STRING));
+var rgbKeys = object_freeze_x_esm(color_esm_split(RGB, color_esm_EMPTY_STRING));
 /** @type {ReadonlyArray<string>} */
 
 var skippedModels = object_freeze_x_esm([
@@ -6918,7 +7051,7 @@ var color_esm_Color = function Color(obj, modelOption) {
 
     var hashedKeys = join(stable_default()(keys), color_esm_EMPTY_STRING);
     this.model = color_esm_assertHas(hashedModelKeys, hashedKeys, "Unable to parse color from object: ".concat(stringify(obj)));
-    var color = array_map_x_esm(split(color_convert_default.a[this.model].labels, color_esm_EMPTY_STRING), function iteratee(label) {
+    var color = array_map_x_esm(color_esm_split(color_convert_default.a[this.model].labels, color_esm_EMPTY_STRING), function iteratee(label) {
       return obj[label];
     });
     this.color = zeroArray(color);
@@ -7016,7 +7149,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
     value: function object() {
       color_esm_assertThisInstanceOf(this);
       var labels = color_convert_default.a[this.model].labels;
-      var iteratee = bind_x_esm(function iteratee() {
+      var iteratee = simple_bind_x_esm(function iteratee() {
         /* eslint-disable-next-line prefer-rest-params */
         var obj = arguments[0];
         /* eslint-disable-next-line babel/no-invalid-this,prefer-rest-params */
@@ -7024,7 +7157,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
         obj[arguments[1]] = this.color[arguments[2]];
         return obj;
       }, this);
-      var result = array_reduce_x_esm(split(labels, color_esm_EMPTY_STRING), iteratee, {});
+      var result = array_reduce_x_esm(color_esm_split(labels, color_esm_EMPTY_STRING), iteratee, {});
 
       if (this.valpha !== 1) {
         result.alpha = this.valpha;
@@ -7531,7 +7664,7 @@ var color_esm_getset = function getset(model, channel) {
       var colorInstance = this[modelValue]();
       var color = array_slice_x_esm(colorInstance.color);
       color[channel] = val;
-      var object = array_reduce_x_esm(split(modelValue, color_esm_EMPTY_STRING), function iteratee(obj, key, index) {
+      var object = array_reduce_x_esm(color_esm_split(modelValue, color_esm_EMPTY_STRING), function iteratee(obj, key, index) {
         obj[key] = color[index];
         return obj;
       }, {});
