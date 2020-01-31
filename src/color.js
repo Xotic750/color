@@ -37,8 +37,6 @@ const concat = methodize(EMPTY_ARRAY.concat);
 const splice = methodize(EMPTY_ARRAY.splice);
 const join = methodize(EMPTY_ARRAY.join);
 const toFixed = methodize(TO_FIXED_MAX.toFixed);
-/* eslint-disable-next-line no-restricted-properties */
-const {pow: mathPow} = Math;
 const {stringify} = JSON;
 
 /**
@@ -548,7 +546,7 @@ defineProperties(Color.prototype, {
       const lum = map(rgb, function iteratee(channel) {
         const chan = channel / 255;
 
-        return chan <= 0.03928 ? chan / 12.92 : mathPow((chan + 0.055) / 1.055, 2.4);
+        return chan <= 0.03928 ? chan / 12.92 : ((chan + 0.055) / 1.055) ** 2.4;
       });
 
       return roundTo(0.2126 * lum[0] + 0.7152 * lum[1] + 0.0722 * lum[2], getPlaces(places, TO_FIXED_NORMAL));

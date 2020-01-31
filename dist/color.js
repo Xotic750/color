@@ -2,11 +2,11 @@
 {
   "author": "Graham Fairweather",
   "copywrite": "Copyright (c) Graham Fairweather",
-  "date": "2019-09-05T20:56:36.725Z",
+  "date": "2020-01-31T12:37:02.754Z",
   "describe": "",
   "description": "Color conversion and manipulation library",
   "file": "color.js",
-  "hash": "69a3c2b445b1c7d334f8",
+  "hash": "ae0a23a9e0df98d816be",
   "license": "MIT",
   "version": "1.1.3"
 }
@@ -6838,7 +6838,7 @@ function color_esm_slicedToArray(arr, i) { return color_esm_arrayWithHoles(arr) 
 
 function color_esm_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
 
-function color_esm_iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+function color_esm_iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function color_esm_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
@@ -6880,9 +6880,6 @@ var color_esm_concat = simple_methodize_x_esm(EMPTY_ARRAY.concat);
 var splice = simple_methodize_x_esm(EMPTY_ARRAY.splice);
 var join = simple_methodize_x_esm(EMPTY_ARRAY.join);
 var toFixed = simple_methodize_x_esm(TO_FIXED_MAX.toFixed);
-/* eslint-disable-next-line no-restricted-properties */
-
-var mathPow = Math.pow;
 var stringify = JSON.stringify;
 /**
  * Test if a value is a counting number, 1 -> MAX_SAFE_INTEGER.
@@ -7381,7 +7378,7 @@ object_define_properties_x_esm(color_esm_Color.prototype, {
       var rgb = this.rgb().color;
       var lum = array_map_x_esm(rgb, function iteratee(channel) {
         var chan = channel / 255;
-        return chan <= 0.03928 ? chan / 12.92 : mathPow((chan + 0.055) / 1.055, 2.4);
+        return chan <= 0.03928 ? chan / 12.92 : Math.pow((chan + 0.055) / 1.055, 2.4);
       });
       return roundTo(0.2126 * lum[0] + 0.7152 * lum[1] + 0.0722 * lum[2], color_esm_getPlaces(places, TO_FIXED_NORMAL));
     }
